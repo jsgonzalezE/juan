@@ -1,0 +1,615 @@
+{
+  "version": "0.4",
+  "title": "Juanito Coffee - Landing",
+  "type": "page",
+  "content": [
+    {
+      "id": "hero-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#F8F5F1",
+        "padding": "40px 0px 80px 0px"
+      },
+      "elements": [
+        {
+          "id": "hero-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "hero-logo",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://via.placeholder.com/180x180.png?text=Logo+Juanito",
+                  "id": ""
+                },
+                "align": "center",
+                "caption_source": "none"
+              }
+            },
+            {
+              "id": "hero-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Juanito Coffee",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 54
+                },
+                "typography_font_weight": "700",
+                "text_color": "#2C1E12"
+              }
+            },
+            {
+              "id": "hero-subtitle",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Café artesanal con inspiración del desierto. Espresso, cold brew y panadería fresca cada mañana.",
+                "align": "center",
+                "text_color": "#5A4533",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 18
+                }
+              }
+            },
+            {
+              "id": "hero-buttons",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "gap": "narrow",
+                "padding": "20px 0px 0px 0px"
+              },
+              "elements": [
+                {
+                  "id": "hero-button-left",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 50
+                  },
+                  "elements": [
+                    {
+                      "id": "hero-cta-primary",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Ver menú",
+                        "align": "right",
+                        "size": "md",
+                        "button_background_color": "#2C1E12",
+                        "button_text_color": "#F8F5F1",
+                        "border_radius": {
+                          "unit": "px",
+                          "size": 6
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": 14,
+                          "right": 28,
+                          "bottom": 14,
+                          "left": 28
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "hero-button-right",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 50
+                  },
+                  "elements": [
+                    {
+                      "id": "hero-cta-secondary",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Ordenar para llevar",
+                        "align": "left",
+                        "size": "md",
+                        "button_background_color": "#D8B18A",
+                        "button_text_color": "#2C1E12",
+                        "border_radius": {
+                          "unit": "px",
+                          "size": 6
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": 14,
+                          "right": 28,
+                          "bottom": 14,
+                          "left": 28
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "about-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "about-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "about-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Nuestra historia",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 36
+                },
+                "typography_font_weight": "700",
+                "text_color": "#2C1E12"
+              }
+            },
+            {
+              "id": "about-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Juanito Coffee nace con la idea de unir recetas tradicionales y granos seleccionados en un espacio cálido y minimalista. Nuestro equipo tuesta en pequeños lotes y prepara cada taza con cuidado.",
+                "align": "center",
+                "text_color": "#5A4533"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "signature-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#F1E7DD",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "signature-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "signature-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Especialidades",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 34
+                },
+                "typography_font_weight": "700",
+                "text_color": "#2C1E12"
+              }
+            },
+            {
+              "id": "signature-grid",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "gap": "default",
+                "padding": "40px 0px 0px 0px"
+              },
+              "elements": [
+                {
+                  "id": "signature-col-1",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "signature-image-1",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://via.placeholder.com/400x300.png?text=Latte+de+Olla",
+                          "id": ""
+                        },
+                        "caption_source": "none"
+                      }
+                    },
+                    {
+                      "id": "signature-title-1",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Latte de olla",
+                        "align": "center",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#2C1E12"
+                      }
+                    },
+                    {
+                      "id": "signature-text-1",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Leche cremosa infusionada con canela y piloncillo.",
+                        "align": "center",
+                        "text_color": "#5A4533"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "signature-col-2",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "signature-image-2",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://via.placeholder.com/400x300.png?text=Cold+Brew",
+                          "id": ""
+                        },
+                        "caption_source": "none"
+                      }
+                    },
+                    {
+                      "id": "signature-title-2",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Cold brew cítrico",
+                        "align": "center",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#2C1E12"
+                      }
+                    },
+                    {
+                      "id": "signature-text-2",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Macerado en frío por 16 horas con notas a naranja.",
+                        "align": "center",
+                        "text_color": "#5A4533"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "signature-col-3",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "signature-image-3",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://via.placeholder.com/400x300.png?text=Panaderia+Fresca",
+                          "id": ""
+                        },
+                        "caption_source": "none"
+                      }
+                    },
+                    {
+                      "id": "signature-title-3",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Panadería diaria",
+                        "align": "center",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#2C1E12"
+                      }
+                    },
+                    {
+                      "id": "signature-text-3",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Conchas, cuernitos y galletas recién horneadas.",
+                        "align": "center",
+                        "text_color": "#5A4533"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "menu-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "menu-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Menú destacado",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 34
+                },
+                "typography_font_weight": "700",
+                "text_color": "#2C1E12"
+              }
+            },
+            {
+              "id": "menu-list",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<strong>Espresso clásico</strong> — $45 MXN<br><strong>Flat white</strong> — $60 MXN<br><strong>Latte de olla</strong> — $65 MXN<br><strong>Cold brew cítrico</strong> — $70 MXN<br><strong>Matcha latte</strong> — $65 MXN",
+                "align": "center",
+                "text_color": "#5A4533"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gallery-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#F8F5F1",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "gallery-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "gallery-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Galería",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 34
+                },
+                "typography_font_weight": "700",
+                "text_color": "#2C1E12"
+              }
+            },
+            {
+              "id": "gallery-grid",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "gap": "default",
+                "padding": "30px 0px 0px 0px"
+              },
+              "elements": [
+                {
+                  "id": "gallery-col-1",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "gallery-image-1",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://via.placeholder.com/380x280.png?text=Interior",
+                          "id": ""
+                        },
+                        "caption_source": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "gallery-col-2",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "gallery-image-2",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://via.placeholder.com/380x280.png?text=Baristas",
+                          "id": ""
+                        },
+                        "caption_source": "none"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "gallery-col-3",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "gallery-image-3",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://via.placeholder.com/380x280.png?text=Panaderia",
+                          "id": ""
+                        },
+                        "caption_source": "none"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "location-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#2C1E12",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "location-column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "location-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Visítanos",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 32
+                },
+                "typography_font_weight": "700",
+                "text_color": "#F8F5F1"
+              }
+            },
+            {
+              "id": "location-details",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Av. Café 123, Barrio Centro, Ciudad Juárez<br><strong>Horario:</strong> Lun - Dom · 8:00 - 20:00<br><strong>Tel:</strong> +52 656 000 0000",
+                "align": "center",
+                "text_color": "#F8F5F1"
+              }
+            },
+            {
+              "id": "location-button",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Abrir en Google Maps",
+                "align": "center",
+                "size": "md",
+                "button_background_color": "#D8B18A",
+                "button_text_color": "#2C1E12",
+                "border_radius": {
+                  "unit": "px",
+                  "size": 6
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": 12,
+                  "right": 24,
+                  "bottom": 12,
+                  "left": 24
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "page_title": "Juanito Coffee",
+    "hide_title": "yes"
+  }
+}
