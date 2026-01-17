@@ -1,0 +1,713 @@
+{
+  "version": "0.4",
+  "title": "Juanito Coffee - Página principal",
+  "type": "page",
+  "content": [
+    {
+      "id": "header-hero",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFF7EF",
+        "padding": "40px 0px 80px 0px"
+      },
+      "elements": [
+        {
+          "id": "header-hero-col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "top-bar",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "padding": "0px 0px 40px 0px"
+              },
+              "elements": [
+                {
+                  "id": "logo-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 20
+                  },
+                  "elements": [
+                    {
+                      "id": "logo-placeholder",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "",
+                          "id": ""
+                        },
+                        "caption_source": "none",
+                        "image_size": "medium"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "nav-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 80
+                  },
+                  "elements": [
+                    {
+                      "id": "nav-menu",
+                      "elType": "widget",
+                      "widgetType": "nav-menu",
+                      "settings": {
+                        "menu": "",
+                        "align": "right",
+                        "pointer": "underline",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "typography_font_weight": "600",
+                        "menu_item_color": "#2C1A12",
+                        "menu_item_color_hover": "#B45309"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "hero-content",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "padding": "0px 0px 0px 0px"
+              },
+              "elements": [
+                {
+                  "id": "hero-text-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 55
+                  },
+                  "elements": [
+                    {
+                      "id": "hero-eyebrow",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Juanito Coffee",
+                        "align": "left",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 16
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#B45309"
+                      }
+                    },
+                    {
+                      "id": "hero-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Café artesanal con sabor a tradición",
+                        "align": "left",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 52
+                        },
+                        "typography_font_weight": "700",
+                        "text_color": "#2C1A12"
+                      }
+                    },
+                    {
+                      "id": "hero-description",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Inspirados en el estilo cálido de Northplanner, presentamos una página clara y moderna para Juanito Coffee. Ajusta este texto para contar tu historia.",
+                        "text_color": "#5C4033",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 18
+                        }
+                      }
+                    },
+                    {
+                      "id": "hero-buttons",
+                      "elType": "section",
+                      "settings": {
+                        "padding": "20px 0px 0px 0px"
+                      },
+                      "elements": [
+                        {
+                          "id": "hero-primary-btn",
+                          "elType": "column",
+                          "settings": {
+                            "_column_size": 35
+                          },
+                          "elements": [
+                            {
+                              "id": "hero-btn",
+                              "elType": "widget",
+                              "widgetType": "button",
+                              "settings": {
+                                "text": "Ordenar ahora",
+                                "align": "left",
+                                "size": "lg",
+                                "button_background_color": "#B45309",
+                                "button_text_color": "#FFFFFF",
+                                "border_radius": {
+                                  "unit": "px",
+                                  "size": 6
+                                },
+                                "padding": {
+                                  "unit": "px",
+                                  "top": 14,
+                                  "right": 28,
+                                  "bottom": 14,
+                                  "left": 28
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "id": "hero-secondary-btn",
+                          "elType": "column",
+                          "settings": {
+                            "_column_size": 65
+                          },
+                          "elements": [
+                            {
+                              "id": "hero-secondary-link",
+                              "elType": "widget",
+                              "widgetType": "button",
+                              "settings": {
+                                "text": "Ver carta",
+                                "align": "left",
+                                "size": "lg",
+                                "button_background_color": "#FFFFFF",
+                                "button_text_color": "#2C1A12",
+                                "border_radius": {
+                                  "unit": "px",
+                                  "size": 6
+                                },
+                                "border_border": "solid",
+                                "border_color": "#2C1A12",
+                                "border_width": {
+                                  "unit": "px",
+                                  "top": 1,
+                                  "right": 1,
+                                  "bottom": 1,
+                                  "left": 1
+                                },
+                                "padding": {
+                                  "unit": "px",
+                                  "top": 14,
+                                  "right": 28,
+                                  "bottom": 14,
+                                  "left": 28
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "hero-image-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 45
+                  },
+                  "elements": [
+                    {
+                      "id": "hero-image",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "",
+                          "id": ""
+                        },
+                        "caption_source": "none",
+                        "image_size": "large"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "about-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "about-col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "about-content",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "gap": "default"
+              },
+              "elements": [
+                {
+                  "id": "about-image-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 45
+                  },
+                  "elements": [
+                    {
+                      "id": "about-image",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "",
+                          "id": ""
+                        },
+                        "caption_source": "none",
+                        "image_size": "large"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "about-text-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 55
+                  },
+                  "elements": [
+                    {
+                      "id": "about-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Nuestra historia",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 36
+                        },
+                        "typography_font_weight": "700",
+                        "text_color": "#2C1A12"
+                      }
+                    },
+                    {
+                      "id": "about-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Desde nuestros campos de café hasta tu taza, cuidamos cada detalle para ofrecer un sabor honesto y local.",
+                        "text_color": "#5C4033"
+                      }
+                    },
+                    {
+                      "id": "about-list",
+                      "elType": "widget",
+                      "widgetType": "icon-list",
+                      "settings": {
+                        "icon_list": [
+                          {
+                            "text": "Café de origen seleccionado",
+                            "icon": "fas fa-coffee"
+                          },
+                          {
+                            "text": "Tostado artesanal y fresco",
+                            "icon": "fas fa-fire"
+                          },
+                          {
+                            "text": "Entregas locales y rápidas",
+                            "icon": "fas fa-truck"
+                          }
+                        ],
+                        "icon_color": "#B45309",
+                        "text_color": "#2C1A12",
+                        "space_between": {
+                          "unit": "px",
+                          "size": 12
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFF7EF",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "menu-col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "menu-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Nuestra carta",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 34
+                },
+                "typography_font_weight": "700",
+                "text_color": "#2C1A12"
+              }
+            },
+            {
+              "id": "menu-items",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "gap": "default",
+                "padding": "30px 0px 0px 0px"
+              },
+              "elements": [
+                {
+                  "id": "menu-item-1",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "background_background": "classic",
+                    "background_color": "#FFFFFF",
+                    "padding": "24px 24px 24px 24px",
+                    "border_radius": {
+                      "unit": "px",
+                      "size": 10
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "menu-item-1-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Latte Juanito",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#2C1A12"
+                      }
+                    },
+                    {
+                      "id": "menu-item-1-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Cremoso, suave y con notas de caramelo.",
+                        "text_color": "#5C4033"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "menu-item-2",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "background_background": "classic",
+                    "background_color": "#FFFFFF",
+                    "padding": "24px 24px 24px 24px",
+                    "border_radius": {
+                      "unit": "px",
+                      "size": 10
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "menu-item-2-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Cold brew",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#2C1A12"
+                      }
+                    },
+                    {
+                      "id": "menu-item-2-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Infusión en frío con sabor frutal.",
+                        "text_color": "#5C4033"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "menu-item-3",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 33,
+                    "background_background": "classic",
+                    "background_color": "#FFFFFF",
+                    "padding": "24px 24px 24px 24px",
+                    "border_radius": {
+                      "unit": "px",
+                      "size": 10
+                    }
+                  },
+                  "elements": [
+                    {
+                      "id": "menu-item-3-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Filtro de la casa",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 20
+                        },
+                        "typography_font_weight": "600",
+                        "text_color": "#2C1A12"
+                      }
+                    },
+                    {
+                      "id": "menu-item-3-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Balance perfecto para cualquier momento.",
+                        "text_color": "#5C4033"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visit-section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": "70px 0px 70px 0px"
+      },
+      "elements": [
+        {
+          "id": "visit-col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "visit-content",
+              "elType": "section",
+              "settings": {
+                "content_width": "boxed",
+                "gap": "default"
+              },
+              "elements": [
+                {
+                  "id": "visit-text-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 60
+                  },
+                  "elements": [
+                    {
+                      "id": "visit-title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Visítanos",
+                        "typography_typography": "custom",
+                        "typography_font_size": {
+                          "unit": "px",
+                          "size": 32
+                        },
+                        "typography_font_weight": "700",
+                        "text_color": "#2C1A12"
+                      }
+                    },
+                    {
+                      "id": "visit-text",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Av. Principal 123, Ciudad. Lunes a domingo de 8:00 a 20:00.",
+                        "text_color": "#5C4033"
+                      }
+                    },
+                    {
+                      "id": "visit-cta",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Cómo llegar",
+                        "align": "left",
+                        "size": "md",
+                        "button_background_color": "#2C1A12",
+                        "button_text_color": "#FFFFFF",
+                        "border_radius": {
+                          "unit": "px",
+                          "size": 6
+                        },
+                        "padding": {
+                          "unit": "px",
+                          "top": 12,
+                          "right": 24,
+                          "bottom": 12,
+                          "left": 24
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "visit-map-col",
+                  "elType": "column",
+                  "settings": {
+                    "_column_size": 40
+                  },
+                  "elements": [
+                    {
+                      "id": "visit-map",
+                      "elType": "widget",
+                      "widgetType": "google-maps",
+                      "settings": {
+                        "address": "Av. Principal 123, Ciudad",
+                        "zoom": {
+                          "size": 14
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer-cta",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#2C1A12",
+        "padding": "60px 0px 60px 0px"
+      },
+      "elements": [
+        {
+          "id": "footer-cta-col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "footer-heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Juanito Coffee te espera",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 30
+                },
+                "typography_font_weight": "700",
+                "text_color": "#FFFFFF"
+              }
+            },
+            {
+              "id": "footer-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Reserva tu mesa o pide a domicilio. Estamos listos para servirte.",
+                "align": "center",
+                "text_color": "#FEEBC8"
+              }
+            },
+            {
+              "id": "footer-button",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Contactar",
+                "align": "center",
+                "size": "md",
+                "button_background_color": "#B45309",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {
+                  "unit": "px",
+                  "size": 6
+                },
+                "padding": {
+                  "unit": "px",
+                  "top": 12,
+                  "right": 24,
+                  "bottom": 12,
+                  "left": 24
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "page_settings": {
+    "page_title": "Juanito Coffee",
+    "hide_title": "yes"
+  }
+}
