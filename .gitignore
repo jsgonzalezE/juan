@@ -1,0 +1,4 @@
+# Entregables grandes: se entregan al usuario, no se versionan
+*.pdf
+*.mp3
+*.mp4
