@@ -16,8 +16,22 @@ Reconstrucción del informe semanal del mercado del café a partir del video del
 | `audio.mp3` | La narración completa (21 min, 192 kbps). |
 | `Informe_ES.md` | Transcripción del texto del informe, en español. |
 | `Report_EN.md` | El mismo informe traducido al inglés. |
+| `Informe_Completo_ES.md` | El informe con la narración del video integrada, en español. |
+| `Full_Report_EN.md` | Lo mismo en inglés. |
+| `Narracion_audio_bruta_ES.txt` | Transcripción bruta del audio, con marcas de tiempo. |
 
 > Los archivos PDF y MP3 no se versionan en el repositorio por su tamaño (42 MB y 30 MB).
+
+## Informe combinado
+
+`Informe_Completo_ES.md` y `Full_Report_EN.md` reorganizan el informe en 7 secciones y le añaden
+21 bloques con lo que el autor **explica hablando** en el video, cada uno con su marca de tiempo,
+separados del texto del documento escrito.
+
+La narración se transcribió con Whisper large-v3, fusionando dos pasadas independientes que
+cubren mutuamente sus vacíos. Todas las cifras habladas se contrastaron contra el documento; donde
+ambas fuentes discrepan, prevalece el documento y la diferencia queda anotada en el punto
+correspondiente.
 
 ## Cómo se garantizó que no falta contenido
 
