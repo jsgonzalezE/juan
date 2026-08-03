@@ -158,7 +158,13 @@ v=DMARC1; p=none; rua=mailto:b27ece511fa94b44b31a87a04c60d14c@dmarc-reports.clou
 
 ### 🟡 H‑06 · Una clave DKIM es RSA de 1024 bits
 
-**Qué es.** Entre las claves DKIM publicadas, una es de **1024 bits** (prefijo `MIGfMA0...`); las otras dos son de 2048 bits.
+**Qué es.** Entre las claves DKIM publicadas, una es de **1024 bits**; las otras dos son de 2048 bits. **Confirmado criptográficamente** decodificando las tres claves públicas del informe con `openssl` (ver [`tools/`](tools/)):
+
+| Clave | Tamaño | Veredicto |
+|-------|--------|-----------|
+| #1 | 2048 bits | ✓ OK |
+| #2 | 2048 bits | ✓ OK |
+| #3 (prefijo `MIGfMA0...`) | **1024 bits** | ⚠️ **Débil** |
 
 **Por qué importa.** 1024 bits es el mínimo legado y se considera **débil**; NIST y los grandes proveedores recomiendan **2048 bits**.
 
@@ -260,6 +266,8 @@ curl -sSI https://dev.burmancoffee.com
 # security.txt
 curl -sS https://burmancoffee.com/.well-known/security.txt
 ```
+
+**Toolkit incluido:** el script [`tools/recon.sh`](tools/recon.sh) automatiza todas estas comprobaciones (DNS, DNSSEC, TLS, cabeceras + detección de challenge, cookies, security.txt, rutas sensibles y **detección de IP de origen expuesta**). Es no intrusivo y seguro para producción. Ejecútalo desde una máquina con red y compárteme la salida.
 
 Herramientas externas recomendadas (gratuitas): **SSL Labs** (grado TLS), **Mozilla HTTP Observatory** (cabeceras), **DMARC/dmarcian**, **Hardenize**, **crt.sh** (subdominios).
 

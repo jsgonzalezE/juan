@@ -11,6 +11,7 @@ enriquecida con análisis experto de los datos crudos (cabeceras HTTP, DNS, TLS,
 | [`security-assessment.md`](security-assessment.md) | **Informe principal**: resumen ejecutivo, hallazgos priorizados, remediación y contexto de infraestructura. |
 | [`remediation/remediation-guide.md`](remediation/remediation-guide.md) | Guía paso a paso con configuraciones exactas (Cloudflare / Register.com / DNS). |
 | [`.well-known/security.txt`](.well-known/security.txt) | Archivo `security.txt` listo para desplegar (RFC 9116). |
+| [`tools/recon.sh`](tools/recon.sh) | **Toolkit de pruebas no intrusivas** listo para ejecutar (DNS, TLS, cabeceras, detección de IP de origen expuesta…). |
 
 ## TL;DR
 
