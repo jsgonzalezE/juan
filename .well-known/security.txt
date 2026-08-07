@@ -1,0 +1,16 @@
+# security.txt for burmancoffee.com — RFC 9116
+# Deploy at: https://burmancoffee.com/.well-known/security.txt
+# (Optional but recommended: also serve at https://burmancoffee.com/security.txt as a redirect.)
+#
+# IMPORTANT: keep the Expires date in the future. Update/renew it before it lapses
+# (a good habit is to set it ~1 year out and refresh it during each review).
+
+Contact: mailto:jburman@burmancoffee.com
+Expires: 2027-08-03T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://burmancoffee.com/.well-known/security.txt
+
+# Optional fields you may add later:
+# Policy: https://burmancoffee.com/security-policy
+# Acknowledgments: https://burmancoffee.com/security-acknowledgments
+# Encryption: https://burmancoffee.com/pgp-key.txt
