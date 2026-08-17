@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14100c">
+  <title>Burman Inventario</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Burman Inv.">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">☕ <strong>Burman</strong> Inventario</div>
+  <div id="top-status"></div>
+</header>
+
+<main id="main">
+
+  <!-- ============ ESCANEAR ============ -->
+  <section id="view-scan" class="view active">
+
+    <div id="scan-idle">
+      <h2>¿Qué orden empacamos?</h2>
+      <div class="order-entry">
+        <input id="order-input" type="text" inputmode="numeric" autocomplete="off"
+               placeholder="Número de orden">
+        <button id="btn-start-order" class="primary big">Empezar ▶</button>
+      </div>
+      <div id="pending-orders" class="order-chips"></div>
+      <div class="idle-actions">
+        <button id="btn-free-scan" class="secondary big">📥 Escaneo libre (sin orden)</button>
+      </div>
+      <p class="hint">El escaneo libre suma libras al inventario sin revisar ninguna orden.
+        Sirve para contar producción o inventario físico.</p>
+    </div>
+
+    <div id="scan-active" hidden>
+      <div class="scan-head">
+        <button id="btn-exit-scan" class="icon-btn" title="Salir">✕</button>
+        <div class="scan-title-wrap">
+          <div id="scan-title">Orden</div>
+          <div id="scan-sub"></div>
+        </div>
+        <div id="scan-progress-pct"></div>
+      </div>
+
+      <div class="cam-wrap" id="cam-wrap">
+        <video id="cam" playsinline muted></video>
+        <div class="reticle"><span></span></div>
+        <div id="cam-msg">Iniciando cámara…</div>
+        <div class="cam-tools">
+          <button id="btn-torch" class="icon-btn" hidden title="Linterna">🔦</button>
+        </div>
+        <input id="zoom" type="range" hidden>
+      </div>
+
+      <div id="scan-lines"></div>
+
+      <div class="scan-actions">
+        <button id="btn-undo" class="secondary" disabled>↩ Deshacer</button>
+        <button id="btn-manual" class="secondary">✋ Manual</button>
+      </div>
+      <div id="scan-log-mini"></div>
+    </div>
+  </section>
+
+  <!-- ============ ÓRDENES ============ -->
+  <section id="view-orders" class="view">
+    <h2>Órdenes del día</h2>
+    <div id="orders-summary" class="cards"></div>
+    <div id="orders-list"></div>
+
+    <details id="import-box">
+      <summary>➕ Importar órdenes (pegar texto o subir archivo)</summary>
+      <p class="hint">Acepta texto libre o CSV. Ejemplo:</p>
+      <pre class="hint-example">Orden 1001
+2 lb Colombia
+1 lb Brasil
+Caja: Mediana
+
+Orden 1002
+2x Guatemala 1lb</pre>
+      <textarea id="orders-text" rows="8" placeholder="Pega aquí las órdenes del día…"></textarea>
+      <label class="file-label">📄 Subir archivo (.txt / .csv)
+        <input type="file" id="orders-file" accept=".txt,.csv,text/plain,text/csv">
+      </label>
+      <div id="import-preview"></div>
+      <button id="btn-import" class="primary big" disabled>Importar</button>
+    </details>
+
+    <div class="row-buttons">
+      <button id="btn-clear-done" class="secondary">🧹 Quitar órdenes listas</button>
+      <button id="btn-clear-orders" class="danger-outline">Borrar todas</button>
+    </div>
+  </section>
+
+  <!-- ============ ETIQUETAS ============ -->
+  <section id="view-labels" class="view">
+    <h2>Etiquetas QR nuevas</h2>
+    <p class="hint">Estas etiquetas llevan el café <strong>y las libras dentro del QR</strong>
+      (formato <code>BC|CAFE|LBS</code>), así el escaneo es instantáneo y sin errores.</p>
+
+    <div class="form-grid">
+      <label>Café
+        <select id="label-coffee"></select>
+      </label>
+      <label>Libras
+        <div class="chips" id="label-lbs-chips">
+          <button data-lbs="1" class="chip active">1 lb</button>
+          <button data-lbs="2" class="chip">2 lb</button>
+          <button data-lbs="5" class="chip">5 lb</button>
+          <input id="label-lbs-custom" type="number" step="0.25" min="0.25" placeholder="otra">
+        </div>
+      </label>
+      <label>Cantidad de etiquetas
+        <input id="label-count" type="number" min="1" max="120" value="12">
+      </label>
+      <label>Tamaño
+        <select id="label-size">
+          <option value="s">Chica (~2.5 cm)</option>
+          <option value="m" selected>Mediana (~3.5 cm)</option>
+          <option value="l">Grande (~5 cm)</option>
+        </select>
+      </label>
+    </div>
+    <div class="row-buttons">
+      <button id="btn-gen-labels" class="primary big">Generar etiquetas</button>
+      <button id="btn-print-labels" class="secondary big" disabled>🖨 Imprimir</button>
+    </div>
+    <div id="labels-grid"></div>
+  </section>
+
+  <!-- ============ REPORTES ============ -->
+  <section id="view-reports" class="view">
+    <h2>Reportes</h2>
+    <div class="chips" id="report-range">
+      <button class="chip active" data-range="today">Hoy</button>
+      <button class="chip" data-range="month">Este mes</button>
+      <button class="chip" data-range="prev-month">Mes pasado</button>
+      <button class="chip" data-range="all">Todo</button>
+    </div>
+    <div id="report-cards" class="cards"></div>
+    <div id="report-table"></div>
+    <div class="row-buttons">
+      <button id="btn-export-detail" class="secondary">⬇ Detalle CSV</button>
+      <button id="btn-export-summary" class="secondary">⬇ Resumen CSV</button>
+    </div>
+
+    <h2 class="mt">WooCommerce · comparación</h2>
+    <p class="hint">Sube la exportación de pedidos de WooCommerce (CSV). Al final del mes se compara
+      lo escaneado contra lo vendido en la tienda.</p>
+    <label class="file-label">📄 Subir CSV de WooCommerce
+      <input type="file" id="woo-file" accept=".csv,text/csv,text/plain">
+    </label>
+    <div id="woo-status" class="hint"></div>
+    <div class="chips" id="woo-months"></div>
+    <div id="woo-unmatched"></div>
+    <div id="woo-compare"></div>
+    <div class="row-buttons">
+      <button id="btn-export-compare" class="secondary" hidden>⬇ Comparación CSV</button>
+    </div>
+  </section>
+
+  <!-- ============ AJUSTES ============ -->
+  <section id="view-settings" class="view">
+    <h2>Ajustes</h2>
+
+    <details open>
+      <summary>☕ Catálogo de cafés</summary>
+      <div id="catalog-list"></div>
+      <div class="form-inline">
+        <input id="new-coffee-name" type="text" placeholder="Nuevo café (ej. Kenia AA)">
+        <button id="btn-add-coffee" class="primary">Agregar</button>
+      </div>
+    </details>
+
+    <details>
+      <summary>🏷 QRs antiguos aprendidos</summary>
+      <p class="hint">Cuando escaneas una etiqueta vieja, la app pregunta una sola vez qué café y
+        cuántas libras es, y lo recuerda para siempre.</p>
+      <div id="legacy-list"></div>
+    </details>
+
+    <details>
+      <summary>📦 Reglas de caja</summary>
+      <p class="hint">Según el total de libras de la orden se sugiere la caja. Si el archivo de
+        órdenes trae "Caja:", esa gana.</p>
+      <div id="box-rules"></div>
+      <button id="btn-add-rule" class="secondary">＋ Agregar regla</button>
+    </details>
+
+    <details>
+      <summary>🔊 Escaneo y sonido</summary>
+      <label class="toggle"><input type="checkbox" id="set-sound" checked> Sonidos</label>
+      <label class="toggle"><input type="checkbox" id="set-vibrate" checked> Vibración</label>
+      <label class="slider-label">Anti-duplicado: <span id="cooldown-val"></span>
+        <input type="range" id="set-cooldown" min="400" max="2500" step="100">
+        <span class="hint">Tiempo mínimo para volver a contar el mismo QR sin que salga de cámara.</span>
+      </label>
+    </details>
+
+    <details>
+      <summary>💾 Datos y respaldo</summary>
+      <div class="row-buttons">
+        <button id="btn-backup" class="secondary">⬇ Exportar respaldo</button>
+        <label class="file-label">⬆ Importar respaldo
+          <input type="file" id="backup-file" accept=".json,application/json">
+        </label>
+      </div>
+      <button id="btn-wipe" class="danger-outline mt">Borrar todos los datos</button>
+      <p class="hint">Los datos viven en este teléfono (no hay servidor). Exporta un respaldo de vez
+        en cuando o al cambiar de equipo.</p>
+    </details>
+
+    <p class="hint version">Burman Inventario v1 · formato QR <code>BC|CAFE|LBS</code></p>
+  </section>
+</main>
+
+<nav id="tabbar">
+  <button data-view="scan" class="active"><span>📷</span>Escanear</button>
+  <button data-view="orders"><span>📋</span>Órdenes</button>
+  <button data-view="labels"><span>🏷</span>Etiquetas</button>
+  <button data-view="reports"><span>📊</span>Reportes</button>
+  <button data-view="settings"><span>⚙️</span>Ajustes</button>
+</nav>
+
+<div id="flash"></div>
+
+<div id="sheet-backdrop" hidden>
+  <div id="sheet"></div>
+</div>
+
+<div id="complete-overlay" hidden>
+  <div class="complete-inner">
+    <div class="complete-check">✅</div>
+    <div id="complete-title">¡Orden lista!</div>
+    <div id="complete-box"></div>
+    <div id="complete-note"></div>
+    <div id="complete-total"></div>
+    <button id="btn-next-order" class="primary big">Siguiente orden ▶</button>
+    <button id="btn-close-complete" class="secondary big">Cerrar</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="vendor/jsQR.js"></script>
+<script src="vendor/qrcode.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/scanner.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
