@@ -61,6 +61,15 @@ armado en la rama `gh-pages` en cada push; solo hay que activar Pages una vez:
 Para probar en una computadora local: `python3 -m http.server` dentro de la carpeta y abre
 `http://localhost:8000` (en localhost la cámara sí funciona sin HTTPS).
 
+## Alojarla en el compu de Burman (red local)
+
+La app también puede vivir en una computadora de la bodega y servirse por el wifi,
+sin depender de internet: la guía completa paso a paso está en
+**[`server/INSTALACION.md`](server/INSTALACION.md)** (instalar Node, doble clic a
+`server/iniciar-windows.bat`, generar el certificado HTTPS local con
+`server/generar-certificado.sh` e instalarlo una vez en cada teléfono — sin HTTPS los
+navegadores no dejan usar la cámara). Incluye IP fija, autoarranque y cómo actualizar.
+
 ## Formato del archivo de órdenes del día
 
 La pestaña **Órdenes** acepta texto pegado o archivo `.txt`/`.csv`. El parser es flexible;
