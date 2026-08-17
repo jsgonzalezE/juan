@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#14100c"/>
+  <rect x="40" y="40" width="432" height="432" rx="72" fill="none" stroke="#3a2f23" stroke-width="8"/>
+  <!-- marcos estilo QR -->
+  <g stroke="#e8833a" stroke-width="26" fill="none" stroke-linecap="round">
+    <path d="M96 176 V116 a20 20 0 0 1 20 -20 H176"/>
+    <path d="M336 96 H396 a20 20 0 0 1 20 20 V176"/>
+    <path d="M96 336 V396 a20 20 0 0 0 20 20 H176"/>
+    <path d="M336 416 H396 a20 20 0 0 0 20 -20 V336"/>
+  </g>
+  <!-- grano de café -->
+  <g transform="translate(256 256)">
+    <ellipse rx="92" ry="120" fill="#e8833a" transform="rotate(-18)"/>
+    <path d="M-30 -110 C 30 -60, -34 60, 26 112" stroke="#14100c" stroke-width="24" fill="none" stroke-linecap="round" transform="rotate(-18)"/>
+  </g>
+</svg>

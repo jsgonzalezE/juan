@@ -1,0 +1,14 @@
+Orden 1001
+2 lb Colombia
+2 lb Brasil
+2 lb Peru
+Caja: Mediana
+
+Orden 1002
+1 lb Etiopia
+5 lb Colombia
+Nota: cliente frecuente, agregar sticker
+
+Orden 1003
+2x Guatemala 1lb
+Costa Rica 2lb
