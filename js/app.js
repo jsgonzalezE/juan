@@ -89,7 +89,12 @@
     return c ? c.name : sku;
   }
 
-  var AVATAR_TONES = ['#9a8478', '#7d8a74', '#867f96', '#768a96', '#96857d', '#7f8c72', '#8a7d90', '#94766d'];
+  var AVATAR_TONES = ['#a98a6d', '#87987b', '#8f84a8', '#7796a8', '#b08d77', '#9aa06e', '#a38591', '#8d9d94'];
+  function shade(hex, pct) {
+    var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    function mix(v) { return Math.round(v + (255 - v) * pct); }
+    return 'rgb(' + mix(r) + ',' + mix(g) + ',' + mix(b) + ')';
+  }
   function avatarHtml(sku, cls) {
     var c = getCoffee(sku);
     var name = c ? c.name : sku;
@@ -100,7 +105,8 @@
     var img = c && c.image
       ? '<img src="' + esc(c.image) + '" alt="" loading="lazy" onerror="this.remove()">'
       : '';
-    return '<span class="avatar ' + (cls || '') + '" style="background:' + tone + '">' +
+    return '<span class="avatar ' + (cls || '') +
+      '" style="background:linear-gradient(150deg,' + shade(tone, 0.28) + ',' + tone + ')">' +
       esc(initials) + img + '</span>';
   }
 

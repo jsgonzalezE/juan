@@ -79,6 +79,7 @@
   <section id="view-scan" class="view active">
 
     <div id="scan-idle">
+      <div class="eyebrow">Burman Coffee</div>
       <h1 class="large-title">Escanear</h1>
       <div class="order-entry">
         <input id="order-input" type="text" inputmode="numeric" autocomplete="off"
@@ -114,17 +115,15 @@
     <!-- cámara fija abajo: siempre analizando -->
     <div id="cam-dock">
       <div id="lookup-card" hidden></div>
-      <div class="dock-bar">
+      <div class="cam-wrap" id="cam-wrap">
+        <video id="cam" playsinline muted></video>
+        <div class="reticle"><span></span></div>
         <span id="cam-status" class="cam-status"></span>
+        <button id="btn-torch" class="btn-glass btn-icon" hidden title="Linterna"><svg class="ic"><use href="#i-torch"/></svg></button>
         <div class="dock-actions" id="dock-actions" hidden>
           <button id="btn-undo" class="btn-glass" disabled><svg class="ic"><use href="#i-undo"/></svg> Deshacer</button>
           <button id="btn-manual" class="btn-glass"><svg class="ic"><use href="#i-hand"/></svg> Manual</button>
         </div>
-        <button id="btn-torch" class="btn-glass btn-icon" hidden title="Linterna"><svg class="ic"><use href="#i-torch"/></svg></button>
-      </div>
-      <div class="cam-wrap" id="cam-wrap">
-        <video id="cam" playsinline muted></video>
-        <div class="reticle"><span></span></div>
         <div id="cam-msg"></div>
         <input id="zoom" type="range" hidden>
       </div>
@@ -133,7 +132,8 @@
 
   <!-- ============ ÓRDENES ============ -->
   <section id="view-orders" class="view">
-    <h1 class="large-title">Órdenes</h1>
+    <div class="eyebrow">Burman Coffee</div>
+      <h1 class="large-title">Órdenes</h1>
     <div id="orders-summary" class="cards"></div>
     <div id="orders-list"></div>
 
@@ -160,7 +160,8 @@ Caja: Mediana</pre>
 
   <!-- ============ ETIQUETAS ============ -->
   <section id="view-labels" class="view">
-    <h1 class="large-title">Etiquetas</h1>
+    <div class="eyebrow">Burman Coffee</div>
+      <h1 class="large-title">Etiquetas</h1>
     <p class="hint">Etiquetas nuevas con el café <strong>y las libras dentro del QR</strong>
       (<code>BC|CAFE|LBS</code>): el escaneo es instantáneo y ya no depende del número impreso.</p>
 
@@ -196,7 +197,8 @@ Caja: Mediana</pre>
 
   <!-- ============ REPORTES ============ -->
   <section id="view-reports" class="view">
-    <h1 class="large-title">Reportes</h1>
+    <div class="eyebrow">Burman Coffee</div>
+      <h1 class="large-title">Reportes</h1>
     <div class="chips" id="report-range">
       <button class="chip active" data-range="today">Hoy</button>
       <button class="chip" data-range="month">Este mes</button>
@@ -227,7 +229,8 @@ Caja: Mediana</pre>
 
   <!-- ============ AJUSTES ============ -->
   <section id="view-settings" class="view">
-    <h1 class="large-title">Ajustes</h1>
+    <div class="eyebrow">Burman Coffee</div>
+      <h1 class="large-title">Ajustes</h1>
 
     <details open class="group">
       <summary>Catálogo de cafés</summary>

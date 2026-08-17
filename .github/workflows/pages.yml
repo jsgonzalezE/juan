@@ -1,18 +1,16 @@
-name: Publicar en GitHub Pages
+name: Pruebas y publicación
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/burman-coffee-inventory-5sa1pl]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# cada ref usa su propio grupo: un PR no debe cancelar un despliegue de main en curso
+# cada ref usa su propio grupo: un PR no debe cancelar un despliegue en curso
 concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: true
@@ -32,16 +30,14 @@ jobs:
     needs: test
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+      - name: Publicar en la rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          force_orphan: true
+          commit_message: 'Publicación automática'
