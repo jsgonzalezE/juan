@@ -231,7 +231,12 @@ Caja: Mediana</pre>
 
     <details open class="group">
       <summary>Catálogo de cafés</summary>
-      <p class="hint">Toca la imagen para asignar la foto del producto (URL de la tienda).</p>
+      <label>URL de la tienda (WooCommerce)
+        <input id="store-url" type="url" placeholder="https://www.burmancoffee.com">
+      </label>
+      <button id="btn-fetch-images" class="btn-tonal wide">Traer imágenes de la tienda</button>
+      <p class="hint">Trae las fotos de los productos directo de la web y las empareja con el
+        catálogo. También puedes tocar la imagen de un café para pegar la URL a mano.</p>
       <div id="catalog-list"></div>
       <div class="form-inline">
         <input id="new-coffee-name" type="text" placeholder="Nuevo café (ej. Kenia AA)">

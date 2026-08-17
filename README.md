@@ -12,13 +12,16 @@ y los datos se guardan en el propio dispositivo.
   velocidad real del teléfono. Bip + vibración + flash verde en cada bolsa contada.
   Sin orden activa, la cámara queda en **modo consulta**: acercas una bolsa y te dice qué
   es, sin contar nada.
-- **Lee el número impreso junto al QR (OCR)** — durante la transición a etiquetas nuevas,
-  cuando un QR viejo no dice las libras, la app intenta leer el numerito impreso al lado
-  del QR (todo local, sin internet). Si lo lee, cuenta solo; si no, salen 3 botones
-  gigantes (1/2/5) y eliges con un toque. Se puede apagar en Ajustes.
-- **Diseño limpio estilo Apple** — colores neutros, tarjetas de producto con imagen
-  (asignable desde la tienda o auto-detectada del CSV de WooCommerce), modo oscuro
-  automático, iconografía fina.
+- **Lee el número impreso junto al QR (OCR), en automático** — durante la transición a
+  etiquetas nuevas, la cámara lee el QR y el numerito impreso al mismo tiempo: si el QR
+  viejo no dice las libras, el OCR local lee el número y la bolsa **cuenta sola, sin tocar
+  nada** (~0.05–0.3 s con el motor caliente). Solo si no logra leerlo salen los 3 botones
+  gigantes (1/2/5) y eliges con un toque. Cuando terminen la transición al QR nuevo, este
+  paso desaparece solo. Se puede apagar en Ajustes.
+- **Diseño limpio estilo Apple** — colores neutros, tarjetas de producto con la foto real
+  de la web (botón "Traer imágenes de la tienda" en Ajustes → Catálogo: las descarga solas
+  de la tienda WooCommerce y las empareja por nombre; también se detectan del CSV o se
+  pegan a mano), modo oscuro automático, iconografía fina.
 - **Sincronización con el CRM** — cada bolsa escaneada y cada orden completada se envía
   como POST JSON a un webhook configurable (Zapier / Make / n8n / endpoint propio), con
   cola persistente y reintentos si no hay señal. Ver "Conexión con el CRM" abajo.

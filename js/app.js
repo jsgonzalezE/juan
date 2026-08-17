@@ -42,6 +42,7 @@
     vibrate: true,
     ocr: true,
     cooldownMs: 1100,
+    storeUrl: 'https://www.burmancoffee.com',
     boxRules: [
       { maxLbs: 2, box: 'Caja chica' },
       { maxLbs: 6, box: 'Caja mediana' },
@@ -382,10 +383,29 @@
     var mapping = legacyMap[raw];
     if (mapping && mapping.sku) {
       if (mapping.lbs) { applyBag(mapping.sku, mapping.lbs, 'scan'); return; }
-      openLbsSheet(mapping.sku, raw, loc);
+      resolveLbsViaOcr(mapping.sku, raw, loc);
       return;
     }
     openLegacySheet(raw, loc);
+  }
+
+  /*
+   * Modo transición: la cámara lee el QR y el numerito impreso al mismo tiempo.
+   * Si el OCR alcanza a leer las libras, la bolsa cuenta sola sin tocar nada;
+   * la hoja con botones gigantes solo aparece si no se pudo leer.
+   */
+  function resolveLbsViaOcr(sku, raw, loc) {
+    var canOcr = settings.ocr && window.BCOcr && BCOcr.isAvailable() && scanner && loc;
+    var frame = canOcr ? scanner.grabFrame() : null;
+    if (!frame) { openLbsSheet(sku, raw, null); return; }
+    setMiniLog('🔍 Leyendo el número impreso de ' + coffeeName(sku) + '…');
+    BCOcr.readLbsNear(frame, loc, 2600).then(function (res) {
+      if (res && res.lbs) {
+        applyBag(sku, res.lbs, 'ocr');
+      } else {
+        openLbsSheet(sku, raw, null);
+      }
+    });
   }
 
   function ensureCoffee(sku) {
@@ -790,6 +810,10 @@
           var btn = $('sheet').querySelector('.big-lbs button[data-lbs="' + res.lbs + '"]');
           if (btn) btn.classList.add('suggested');
           else { var inp = $('legacy-custom'); if (inp) inp.value = res.lbs; }
+          // si trae el número impreso, seguramente el mismo QR se usa en varios tamaños:
+          // marcarlo hace que la cámara lea QR + número en cada bolsa (transición)
+          var vch = $('legacy-varies');
+          if (vch && !vch.checked) vch.checked = true;
         } else if (st) {
           st.remove();
         }
@@ -1270,6 +1294,46 @@
 
   // ================= ajustes =================
 
+  async function fetchStoreImages() {
+    var base = (settings.storeUrl || '').trim().replace(/\/+$/, '');
+    if (!base) { toast('Escribe la URL de la tienda.'); return; }
+    var btn = $('btn-fetch-images');
+    btn.disabled = true; btn.textContent = 'Buscando en la tienda…';
+    var found = 0, matched = 0;
+    try {
+      for (var page = 1; page <= 5; page++) {
+        var res = await fetch(base + '/wp-json/wc/store/v1/products?per_page=100&page=' + page, { mode: 'cors' });
+        if (!res.ok) { if (page === 1) throw new Error('HTTP ' + res.status); break; }
+        var prods = await res.json();
+        if (!Array.isArray(prods) || !prods.length) break;
+        prods.forEach(function (pr) {
+          var img = pr.images && pr.images[0] && (pr.images[0].thumbnail || pr.images[0].src);
+          if (!pr.name || !img) return;
+          found++;
+          wooImages[E.norm(pr.name)] = img;
+          var sz = E.extractSize(pr.name);
+          var namePart = sz ? pr.name.slice(0, sz.index) + ' ' + pr.name.slice(sz.index + sz.match.length) : pr.name;
+          var c = E.findCoffee(catalog, E.cleanProductName(namePart));
+          if (c && !c.image) { c.image = img; matched++; }
+        });
+        if (prods.length < 100) break;
+      }
+      saveCatalog();
+      renderSettings();
+      toast(matched ? '✔ ' + matched + ' cafés con imagen de la tienda (' + found + ' productos leídos)'
+        : found ? 'Leí ' + found + ' productos pero ninguno coincidió. Agrega alias o asigna la foto a mano.'
+          : 'La tienda no devolvió productos.', 3200);
+    } catch (err) {
+      toast('No pude leer la tienda (' + (err && err.message ? err.message : err) +
+        '). Puedes asignar la foto tocando la imagen del café.', 3800);
+    }
+    btn.disabled = false; btn.textContent = 'Traer imágenes de la tienda';
+  }
+  $('btn-fetch-images').addEventListener('click', fetchStoreImages);
+  $('store-url').addEventListener('change', function () {
+    settings.storeUrl = this.value.trim(); saveSettings();
+  });
+
   var PENCIL_SVG = '<svg class="ic" viewBox="0 0 24 24"><path d="m14.5 5.5 4 4L8 20H4v-4L14.5 5.5ZM12.5 7.5l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   function renderSettings() {
@@ -1329,6 +1393,9 @@
 
     // reglas de caja
     renderBoxRules();
+
+    // tienda
+    $('store-url').value = settings.storeUrl || '';
 
     // sincronización
     $('sync-enabled').checked = !!settings.sync.enabled;
