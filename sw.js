@@ -1,20 +1,24 @@
 /* Service worker: la app funciona sin internet una vez cargada. */
-var VERSION = 'burman-v1';
+var VERSION = 'burman-v2';
 var ASSETS = [
   './',
   './index.html',
   './css/app.css',
   './js/engine.js',
   './js/scanner.js',
+  './js/ocr.js',
+  './js/sync.js',
   './js/app.js',
   './vendor/jsQR.js',
   './vendor/qrcode.js',
+  './vendor/tesseract/tesseract.min.js',
   './manifest.webmanifest',
   './assets/icon.svg',
   './assets/icon-192.png',
   './assets/icon-512.png',
   './assets/apple-touch-icon.png'
 ];
+/* Los archivos grandes del OCR (worker, wasm, idioma) se cachean al primer uso. */
 
 self.addEventListener('install', function (e) {
   e.waitUntil(

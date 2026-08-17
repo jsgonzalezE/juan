@@ -440,21 +440,26 @@
     var cOrder = findCol(header, ['order id', 'order number', 'numero de pedido', 'pedido', 'orden', 'order']);
     var cDate = findCol(header, ['order date', 'paid date', 'completed date', 'fecha', 'date']);
     var cItems = findCol(header, ['line items', 'items', 'products', 'productos', 'articulos']);
+    var cImg = findCol(header, ['image url', 'imagen', 'image', 'thumbnail', 'foto']);
 
     var items = [];
-    function add(product, qty, orderId, dateStr) {
+    function add(product, qty, orderId, dateStr, image) {
       product = String(product == null ? '' : product).trim();
       if (!product) return;
-      items.push({ product: product, qty: qty > 0 ? qty : 1, orderId: orderId || null, dateStr: dateStr || null });
+      items.push({
+        product: product, qty: qty > 0 ? qty : 1,
+        orderId: orderId || null, dateStr: dateStr || null, image: image || null
+      });
     }
 
     for (var i = 1; i < rows.length; i++) {
       var r = rows[i];
       var orderId = cOrder >= 0 ? String(r[cOrder] == null ? '' : r[cOrder]).trim() : null;
       var dateStr = cDate >= 0 ? String(r[cDate] == null ? '' : r[cDate]).trim() : null;
+      var image = cImg >= 0 ? String(r[cImg] == null ? '' : r[cImg]).trim() : null;
       if (cProd >= 0) {
         var qty = cQty >= 0 ? (parseFloat(r[cQty]) || 1) : 1;
-        add(r[cProd], qty, orderId, dateStr);
+        add(r[cProd], qty, orderId, dateStr, image);
       } else if (cItems >= 0) {
         // celda agregada: "2 x Colombia 2lb | Brasil 1lb x 3" (separadores | ; o salto de línea)
         var cell = String(r[cItems] == null ? '' : r[cItems]);

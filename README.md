@@ -6,9 +6,22 @@ y los datos se guardan en el propio dispositivo.
 
 ## Qué hace
 
-- **Escáner QR con la cámara** — usa el detector nativo del teléfono cuando existe
-  (Android/Chrome, prácticamente instantáneo) y un decodificador de respaldo en los demás
-  (iPhone/Safari). Bip + vibración + flash verde en cada bolsa contada.
+- **Escáner QR con la cámara, siempre visible abajo** — usa el detector nativo del teléfono
+  cuando existe (Android/Chrome, prácticamente instantáneo) y un decodificador de respaldo
+  optimizado en los demás (iPhone/Safari): recorte central adaptativo que se ajusta a la
+  velocidad real del teléfono. Bip + vibración + flash verde en cada bolsa contada.
+  Sin orden activa, la cámara queda en **modo consulta**: acercas una bolsa y te dice qué
+  es, sin contar nada.
+- **Lee el número impreso junto al QR (OCR)** — durante la transición a etiquetas nuevas,
+  cuando un QR viejo no dice las libras, la app intenta leer el numerito impreso al lado
+  del QR (todo local, sin internet). Si lo lee, cuenta solo; si no, salen 3 botones
+  gigantes (1/2/5) y eliges con un toque. Se puede apagar en Ajustes.
+- **Diseño limpio estilo Apple** — colores neutros, tarjetas de producto con imagen
+  (asignable desde la tienda o auto-detectada del CSV de WooCommerce), modo oscuro
+  automático, iconografía fina.
+- **Sincronización con el CRM** — cada bolsa escaneada y cada orden completada se envía
+  como POST JSON a un webhook configurable (Zapier / Make / n8n / endpoint propio), con
+  cola persistente y reintentos si no hay señal. Ver "Conexión con el CRM" abajo.
 - **Empaque de órdenes** — escribes el número de orden (o la tocas en la lista), y la app
   va marcando sola cada línea al escanear. Puedes **mezclar bolsas de 1, 2 y 5 lb en
   cualquier orden**: solo cuentan las libras (1+1 completa una línea de 2). Si escaneas un
@@ -83,14 +96,32 @@ producto (`2 lb`, `12 oz`, etc.) y empareja el café contra el catálogo. Lo que
 identificar te lo pregunta una vez y lo recuerda. Luego muestra la tabla del mes:
 **escaneado vs. tienda vs. diferencia**, exportable a CSV.
 
+## Conexión con el CRM
+
+En **Ajustes → Sincronización con CRM** se configura la URL del webhook y una clave
+opcional (va en el encabezado `X-Burman-Key`). La app envía:
+
+- `scan` — por cada bolsa contada: `{ts, orderId, sku, coffee, lbs, source}`
+  (`source` es `scan`, `ocr` o `manual`).
+- `order` — al completar una orden: número, caja, total de libras, bolsas y el detalle
+  por café.
+- Todo va como `POST` JSON `{source:"burman-inventario", event, data, sentAt}`.
+
+Si no hay internet, los eventos se encolan en el teléfono y se reenvían solos con espera
+creciente. El botón **Probar conexión** manda un evento de prueba. Funciona directo con
+Zapier/Make/n8n (que ya conectan con casi cualquier CRM) o con un endpoint propio
+(recuerda habilitar CORS, o se entrega en modo sin confirmación).
+
 ## Estructura
 
 ```
 index.html          interfaz (5 pestañas: Escanear, Órdenes, Etiquetas, Reportes, Ajustes)
 js/engine.js        lógica pura: parseo de QR/órdenes/CSV, empaque, resúmenes, comparación
-js/scanner.js       cámara + decodificación (BarcodeDetector nativo o jsQR)
+js/scanner.js       cámara + decodificación (BarcodeDetector nativo o jsQR adaptativo)
+js/ocr.js           OCR local del número impreso (tesseract, carga perezosa)
+js/sync.js          cola de sincronización con el CRM (webhook + reintentos)
 js/app.js           interfaz y almacenamiento (localStorage)
-vendor/             jsQR (lector) y qrcode-generator (generador) — sin dependencias externas
+vendor/             jsQR, qrcode-generator y tesseract — sin dependencias externas
 tests/engine.test.js  79 pruebas del motor (node tests/engine.test.js)
 sw.js               service worker: funciona sin internet
 .github/workflows/pages.yml  pruebas + publicación automática a GitHub Pages
