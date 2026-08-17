@@ -31,10 +31,11 @@
 
   QRScanner.prototype.start = async function () {
     if (this.running) return;
+    this.stopRequested = false;
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw new Error('Este navegador no permite usar la cámara. Abre la app en Chrome o Safari con HTTPS.');
     }
-    this.stream = await navigator.mediaDevices.getUserMedia({
+    var stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
       video: {
         facingMode: { ideal: 'environment' },
@@ -43,10 +44,17 @@
         frameRate: { ideal: 30 }
       }
     });
+    // si stop() llegó mientras esperábamos el permiso, apagar y salir
+    if (this.stopRequested) {
+      stream.getTracks().forEach(function (t) { t.stop(); });
+      return;
+    }
+    this.stream = stream;
     this.video.srcObject = this.stream;
     this.video.setAttribute('playsinline', 'true');
     this.video.muted = true;
     await this.video.play();
+    if (this.stopRequested || !this.stream) return;
     this.track = this.stream.getVideoTracks()[0];
 
     if ('BarcodeDetector' in root) {
@@ -181,6 +189,7 @@
 
   QRScanner.prototype.stop = function () {
     this.running = false;
+    this.stopRequested = true;
     if (this.stream) {
       this.stream.getTracks().forEach(function (t) { t.stop(); });
       this.stream = null;

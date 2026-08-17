@@ -40,7 +40,7 @@
     }).then(function (w) {
       worker = w;
       return w.setParameters({
-        tessedit_char_whitelist: '0123456789.LBSlbs ',
+        tessedit_char_whitelist: '0123456789./LBSOZlbsoz ',
         user_defined_dpi: '300'
       }).then(function () { return w; });
     }).catch(function (err) {
@@ -99,23 +99,36 @@
     return canvas;
   }
 
-  /** Busca un número de libras plausible en el texto reconocido. */
+  /*
+   * Busca un número de libras plausible en el texto reconocido.
+   * Conservador a propósito: un número suelto que no sea un tamaño real de bolsa
+   * (código de lote, fecha) NO debe contarse — mejor preguntar con botones.
+   */
+  var SAFE_SIZES = [1, 2, 5, 0.5];
   function pickLbs(text) {
     if (!text) return null;
-    var tokens = String(text).match(/\d+(?:\.\d+)?/g) || [];
-    var candidates = [];
-    for (var i = 0; i < tokens.length; i++) {
-      var v = parseFloat(tokens[i]);
-      if (!(v > 0) || v > 20) continue;
-      candidates.push(v);
+    var s = String(text);
+    // 1) número con "LB" explícito al lado (el OCR puede meter espacios)
+    var m = /(\d+(?:[.,]\d+)?)\s*l\s?b/i.exec(s);
+    if (m) {
+      var v = parseFloat(m[1].replace(',', '.'));
+      return (v > 0 && v <= 20) ? v : null;
     }
-    if (!candidates.length) return null;
-    // preferir los tamaños reales de Burman (1, 2, 5), luego 0.5, luego el resto
-    var pref = [1, 2, 5, 0.5];
-    for (var p = 0; p < pref.length; p++) {
-      if (candidates.indexOf(pref[p]) !== -1) return pref[p];
+    // 2) onzas explícitas → convertir a libras (16 OZ = 1 lb, 12 OZ = 0.75 lb)
+    m = /(\d+(?:[.,]\d+)?)\s*oz/i.exec(s);
+    if (m) {
+      var oz = parseFloat(m[1].replace(',', '.'));
+      var lbs = Math.round((oz / 16) * 100) / 100;
+      return (lbs > 0 && lbs <= 20) ? lbs : null;
     }
-    return candidates[0];
+    // 3) número suelto: solo si es un tamaño real de bolsa
+    var tokens = s.match(/\d+(?:\.\d+)?/g) || [];
+    for (var p = 0; p < SAFE_SIZES.length; p++) {
+      for (var i = 0; i < tokens.length; i++) {
+        if (parseFloat(tokens[i]) === SAFE_SIZES[p]) return SAFE_SIZES[p];
+      }
+    }
+    return null;
   }
 
   /**

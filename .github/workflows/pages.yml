@@ -12,8 +12,9 @@ permissions:
   pages: write
   id-token: write
 
+# cada ref usa su propio grupo: un PR no debe cancelar un despliegue de main en curso
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

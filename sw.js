@@ -1,5 +1,5 @@
 /* Service worker: la app funciona sin internet una vez cargada. */
-var VERSION = 'burman-v2';
+var VERSION = 'burman-v3';
 var ASSETS = [
   './',
   './index.html',
@@ -49,7 +49,11 @@ self.addEventListener('fetch', function (e) {
       return res;
     }).catch(function () {
       return caches.match(e.request, { ignoreSearch: true }).then(function (hit) {
-        return hit || caches.match('./index.html');
+        if (hit) return hit;
+        // index.html solo como respaldo de NAVEGACIÓN; un asset perdido debe
+        // fallar limpio (no entregar HTML donde se esperaba wasm/js/datos)
+        if (e.request.mode === 'navigate') return caches.match('./index.html');
+        return new Response('', { status: 504, statusText: 'offline' });
       });
     })
   );

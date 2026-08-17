@@ -20,7 +20,7 @@
     set: function (key, value) {
       localStorage.setItem('bc.' + key, JSON.stringify(value));
     },
-    KEYS: ['catalog', 'orders', 'scans', 'legacyMap', 'wooMap', 'wooData', 'settings']
+    KEYS: ['catalog', 'orders', 'scans', 'legacyMap', 'wooMap', 'wooData', 'wooImages', 'settings']
   };
 
   var DEFAULT_CATALOG = [
@@ -58,6 +58,7 @@
   var legacyMap = DB.get('legacyMap', {});
   var wooMap = DB.get('wooMap', {});
   var wooData = DB.get('wooData', {});
+  var wooImages = DB.get('wooImages', {});
   var settings = Object.assign({}, DEFAULT_SETTINGS, DB.get('settings', {}));
   if (!settings.boxRules || !settings.boxRules.length) settings.boxRules = DEFAULT_SETTINGS.boxRules.slice();
   if (!settings.sync) settings.sync = { enabled: false, url: '', secret: '' };
@@ -68,6 +69,7 @@
   function saveLegacy() { DB.set('legacyMap', legacyMap); }
   function saveWooMap() { DB.set('wooMap', wooMap); }
   function saveWooData() { DB.set('wooData', wooData); }
+  function saveWooImages() { DB.set('wooImages', wooImages); }
   function saveSettings() { DB.set('settings', settings); }
 
   // ================= utilidades DOM =================
@@ -207,9 +209,21 @@
     scanSession.pendingGap = {};
   }
 
-  function startOrder(id) {
+  function findOrderLoose(id) {
     var o = getOrder(id);
+    if (o) return o;
+    var normId = String(id).trim().toUpperCase().replace(/^0+(?=.)/, '');
+    for (var i = 0; i < orders.length; i++) {
+      var cand = String(orders[i].id).trim().toUpperCase().replace(/^0+(?=.)/, '');
+      if (cand === normId) return orders[i];
+    }
+    return null;
+  }
+
+  function startOrder(id) {
+    var o = findOrderLoose(id);
     if (!o) { toast('No encontré la orden "' + id + '". Impórtala primero en Órdenes.'); return; }
+    id = o.id;
     if (o.status === 'lista') {
       if (!confirm('La orden ' + id + ' ya está marcada como lista. ¿Abrirla de nuevo?')) return;
       o.status = 'en-proceso';
@@ -259,8 +273,11 @@
     else stopCamera();
   }
 
+  var cameraStarting = false;
+
   async function startCamera() {
-    if (scanner && scanner.running) return;
+    if (cameraStarting || (scanner && scanner.running)) return;
+    cameraStarting = true;
     var video = $('cam');
     $('cam-msg').textContent = 'Iniciando cámara…';
     scanner = new QRScanner(video, {
@@ -281,7 +298,7 @@
     });
     try {
       await scanner.start();
-      acquireWakeLock();
+      if (scanner.running) acquireWakeLock();
       if (!scanSession.mode) {
         $('cam-msg').textContent = 'Modo consulta · acerca una bolsa para identificarla';
         setTimeout(function () {
@@ -293,6 +310,7 @@
         ? 'Permiso de cámara denegado. Actívalo en los ajustes del navegador.'
         : 'No pude abrir la cámara: ' + (err && err.message ? err.message : err);
     }
+    cameraStarting = false;
   }
 
   function stopCamera() {
@@ -976,16 +994,25 @@
     if (!importParsed || !importParsed.orders.length) return;
     importParsed.newCoffees.forEach(function (c) { catalog.push(c); });
     if (importParsed.newCoffees.length) saveCatalog();
-    var replaced = 0;
+    var replaced = 0, skipped = [];
     importParsed.orders.forEach(function (po) {
       var existing = getOrder(po.id);
-      if (existing) { orders = orders.filter(function (o) { return o.id !== po.id; }); replaced++; }
+      if (existing) {
+        // una orden ya empezada o lista no se pisa: se perdería el progreso
+        if (existing.status !== 'pendiente') { skipped.push(po.id); return; }
+        orders = orders.filter(function (o) { return o.id !== po.id; });
+        replaced++;
+      }
       orders.push({
         id: po.id, items: po.items, box: po.box, note: po.note,
         status: 'pendiente', job: null, createdAt: Date.now()
       });
     });
     saveOrders();
+    if (skipped.length) {
+      toast('No reemplacé ' + skipped.length + ' órdenes ya empezadas/listas (' +
+        skipped.join(', ') + '). Bórralas primero si quieres reimportarlas.', 4200);
+    }
     $('orders-text').value = '';
     $('import-preview').innerHTML = '';
     $('btn-import').disabled = true;
@@ -1170,6 +1197,7 @@
       saveWooData();
       // guardar imágenes de producto para el catálogo (si el CSV las trae)
       wooImages = Object.assign(wooImages, images);
+      saveWooImages();
       wooSelectedMonth = months.sort().reverse()[0];
       $('woo-status').textContent = '✔ Importado ' + fname + ' → ' + months.join(', ') +
         (res.warnings.length ? ' · ⚠ ' + res.warnings.join(' ') : '');
@@ -1178,8 +1206,6 @@
     reader.readAsText(f);
     this.value = '';
   });
-
-  var wooImages = {};
 
   function applyWooImage(productNorm, sku) {
     var img = wooImages[productNorm];
@@ -1319,6 +1345,7 @@
         if (prods.length < 100) break;
       }
       saveCatalog();
+      saveWooImages();
       renderSettings();
       toast(matched ? '✔ ' + matched + ' cafés con imagen de la tienda (' + found + ' productos leídos)'
         : found ? 'Leí ' + found + ' productos pero ninguno coincidió. Agrega alias o asigna la foto a mano.'
