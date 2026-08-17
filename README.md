@@ -46,15 +46,15 @@ y los datos se guardan en el propio dispositivo.
 - **Funciona sin internet** (PWA): se instala en la pantalla de inicio y sigue funcionando
   aunque se caiga el wifi de la bodega. Mantiene la pantalla encendida mientras escaneas.
 
-## Cómo publicarla (una sola vez)
+## Cómo publicarla (un solo clic, una sola vez)
 
-La cámara requiere HTTPS, así que lo más fácil es GitHub Pages:
+La cámara requiere HTTPS, así que se publica con GitHub Pages. El CI ya deja el sitio
+armado en la rama `gh-pages` en cada push; solo hay que activar Pages una vez:
 
-1. Haz merge de este PR a `main`.
-2. El workflow **Publicar en GitHub Pages** corre solo (Actions → si es la primera vez y no
-   arranca, entra a *Settings → Pages* y en **Source** elige **GitHub Actions**, luego
-   relanza el workflow).
-3. La app queda en: **https://jsgonzaleze.github.io/juan/**
+1. Entra a **https://github.com/jsgonzalezE/juan/settings/pages**
+2. En **Source** elige **Deploy from a branch** → Branch: **gh-pages** / carpeta **/(root)** → Save.
+3. En ~1 minuto la app queda en: **https://jsgonzaleze.github.io/juan/**
+   (después de eso, cada push se publica solo — no hay que volver a tocar nada).
 4. En el celular: abre esa dirección en Chrome (Android) o Safari (iPhone) → menú →
    **Agregar a pantalla de inicio**. Acepta el permiso de cámara la primera vez.
 
