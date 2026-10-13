@@ -12,9 +12,12 @@ import * as M from "./model.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const THEME = process.argv.includes("--light") ? "light" : "dark";
+// --video: a frame for the video edit, --frame=WxH (default 1920x1080): bigger figure, stronger inks, a large readout and nothing else.
+const VIDEO = process.argv.includes("--video");
+const FRAME = (process.argv.find((a) => a.startsWith("--frame=")) ?? "--frame=1920x1080").slice(8).split("x").map(Number);
 const KIT = join(HERE, "..", "..", ".claude", "skills", "anatomy");
 
-const W = 600;
+const W = VIDEO && FRAME[1] > FRAME[0] ? 450 : 600; // a tall frame gets a tighter viewBox so the figure fills its width
 const H = 440;
 const PLATE = { x: -162, y: -48, w: 324, d: 96, r: 8 };
 const PLATE_H = 12;
@@ -534,8 +537,28 @@ const body =
     body: `<div class="iso-stage ic-stage" tabindex="0" role="slider" aria-label="Instant coffee line. Move the pointer across the bench, or use the left and right arrow keys, to run one batch through extraction, concentration and spray drying." aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="ready">${svg}<span class="ic-sr" role="status" aria-live="polite" data-status></span></div>`,
   });
 
-const page = k.pageHtml({ title: "Instant coffee line", theme: THEME, body, script: kitScript() + modelScript + LIVE, width: 650 });
-const name = THEME === "light" ? "instant-coffee-light.html" : "instant-coffee.html";
+let page;
+let name;
+if (VIDEO) {
+  const [FW, FH] = FRAME;
+  const svgW = Math.round(Math.min(FW - 100, ((FH - 150) * W) / H));
+  const font = Math.round(Math.min(FW, FH) / 30);
+  const VIDEO_CSS = `
+.iso-page{width:${FW}px;margin:0}
+body{background:var(--anatomy-page)}
+.iso{--anatomy-page:#0e0e0e;--anatomy-card:#0e0e0e;--anatomy-paper:#0e0e0e;--anatomy-face:#1c1c1c;--anatomy-top:#252525;--anatomy-shade-0:#0b0b0b;--anatomy-shade-1:#121212;--anatomy-shade-2:#181818;--anatomy-shade-3:#1f1f1f;--anatomy-lit-top:#303030;--anatomy-lit-shade:#242424;--anatomy-hi:#f2f2f2;--anatomy-mid:#a6a6a6;--anatomy-lo:#616161;--anatomy-faint:#3a3a3a;--anatomy-weight:.85px;--anatomy-dot:#f0f0f0;--anatomy-strong:#f2f2f2}
+.iso[data-theme="light"]{--anatomy-page:#fbfbf9;--anatomy-card:#fbfbf9;--anatomy-paper:#fbfbf9;--anatomy-face:#ffffff;--anatomy-top:#ffffff;--anatomy-hi:#151517;--anatomy-mid:#66666b;--anatomy-lo:#9a9a9f;--anatomy-faint:#cfcfd2;--anatomy-weight:.85px;--anatomy-shade-0:#d2d2cf;--anatomy-shade-1:#ddddda;--anatomy-shade-2:#e8e8e5;--anatomy-shade-3:#f2f2ef;--anatomy-dot:#2a2a2e;--anatomy-strong:#151517}
+.ic-frame{width:${FW}px;height:${FH}px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:${Math.round(font * 0.8)}px;overflow:hidden}
+.ic-frame .iso-svg{width:${svgW}px;height:auto;margin:0}
+.ic-readout{font-family:var(--anatomy-mono);font-size:${font}px;line-height:1;letter-spacing:.02em;color:var(--anatomy-strong);font-variant-numeric:tabular-nums;white-space:nowrap}
+`;
+  const frameBody = `<style>${CSS}${VIDEO_CSS}</style><div class="ic-frame"><div class="iso-stage ic-stage" tabindex="0" role="slider" aria-label="Instant coffee line" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="ready">${svg}<span class="ic-sr" role="status" aria-live="polite" data-status></span></div><div class="ic-readout" data-readout>${M.stateAt(0).readout}</div></div>`;
+  page = k.pageHtml({ title: "Instant coffee line (video)", theme: THEME, body: frameBody, script: kitScript() + modelScript + LIVE, width: FW });
+  name = `instant-coffee-video${THEME === "light" ? "-light" : ""}${FW === 1920 && FH === 1080 ? "" : `-${FW}x${FH}`}.html`;
+} else {
+  page = k.pageHtml({ title: "Instant coffee line", theme: THEME, body, script: kitScript() + modelScript + LIVE, width: 650 });
+  name = THEME === "light" ? "instant-coffee-light.html" : "instant-coffee.html";
+}
 writeFileSync(join(HERE, name), page);
 console.log("wrote", name, `${(page.length / 1024).toFixed(0)} KB`, `${R.items.length} items`, `${R.solids.length} solids`, `${R.tubes.length} tubes`, `scale ${KS.toFixed(3)}`);
 
