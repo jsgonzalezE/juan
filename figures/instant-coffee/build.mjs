@@ -498,14 +498,61 @@ lamp("ctl.lamp", [129, CB.y + CB.d + 0.02, 12.5], "dry");
 // ---------- order, page ----------
 A.settle(R, P);
 R.items.sort((a, b) => a.key - b.key);
-const groups = R.items.map((item) => `<g class="it" data-name="${item.name}"${item.attrs ?? ""}>${item.svg}</g>`);
+const STATION_OF = [
+  [1, /^(ex\.|boiler\.|pump1\.|water|extract-a|sump|therm)/],
+  [2, /^(ke\.|co\.|vac\.|pump2\.|extract-b|vapour|vacuum|kettle|condensate|concentrate)/],
+  [3, /^(dr\.|ht\.|cy\.|air|exhaust|feed|powder)/],
+];
+const stationOf = (name) => STATION_OF.find(([, re]) => re.test(name))?.[0] ?? 0;
+const groups = R.items.map((item) => `<g class="it" data-name="${item.name}" data-station="${stationOf(item.name)}"${item.attrs ?? ""}>${item.svg}</g>`);
 
 const LABEL_TEXT =
   "A bench-top instant coffee line, left to right: a glass extraction column with a bed of ground coffee, fed with hot water from a boiler behind it, draining through a pump into a vacuum kettle with a glass dome and a sight glass; a condenser on a glass receiver collects the water boiled off; a second pump feeds the concentrate to a spray-drying tower with a glass chamber, an atomizer wheel under its head, hot air from a heater behind it, a cyclone and a glass collection jar where the powder gathers.";
 const svg = k.figureSvg({ width: W, height: H, label: LABEL_TEXT, body: [...back, `<g class="ic-line">${groups.join("")}</g>`] });
 
 const B = M.balance();
+// Camera boxes in viewBox units: the screen box of a set of world points, padded, widened to the frame's aspect.
+const ASPECT = VIDEO ? FRAME[0] / FRAME[1] : W / H;
+function camOf(points, pad = 10) {
+  const ps = points.map(at);
+  let x0 = Math.min(...ps.map((p) => p[0])) - pad;
+  let y0 = Math.min(...ps.map((p) => p[1])) - pad;
+  let x1 = Math.max(...ps.map((p) => p[0])) + pad;
+  let y1 = Math.max(...ps.map((p) => p[1])) + pad;
+  y1 += (y1 - y0) * (VIDEO ? 0.3 : 0);
+  let w = x1 - x0;
+  let h = y1 - y0;
+  if (w / h < ASPECT) {
+    const nw = h * ASPECT;
+    x0 -= (nw - w) / 2;
+    w = nw;
+  } else {
+    const nh = w / ASPECT;
+    y0 -= (nh - h) / 2;
+    h = nh;
+  }
+  return [x0, y0, w, h].map(f2);
+}
+const CAMS = {
+  wide: camOf([...k.boxCorners(PLATE, -PLATE_H - FOOT_H, 0), [150, -40, TOP_FEED], [90, 0, TOP_FEED], [BO[0], BO[1], 114], [EX[0], EX[1], 112]], 8),
+  extract: camOf([[-134, -22, -2], [-90, 22, -2], [-134, -22, 114], [-90, 22, 114], [BO[0], BO[1] - 10, 0], [BO[0], BO[1] - 10, 114], [-64, 16, 0], [-64, 16, 18]], 8),
+  kettle: camOf([[-42, -22, 0], [2, 22, 0], [-20, 0, 100], [22, -12, 100], [14, -20, 0], [30, -4, 0], [62, -46, 0], [62, -46, 22], [42, 20, 18], [49.5, -38, 84]], 8),
+  dryerTop: camOf([[72, -9, 136], [82, 1, 136], [90, 0, 146], [73, 0, 50], [107, 0, 50], [66, -48, 60], [92, -34, 142], [77, -45, 124]], 8),
+  dryerLow: camOf([[80, -10, 0], [100, 10, 0], [73, 0, 70], [107, 0, 70], [141, -18, 0], [141, -18, 86], [66, -48, 0], [66, -48, 40], [120, 30, 0]], 8),
+};
+const g = (v) => Math.round(v);
+const SHOTS = [
+  { dur: 4.5, cam: "wide", s: [0, 0], focus: 0, title: "Instant coffee is brewed coffee with the water taken back out", sub: `One batch: ${g(M.BATCH.ground)} g of roast and ground coffee` },
+  { dur: 11, cam: "extract", s: [0, 1], focus: 1, title: "1 · Extraction", sub: `Water at ${M.PLANT.waterC} °C under pressure dissolves ${g(M.BATCH.yield * 100)} % of the grounds: ${g(B.extract)} g of strong brew at ${g(M.BATCH.extractSolids * 100)} % solids` },
+  { dur: 11, cam: "kettle", s: [1, 2], focus: 2, title: "2 · Concentration", sub: `Under vacuum the brew boils at ${M.PLANT.kettleC} °C: ${g(B.evaporated)} g of water leave and the condenser catches them. Now ${g(M.BATCH.concSolids * 100)} % solids` },
+  { dur: 7, cam: "dryerTop", s: [2, 2.5], focus: 3, title: "3 · Spray drying", sub: `The concentrate is sprayed into ${M.PLANT.airInC} °C air. Each droplet dries in seconds` },
+  { dur: 7, cam: "dryerLow", s: [2.5, 3], focus: 3, title: "3 · Spray drying", sub: `The powder falls into the jar at ${g((1 - M.BATCH.powderSolids) * 100)} % moisture. The cyclone catches the fines` },
+  { dur: 7, cam: "wide", s: [3, 3], focus: 0, title: `${g(B.powder)} g of instant coffee · about ${g(B.cups)} cups`, sub: "Nothing added: the coffee's own solids, minus the water, in a jar" },
+  { dur: 2.2, cam: "wide", s: [3, 0], focus: 0, title: "", sub: "" },
+];
 const DATA = {
+  cams: CAMS,
+  shots: VIDEO ? SHOTS.map((shot) => ({ ...shot, cam: CAMS[shot.cam] })) : null,
   P,
   dials: DIALS,
   column: { cx: EX[0], cy: EX[1], r: 10.3, sump: [GL1.z0 + 0.3, 19], water: [46, 72] },
@@ -548,11 +595,17 @@ if (VIDEO) {
 body{background:var(--anatomy-page)}
 .iso{--anatomy-page:#0e0e0e;--anatomy-card:#0e0e0e;--anatomy-paper:#0e0e0e;--anatomy-face:#1c1c1c;--anatomy-top:#252525;--anatomy-shade-0:#0b0b0b;--anatomy-shade-1:#121212;--anatomy-shade-2:#181818;--anatomy-shade-3:#1f1f1f;--anatomy-lit-top:#303030;--anatomy-lit-shade:#242424;--anatomy-hi:#f2f2f2;--anatomy-mid:#a6a6a6;--anatomy-lo:#616161;--anatomy-faint:#3a3a3a;--anatomy-weight:.85px;--anatomy-dot:#f0f0f0;--anatomy-strong:#f2f2f2}
 .iso[data-theme="light"]{--anatomy-page:#fbfbf9;--anatomy-card:#fbfbf9;--anatomy-paper:#fbfbf9;--anatomy-face:#ffffff;--anatomy-top:#ffffff;--anatomy-hi:#151517;--anatomy-mid:#66666b;--anatomy-lo:#9a9a9f;--anatomy-faint:#cfcfd2;--anatomy-weight:.85px;--anatomy-shade-0:#d2d2cf;--anatomy-shade-1:#ddddda;--anatomy-shade-2:#e8e8e5;--anatomy-shade-3:#f2f2ef;--anatomy-dot:#2a2a2e;--anatomy-strong:#151517}
-.ic-frame{width:${FW}px;height:${FH}px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:${Math.round(font * 0.8)}px;overflow:hidden}
-.ic-frame .iso-svg{width:${svgW}px;height:auto;margin:0}
-.ic-readout{font-family:var(--anatomy-mono);font-size:${font}px;line-height:1;letter-spacing:.02em;color:var(--anatomy-strong);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ic-frame{width:${FW}px;height:${FH}px;position:relative;overflow:hidden}
+.ic-frame .ic-stage{position:absolute;inset:0}
+.ic-frame .iso-svg{width:${FW}px;height:${FH}px;margin:0}
+.ic-shade{position:absolute;left:0;right:0;bottom:0;height:${Math.round(FH * 0.34)}px;background:linear-gradient(to bottom,transparent,var(--anatomy-page) 78%);pointer-events:none}
+.ic-caption{position:absolute;left:${Math.round(FW * 0.045)}px;right:${Math.round(FW * 0.045)}px;bottom:${Math.round(FH * 0.075)}px;max-width:${Math.round(Math.min(FW * 0.72, 1180))}px;pointer-events:none}
+.ic-title{font:600 ${Math.round(Math.min(FW, FH) * 0.044)}px/1.15 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--anatomy-strong);letter-spacing:-.01em;opacity:0}
+.ic-sub{font:400 ${Math.round(Math.min(FW, FH) * 0.027)}px/1.35 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--anatomy-text);margin-top:${Math.round(Math.min(FW, FH) * 0.012)}px;opacity:0}
+.iso[data-theme="light"] .ic-sub{color:#4a4a4e}
+.ic-readout{position:absolute;right:${Math.round(FW * 0.045)}px;top:${Math.round(FH * 0.05)}px;padding:${Math.round(Math.min(FW, FH) * 0.011)}px ${Math.round(Math.min(FW, FH) * 0.016)}px;border-radius:6px;background:color-mix(in srgb,var(--anatomy-page) 82%,transparent);font-family:var(--anatomy-mono);font-size:${Math.round(Math.min(FW, FH) * 0.02)}px;line-height:1;letter-spacing:.03em;color:var(--anatomy-text);font-variant-numeric:tabular-nums;white-space:nowrap}
 `;
-  const frameBody = `<style>${CSS}${VIDEO_CSS}</style><div class="ic-frame"><div class="iso-stage ic-stage" tabindex="0" role="slider" aria-label="Instant coffee line" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="ready">${svg}<span class="ic-sr" role="status" aria-live="polite" data-status></span></div><div class="ic-readout" data-readout>${M.stateAt(0).readout}</div></div>`;
+  const frameBody = `<style>${CSS}${VIDEO_CSS}</style><div class="ic-frame"><div class="iso-stage ic-stage" tabindex="0" role="slider" aria-label="Instant coffee line" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="ready">${svg}<span class="ic-sr" role="status" aria-live="polite" data-status></span></div><div class="ic-shade"></div><div class="ic-caption"><div class="ic-title" data-title></div><div class="ic-sub" data-sub></div></div><div class="ic-readout" data-readout>${M.stateAt(0).readout}</div></div>`;
   page = k.pageHtml({ title: "Instant coffee line (video)", theme: THEME, body: frameBody, script: kitScript() + modelScript + LIVE, width: FW });
   name = `instant-coffee-video${THEME === "light" ? "-light" : ""}${FW === 1920 && FH === 1080 ? "" : `-${FW}x${FH}`}.html`;
 } else {

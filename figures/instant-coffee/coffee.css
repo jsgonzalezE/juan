@@ -41,3 +41,8 @@
 @media (prefers-reduced-motion: reduce) {
   .ic-flow { transition: none; }
 }
+
+/* Focus: while one station runs, the other two step back. The page drives --dim1..3 per frame. */
+.ic-line .it[data-station="1"] { opacity: var(--dim1, 1); }
+.ic-line .it[data-station="2"] { opacity: var(--dim2, 1); }
+.ic-line .it[data-station="3"] { opacity: var(--dim3, 1); }

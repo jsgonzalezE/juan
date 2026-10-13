@@ -14,6 +14,45 @@ const needles = Object.fromEntries(DATA.dials.map((d) => [d.name, part(d.name)])
 const lamps = Object.fromEntries([...svg.querySelectorAll("[data-lamp]")].map((el) => [el.dataset.lamp, el]));
 const routeGroups = Object.fromEntries(DATA.routes.map((name) => [name, [...svg.querySelectorAll(`[data-route="${name}"]`)]]));
 const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+// The guided tour (video pages): shots with a camera box, a stretch of the batch, the station in focus and a caption.
+const SHOTS = DATA.shots;
+const TOTAL_SHOTS = SHOTS ? SHOTS.reduce((a, shot) => a + shot.dur, 0) : 0;
+const line = svg.querySelector(".ic-line");
+const titleEl = document.querySelector("[data-title]");
+const subEl = document.querySelector("[data-sub]");
+const dims = { 1: 1, 2: 1, 3: 1 };
+const CAM_SECONDS = 1.6;
+function shotAt(t) {
+  let at = t % TOTAL_SHOTS;
+  for (let i = 0; i < SHOTS.length; i++) {
+    const shot = SHOTS[i];
+    if (at <= shot.dur || i === SHOTS.length - 1) return { shot, u: at, prev: SHOTS[(i + SHOTS.length - 1) % SHOTS.length] };
+    at -= shot.dur;
+  }
+  return { shot: SHOTS[0], u: 0, prev: SHOTS[SHOTS.length - 1] };
+}
+function direct(d, state, dt) {
+  const { shot, u, prev } = d;
+  const k = ease(u / CAM_SECONDS);
+  const box = shot.cam.map((v, i) => prev.cam[i] + (v - prev.cam[i]) * k);
+  svg.setAttribute("viewBox", box.map((v) => v.toFixed(2)).join(" "));
+  const out = ease((shot.dur - u) / 0.6);
+  const title = shot.title || "";
+  const sub = shot.sub || "";
+  if (titleEl.textContent !== title) titleEl.textContent = title;
+  if (subEl.textContent !== sub) subEl.textContent = sub;
+  titleEl.style.opacity = (title ? ease((u - 0.5) / 0.5) * out : 0).toFixed(3);
+  subEl.style.opacity = (sub ? ease((u - 0.9) / 0.5) * out : 0).toFixed(3);
+}
+function focusDraw(focus, dt) {
+  const lag = still.matches ? 1 : 1 - Math.exp(-dt / 0.45);
+  for (const key of [1, 2, 3]) {
+    const want = focus === 0 || focus === key ? 1 : 0.3;
+    dims[key] += (want - dims[key]) * lag;
+    if (Math.abs(want - dims[key]) < 0.002) dims[key] = want;
+    line.style.setProperty(`--dim${key}`, dims[key].toFixed(3));
+  }
+}
 const f1 = (v) => Math.round(v * 10) / 10;
 
 // Grain positions inside the jar, fixed in the plan; only their height follows the pile.
@@ -144,14 +183,22 @@ function tick(now) {
   const dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
   last = now;
   const calm = still.matches;
-  if (touring) { clock += dt; target = tourAt(clock); }
+  let d = null;
+  if (SHOTS) {
+    clock += dt;
+    d = shotAt(clock);
+    const [s0, s1] = d.shot.s;
+    target = s0 + (s1 - s0) * ease((d.u / d.shot.dur - 0.08) / 0.84);
+  } else if (touring) { clock += dt; target = tourAt(clock); }
   s = calm ? target : s + (target - s) * (1 - Math.exp(-dt / 0.32));
   if (Math.abs(target - s) < 0.0015) s = target;
   const state = stateAt(s);
   if (!calm) { flowClock += dt; spin += dt * 9 * state.spraying; }
   draw(state, dt);
+  if (d) direct(d, state, dt);
+  focusDraw(d ? d.shot.focus : state.stage >= 1 && state.stage <= 3 ? state.stage : 0, dt);
   const settled = !touring && s === target && state.spraying < 0.02 && state.boiling < 0.02 && Object.values(gauges).every((g) => Math.abs(g - (g > 0.5 ? 1 : 0)) < 0.002 || true);
-  frame = visible && !(settled && s === target && !touring && state.spraying === 0 && state.boiling === 0) ? requestAnimationFrame(tick) : 0;
+  frame = visible && (SHOTS || !(settled && s === target && !touring && state.spraying === 0 && state.boiling === 0)) ? requestAnimationFrame(tick) : 0;
 }
 const run = () => { if (!frame && visible) { last = 0; frame = requestAnimationFrame(tick); } };
 function describe(value) {
@@ -170,20 +217,20 @@ function steer(next) {
   run();
 }
 new IntersectionObserver((entries) => { visible = entries[entries.length - 1].isIntersecting; if (visible) run(); }, { rootMargin: "120px 0px" }).observe(stage);
-if (still.matches) touring = false;
-stage.addEventListener("pointermove", (event) => {
+if (still.matches || SHOTS) touring = false;
+if (!SHOTS) stage.addEventListener("pointermove", (event) => {
   const box = svg.getBoundingClientRect();
   const share = clamp(((event.clientX - box.left) / box.width - 0.14) / 0.72, 0, 1);
   steer(share * 3);
 });
-stage.addEventListener("pointerdown", (event) => {
+if (!SHOTS) stage.addEventListener("pointerdown", (event) => {
   const box = svg.getBoundingClientRect();
   const share = clamp(((event.clientX - box.left) / box.width - 0.14) / 0.72, 0, 1);
   steer(share * 3);
 });
-stage.addEventListener("pointerleave", () => steer(target));
+if (!SHOTS) stage.addEventListener("pointerleave", () => steer(target));
 stage.addEventListener("focus", () => { if (!said) { said = stateAt(touring ? s : target).phase; status.textContent = said; } });
-stage.addEventListener("keydown", (event) => {
+if (!SHOTS) stage.addEventListener("keydown", (event) => {
   const here = touring ? s : target;
   let to = null;
   if (event.key === "ArrowRight" || event.key === "ArrowUp") to = Math.min(3, Math.floor(here + 1e-6) + 1);
@@ -197,4 +244,6 @@ stage.addEventListener("keydown", (event) => {
   steer(to);
 });
 draw(stateAt(0), 1 / 60);
+if (SHOTS) direct(shotAt(0), stateAt(0), 1 / 60);
+focusDraw(0, 1);
 describe(0);
