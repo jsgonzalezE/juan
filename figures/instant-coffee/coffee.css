@@ -1,0 +1,43 @@
+.ic-stage {
+  position: relative;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: ew-resize;
+}
+.ic-stage:focus-visible {
+  outline: 1px solid var(--anatomy-muted);
+  outline-offset: 6px;
+}
+.ic-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Liquids are tints of the figure's own inks: coffee is the darkest shade, water the lightest, both a little see-through. */
+.ic-coffee > .iso-fill { fill: var(--anatomy-shade-0); }
+.ic-coffee > .iso-shade, .ic-coffee > .iso-top { opacity: 0.55; }
+.ic-coffee > .iso-edge { stroke: var(--anatomy-lo); }
+.ic-water > .iso-fill { fill: var(--anatomy-shade-3); opacity: 0.85; }
+.ic-water > .iso-shade, .ic-water > .iso-top { opacity: 0.35; }
+.ic-water > .iso-edge { stroke: var(--anatomy-faint); }
+.ic-powder > .iso-fill { fill: var(--anatomy-shade-3); }
+.ic-powder > .iso-edge { stroke: var(--anatomy-lo); }
+.ic-bed > .iso-fill { fill: var(--anatomy-shade-0); }
+.ic-bed > .iso-edge { stroke: var(--anatomy-lo); }
+/* The one lit accent: the spray turning into powder inside the tower. */
+.ic-spray circle { fill: var(--anatomy-lit); opacity: 0.9; }
+.ic-mist circle { fill: var(--anatomy-hi); opacity: 0.5; }
+.ic-grain circle { fill: var(--anatomy-dot); opacity: 0.3; }
+/* Flow marks along the pipes carrying the batch: shown only while that line runs. */
+.ic-flow { opacity: 0; transition: opacity 600ms var(--anatomy-ease); stroke-width: 0.9px; }
+[data-on] > .ic-flow { opacity: 0.85; }
+.ic-lamp circle { fill: var(--anatomy-dot); opacity: 0.25; transition: opacity 400ms; }
+.ic-lamp[data-on] circle { fill: var(--anatomy-lit); opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .ic-flow { transition: none; }
+}
