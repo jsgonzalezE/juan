@@ -78,6 +78,11 @@ const wrap = (text, max) => {
   return lines;
 };
 
+// A shade band for the words: a soft gradient from clear to near-black, so photographs keep their lower edge.
+const BAND_H = Math.round(FH * 0.36);
+const band = join(work, "band.png");
+run("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `color=c=black:s=${FW}x${BAND_H},format=rgba,geq=r=0:g=0:b=0:a='255*0.88*pow(Y/H,1.3)'`, "-frames:v", "1", band]);
+
 const segments = [];
 shots.forEach((shot, i) => {
   const img = imageFor(shot.id);
@@ -97,24 +102,26 @@ shots.forEach((shot, i) => {
   const subBlock = subLines.length * Math.round(subSize * 1.35);
   const fadeText = (start, dur) => `if(lt(t,${start}),0,if(lt(t,${start + 0.5}),(t-${start})/0.5,if(gt(t,${dur - 0.6}),max(0,(${dur}-t)/0.6),1)))`;
   const texts = [];
-  // a shade band so the words read over the picture
-  texts.push(`drawbox=x=0:y=ih-${Math.round(FH * 0.34)}:w=iw:h=${Math.round(FH * 0.34)}:color=black@0.55:t=fill`);
   texts.push(`drawtext=expansion=none:fontfile=${FONT}:text='${esc(shot.title)}':fontsize=${titleSize}:fontcolor=white:x=${left}:y=h-${bottom + subBlock + Math.round(titleSize * 1.25)}:alpha='${fadeText(0.5, shot.dur)}'`);
   subLines.forEach((line, n) => {
     texts.push(`drawtext=expansion=none:fontfile=${FONT_BOOK}:text='${esc(line)}':fontsize=${subSize}:fontcolor=0xd0d0d0:x=${left}:y=h-${bottom + subBlock - n * Math.round(subSize * 1.35)}:alpha='${fadeText(0.9, shot.dur)}'`);
   });
-  const vf = [
+  const camera = [
     `scale=${SW}:${SH}:force_original_aspect_ratio=increase`,
     `crop=${SW}:${SH}`,
     `zoompan=z='${z}':x='${x}':y='${y}':d=${d}:s=${FW}x${FH}:fps=${FPS}`,
+  ].join(",");
+  const words = [
+    `overlay=0:${FH - BAND_H}:format=auto`,
     ...texts,
     `fade=t=in:st=0:d=${FADE}`,
     `fade=t=out:st=${(shot.dur - FADE).toFixed(2)}:d=${FADE}`,
     "format=yuv420p",
   ].join(",");
+  const graph = `[0:v]${camera}[cam];[cam][1:v]${words}[out]`;
   const seg = join(work, `${String(i).padStart(2, "0")}-${shot.id}.mp4`);
   console.log(`${shot.id} · ${shot.dur} s · ${shot.title}`);
-  run("ffmpeg", ["-y", "-loglevel", "error", "-i", img, "-vf", vf, "-frames:v", String(d), "-r", String(FPS), "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", seg]);
+  run("ffmpeg", ["-y", "-loglevel", "error", "-i", img, "-i", band, "-filter_complex", graph, "-map", "[out]", "-frames:v", String(d), "-r", String(FPS), "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", seg]);
   segments.push(seg);
 });
 const list = join(work, "list.txt");
