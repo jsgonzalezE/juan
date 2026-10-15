@@ -47,7 +47,8 @@ const imageFor = (id) => {
   const hit = v ?? h;
   return hit ? join(IMAGES, hit) : null;
 };
-const shots = board.shots.filter((s) => LONG || !s.optional);
+const ONLY = opt("only", "").split(",").filter(Boolean); // --only=shot-01,shot-04 builds just those shots
+const shots = board.shots.filter((s) => (LONG || !s.optional) && (!ONLY.length || ONLY.includes(s.id)));
 const missing = shots.filter((s) => !imageFor(s.id)).map((s) => s.id);
 if (missing.length) {
   console.error(`missing images in ${IMAGES}: ${missing.join(", ")}`);
