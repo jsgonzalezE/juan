@@ -1,0 +1,62 @@
+.ic-stage {
+  position: relative;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: ew-resize;
+}
+.ic-stage:focus-visible {
+  outline: 1px solid var(--anatomy-muted);
+  outline-offset: 6px;
+}
+.ic-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Liquids and solids are tints of the figure's own inks: coffee the darkest shade, water the lightest, ice the paper tone. */
+.ic-coffee > .iso-fill { fill: var(--anatomy-shade-0); }
+.ic-coffee > .iso-shade, .ic-coffee > .iso-top { opacity: 0.55; }
+.ic-coffee > .iso-edge { stroke: var(--anatomy-mid); }
+/* The liquid sheet on the freezer belt: the darkest ink with a bright outline, so it reads on the belt. */
+.ic-brew > .iso-fill { fill: var(--anatomy-shade-0); }
+.ic-brew > .iso-shade, .ic-brew > .iso-top { opacity: 0.5; }
+.ic-brew > .iso-edge { stroke: var(--anatomy-hi); }
+.ic-water > .iso-fill { fill: var(--anatomy-shade-3); opacity: 0.85; }
+.ic-water > .iso-shade, .ic-water > .iso-top { opacity: 0.35; }
+.ic-water > .iso-edge { stroke: var(--anatomy-faint); }
+.ic-powder > .iso-fill { fill: var(--anatomy-shade-3); }
+.ic-powder > .iso-edge { stroke: var(--anatomy-lo); }
+.ic-bed > .iso-fill { fill: var(--anatomy-shade-0); }
+.ic-bed > .iso-edge { stroke: var(--anatomy-lo); }
+.ic-ice > .iso-fill { fill: var(--anatomy-mid); opacity: 0.55; }
+.ic-ice > .iso-shade { opacity: 0.3; }
+.ic-ice > .iso-top { opacity: 0.35; }
+.ic-ice > .iso-edge { stroke: var(--anatomy-hi); }
+/* Moving material: the one lit accent. Mist and ice are quieter. */
+.ic-lit circle { fill: var(--anatomy-lit); opacity: 0.9; }
+.ic-mist circle { fill: var(--anatomy-hi); opacity: 0.5; }
+.ic-icedots circle { fill: var(--anatomy-hi); opacity: 0.8; }
+.ic-grain circle { fill: var(--anatomy-dot); opacity: 0.55; }
+/* Flow marks along the pipes carrying the batch: shown only while that line runs. */
+.ic-flow { opacity: 0; transition: opacity 600ms var(--anatomy-ease); stroke-width: 0.9px; }
+[data-on] > .ic-flow { opacity: 0.85; }
+.ic-lamp circle { fill: var(--anatomy-dot); opacity: 0.25; transition: opacity 400ms; }
+.ic-lamp[data-on] circle { fill: var(--anatomy-lit); opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .ic-flow { transition: none; }
+}
+
+/* Focus: while one station runs, the others step back. The page drives --dim1..8 per frame. */
+.ic-line .it[data-station="1"] { opacity: var(--dim1, 1); }
+.ic-line .it[data-station="2"] { opacity: var(--dim2, 1); }
+.ic-line .it[data-station="3"] { opacity: var(--dim3, 1); }
+.ic-line .it[data-station="4"] { opacity: var(--dim4, 1); }
+.ic-line .it[data-station="5"] { opacity: var(--dim5, 1); }
+.ic-line .it[data-station="6"] { opacity: var(--dim6, 1); }
+.ic-line .it[data-station="7"] { opacity: var(--dim7, 1); }
+.ic-line .it[data-station="8"] { opacity: var(--dim8, 1); }
