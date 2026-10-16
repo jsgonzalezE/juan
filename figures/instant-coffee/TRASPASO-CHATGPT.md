@@ -38,12 +38,17 @@ prompts de imagen van en inglés.
    de Python y darme los dos MP4. Si no puedes ejecutar ffmpeg, dame los comandos exactos para hacerlo en mi PC.
 6. Decirme qué **tomas reales** debo grabar con el móvil para intercalar (lista al final).
 
-### Archivos adjuntos
+### Archivos (públicos en GitHub)
 
-- `storyboard.json`: las tomas con duración, movimiento de cámara, rótulo, subtítulo y locución. Es lo que lee el montador.
-- `animatic.py`: el montador (Python + ffmpeg). Lee `storyboard.json` y una carpeta `fotos/` con `shot-NN.png`.
-- `storyboard-prototipo.md`, `proceso-organizado.md`, `prompts-imagenes.md`: guion, proceso técnico y prompts (referencia).
-- `fotos/shot-01.png` y `fotos/shot-02.png`: las dos tomas ya generadas y aprobadas.
+Abre estos enlaces para ver el material. Si no puedes abrirlos, pídeme que te adjunte los archivos.
+
+- Índice con todas las imágenes: https://github.com/jsgonzalezE/juan/tree/claude/install-anatomy-skill/figures/instant-coffee/traspaso
+- Toma 1 aprobada (portada): https://raw.githubusercontent.com/jsgonzalezE/juan/refs/heads/claude/install-anatomy-skill/figures/instant-coffee/traspaso/fotos/shot-01.png
+- Toma 2 aprobada (tostadora): https://raw.githubusercontent.com/jsgonzalezE/juan/refs/heads/claude/install-anatomy-skill/figures/instant-coffee/traspaso/fotos/shot-02.png
+- Diseños de referencia de la animación, una imagen por estación, en `referencias/animacion-01-planta-completa.jpg` … `animacion-10-final.jpg` (misma ruta base que las tomas, cambiando `fotos/shot-NN.png` por `referencias/animacion-…jpg`). Sirven para saber qué máquina va en cada paso; las tomas nuevas siguen el estilo de las tomas 1 y 2, no el de la animación.
+- `storyboard.json`: las tomas con duración, movimiento de cámara, rótulo, subtítulo y locución. Es lo que lee el montador. https://raw.githubusercontent.com/jsgonzalezE/juan/refs/heads/claude/install-anatomy-skill/figures/instant-coffee/traspaso/storyboard.json
+- `animatic.py`: el montador (Python + ffmpeg). Lee `storyboard.json` y una carpeta `fotos/` con `shot-NN.png`. https://raw.githubusercontent.com/jsgonzalezE/juan/refs/heads/claude/install-anatomy-skill/figures/instant-coffee/traspaso/animatic.py
+- `storyboard-prototipo.md`, `proceso-organizado.md`, `prompts-imagenes.md`: guion, proceso técnico y prompts (referencia), en la misma carpeta.
 
 ### Estado actual
 
