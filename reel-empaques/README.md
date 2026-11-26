@@ -13,7 +13,17 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-### Presentación de los empaques (dirección actual)
+### Estilo del video de referencia (dirección actual)
+
+`r1_reference.py` (15 s): puntos finos de un solo color con tramado Floyd–Steinberg (la textura
+de rayitas de la referencia); los empaques son bolsas 3D iluminadas que giran como el grano de la
+referencia (el de colores en naranja, el oscuro en gris). Estática → empaque girando con
+*(origin HUILA COLOMBIA)* → coordenadas → *FROM OUR LAND* → follaje gris del diseño con
+*(grown with) LOVE (& respect for the land)* → manchas naranjas → empaque oscuro con las
+variedades alrededor → *A NEW LOOK (coming soon)* → cierre con los dos empaques, logo y cinta.
+Helpers en `refstyle.py`.
+
+### Presentación de los empaques
 
 | Versión | Duración | Idea |
 |---|---|---|
