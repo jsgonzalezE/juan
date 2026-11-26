@@ -28,14 +28,24 @@ def dots(img, lum, mask, x, y, color, cell=6, dot=5, alpha=1.0):
 
 
 @lru_cache(maxsize=None)
-def pouch_mesh(name, nu, nv):
+def pouch_mesh(name, nu, nv, corner=0.0, enhance=0.0):
     """Surface samples of a stand-up pouch with the pack art as albedo."""
     im = C.IMAGES[name]
     aspect = im.width / im.height
     tex = np.asarray(im.resize((nu, nv), Image.BOX)).astype(np.float32) / 255
     alb = C.luminance(tex)
+    if enhance > 0:  # local contrast + warm accents so watercolours read in one colour
+        from PIL import ImageFilter
+        warm = np.clip(tex[..., 0] - 0.5 * (tex[..., 1] + tex[..., 2]), 0, 1)
+        alb = 0.8 * alb + 1.1 * warm
+        bl = np.asarray(Image.fromarray((np.clip(alb, 0, 1) * 255).astype(np.uint8)).filter(
+            ImageFilter.GaussianBlur(max(2, nu / 40)))).astype(np.float32) / 255
+        alb = alb + enhance * (alb - bl)
     lo, hi = np.percentile(alb, (2, 98))
     alb = np.clip((alb - lo) / (hi - lo), 0, 1)
+    if enhance > 0:  # S-curve: separate shapes from the mid-tone wash
+        med = float(np.median(alb))
+        alb = 1 / (1 + np.exp(-(alb - med) * 7))
     u = np.linspace(-1, 1, nu)[None, :].repeat(nv, 0)
     v = np.linspace(-1, 1, nv)[:, None].repeat(nu, 1)
     prof = np.clip(1 - np.abs(v) ** 6, 0, 1) ** 0.6
@@ -51,7 +61,15 @@ def pouch_mesh(name, nu, nv):
     N = np.cross(dPv, dPu)
     N /= np.linalg.norm(N, axis=-1, keepdims=True) + 1e-9
     N[..., 2] = np.abs(N[..., 2])
-    return P.reshape(-1, 3), N.reshape(-1, 3), alb.reshape(-1), aspect
+    keep = np.ones(u.shape, bool)
+    if corner > 0:  # rounded pouch corners (corner = radius as a fraction of the width)
+        rx = corner
+        ry = corner * aspect
+        cu = np.clip(np.abs(u) - (1 - rx), 0, None) / rx
+        cv = np.clip(np.abs(v) - (1 - ry), 0, None) / ry
+        keep = cu ** 2 + cv ** 2 <= 1
+    keep = keep.reshape(-1)
+    return P.reshape(-1, 3)[keep], N.reshape(-1, 3)[keep], alb.reshape(-1)[keep], aspect
 
 
 def rot(ay, ax=0.0, az=0.0):
@@ -65,12 +83,13 @@ def rot(ay, ax=0.0, az=0.0):
 
 
 def pouch(name, ang, rows, cols, scale, tilt=0.12, roll=0.0, nu=300, nv=480, back=0.5,
-          contrast=1.0):
+          contrast=1.0, corner=0.0, enhance=0.0, gamma=1.0):
     """Render a pouch into a (rows, cols) brightness grid + mask.
 
     scale = grid cells per world unit (pack height is 2 units).
     """
-    P, N, alb, aspect = pouch_mesh(name, nu, nv)
+    P, N, alb, aspect = pouch_mesh(name, nu, nv, corner, enhance)
+    alb = alb ** gamma
     R = rot(ang, tilt, roll)
     L = np.array([-0.45, 0.35, 0.82])
     L /= np.linalg.norm(L)
@@ -126,3 +145,30 @@ def tear(img, rng, n=3, amp=40):
         h = int(rng.integers(2, 8))
         img[y:y + h] = np.roll(img[y:y + h], int(rng.integers(-amp, amp)), axis=1)
     return img
+
+
+DOT_CREAM = (238, 228, 212)
+
+
+def fs_levels(lum, levels=3):
+    """Multi-level Floyd–Steinberg: returns indices 0..levels-1."""
+    g = (np.clip(lum, 0, 1) * 255).astype(np.uint8)
+    rgb = Image.fromarray(np.stack([g, g, g], -1), "RGB")
+    pal = Image.new("P", (1, 1))
+    vals = [int(round(255 * k / (levels - 1))) for k in range(levels)]
+    flat = []
+    for v in vals:
+        flat += [v, v, v]
+    pal.putpalette(flat + [0, 0, 0] * (256 - levels))
+    q = rgb.quantize(palette=pal, dither=Image.Dither.FLOYDSTEINBERG)
+    return np.asarray(q).astype(np.int32)
+
+
+def dots2(img, lum, mask, x, y, c1, c2, cell=6, dot=5, alpha=1.0):
+    """Two-tone dots: mid tones in c1, highlights in c2."""
+    idx = fs_levels(lum, 3) * (mask > 0.5)
+    rgb = np.zeros(lum.shape + (3,), np.float32)
+    rgb[idx == 1] = np.array(c1, np.float32) / 255
+    rgb[idx == 2] = np.array(c2, np.float32) / 255
+    col, a = dotmatrix(rgb, (idx > 0).astype(np.float32) * alpha, cell, dot=dot)
+    return composite(img, col, a, (int(x), int(y)))

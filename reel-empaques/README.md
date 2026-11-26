@@ -13,7 +13,16 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-### Estilo del video de referencia (dirección actual)
+### Estilo de la referencia con las 5 bolsas reales (dirección actual)
+
+`r2_pouches.py` (17 s): mismas reglas que `r1_reference.py` pero con las cinco bolsas reales
+(cuatro acuarelas + la de colores) como objetos 3D en puntos naranjas. Necesita en `assets/`:
+`pouch_cherries.png`, `pouch_picker.png`, `pouch_color.png`, `pouch_mule.png`, `pouch_dog.png`
+(recortes de los mockups). Bolsa de cerezas con *(origin HUILA COLOMBIA)* → coordenadas →
+follaje gris de la acuarela con *LOVE* → manchas → bolsa de la casa azul con las variedades →
+las cinco bolsas en cortes rápidos con *A NEW LOOK* → las cinco en fila, logo y cinta.
+
+### Estilo del video de referencia
 
 `r1_reference.py` (15 s): puntos finos de un solo color con tramado Floyd–Steinberg (la textura
 de rayitas de la referencia); los empaques son bolsas 3D iluminadas que giran como el grano de la
