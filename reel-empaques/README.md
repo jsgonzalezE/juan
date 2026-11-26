@@ -23,6 +23,7 @@ Dibujos en `assets/noah/` (`vibes.png`, `roaster.jpg`, `mug.jpg`, `gift.jpg`, `c
 | Versión | Duración | Idea |
 |---|---|---|
 | `n1_noah_presents.py` | 20,5 s | Fondo oscuro con objetos en puntos grises. Noah entra saltando, sube a los sacos y arma letra por letra *NEW LOOK* en el letrero, que se enciende; luego cada empaque sube desde detrás de un pedestal y Noah se asoma a presentarlo (Look 01–04); en el letrero pasan las variedades mientras Noah está en su taza; final con los 4 empaques, Noah asomándose, *COMING SOON*, logo y @juanitocoffee. |
+| `n3_noah_v2.py` | 21 s | **Versión refinada.** Mismo guion que n1, pero Noah usa `noah.sprite2` (más resolución, borde crema tipo sticker para que la silueta se lea sobre negro, orejas en gris cálido, lengua rosada, taza en vino) y los empaques son las fotos reales recortadas (`noah.pack_photo`) que se materializan desde píxeles grandes con un halo suave. Noah inclina la cabeza al presentar, parpadea al final y sale vapor de su taza. |
 | `n2_horizons.py` | 17 s | Cada empaque es un planeta en pixel art con su horizonte curvo y un Noah diminuto caminando encima; una taza de café como horizonte con Noah asomándose; noche estrellada con las variedades; cierre con *Juanito Coffee* sobre el horizonte. |
 
 ### Estilo de la referencia con las 5 bolsas reales
