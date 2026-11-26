@@ -13,7 +13,19 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-### Estilo de la referencia con las 5 bolsas reales (dirección actual)
+### Noah en pixel art (dirección actual)
+
+Noah se convierte a pixel art a partir de los dibujos de la marca (`noah.py`: recorta cada pose,
+la reduce a una cuadrícula pequeña, separa líneas y manchas negras y rellena el blanco). Los
+empaques se muestran en color (`noah.pack_sprite`); se deja fuera la bolsa más verde (recolector).
+Dibujos en `assets/noah/` (`vibes.png`, `roaster.jpg`, `mug.jpg`, `gift.jpg`, `cap.jpg`).
+
+| Versión | Duración | Idea |
+|---|---|---|
+| `n1_noah_presents.py` | 20,5 s | Fondo oscuro con objetos en puntos grises. Noah entra saltando, sube a los sacos y arma letra por letra *NEW LOOK* en el letrero, que se enciende; luego cada empaque sube desde detrás de un pedestal y Noah se asoma a presentarlo (Look 01–04); en el letrero pasan las variedades mientras Noah está en su taza; final con los 4 empaques, Noah asomándose, *COMING SOON*, logo y @juanitocoffee. |
+| `n2_horizons.py` | 17 s | Cada empaque es un planeta en pixel art con su horizonte curvo y un Noah diminuto caminando encima; una taza de café como horizonte con Noah asomándose; noche estrellada con las variedades; cierre con *Juanito Coffee* sobre el horizonte. |
+
+### Estilo de la referencia con las 5 bolsas reales
 
 `r2_pouches.py` (17 s): mismas reglas que `r1_reference.py` pero con las cinco bolsas reales
 (cuatro acuarelas + la de colores) como objetos 3D en puntos naranjas. Necesita en `assets/`:
