@@ -13,6 +13,13 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
+### Presentación de los empaques (dirección actual)
+
+| Versión | Duración | Idea |
+|---|---|---|
+| `p1_turntable.py` | 16 s | Fondo oscuro. El empaque se “imprime” en píxeles desde una línea de piso y gira como producto en vitrina, con reflejo; pasan las variedades; luego los dos empaques juntos mirándose; logo. |
+| `p2_lookbook.py` | 16 s | Fondo gris claro, estilo catálogo. Look 01 y Look 02 entran en pixel art grande con sombra; luego los dos juntos con las variedades y el origen; logo. |
+
 ### Versiones minimalistas (más cerca del video de referencia)
 
 | Versión | Duración | Idea |
