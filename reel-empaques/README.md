@@ -1,54 +1,33 @@
-# Teaser — Juanito Coffee · nueva cosecha / café verde
+# Teasers — Juanito Coffee · nuevos empaques / nueva cosecha
 
-Teaser vertical (1080×1920, 24 fps, 24 s) en inglés, en pixel art. No muestra
-los empaques reales (solo una bolsa “bloqueada” con píxeles revueltos) ni a
-ninguna persona: las acuarelas se recortan para dejar solo paisaje, casa y
-cerezas. Todo se genera por código: animación (`make_reel.py`, `sprites.py`,
-`fx.py`) y banda sonora lo‑fi / chiptune (`make_audio.py`).
+Tres versiones de teaser vertical (1080×1920, 24 fps) en inglés para escoger la
+dirección. En todas los empaques aparecen **solo en pixel art** (nunca la
+imagen limpia), se mencionan las variedades **Java, Castillo, Geisha y
+Bourbon**, el origen **Huila, Colombia** y el cierre es **Green coffee · Coming
+soon · @juanitocoffee** con el logo oficial. No se usan datos de los empaques
+ni la foto de los dueños.
 
-## Guion
-
-Abajo corre una barra de “viaje” con íconos que se van encendiendo:
-BLOOM → ORIGIN → CHERRY → VARIETIES → CUP → PACKAGING.
-
-| Tiempo | Escena | Texto |
+| Versión | Duración | Estilo |
 |---|---|---|
-| 0–2 s | Una flor de café se abre en píxeles | SOMETHING IS BLOOMING *(in Huila, Colombia)* |
-| 2–4 s | Campo de flores que brotan | NEW HARVEST · COMING SOON |
-| 4–7 s | Tres franjas de acuarela en píxel (montañas, casa, cerezas) | ORIGIN · **HUILA** · COLOMBIA 02°32′N 75°31′W |
-| 7–9,5 s | Rama con cerezas que maduran de verde a rojo | FROM FLOWER → TO CHERRY *(ripening in the mountains of Huila)* |
-| 9,5–13,5 s | Cuatro tarjetas con granos verdes | NEW VARIETIES *(coming soon)* · **JAVA · CASTILLO · GEISHA · BOURBON** · ONE ORIGIN · HUILA |
-| 13,5–16 s | Granos verdes cayendo en una taza con vapor | YOUR NEXT FAVORITE CUP *(every bean tells a story)* |
-| 16–19,5 s | Bolsa bloqueada con candado + barra de carga al 87 % | NEW PACKAGING *(we can't show it yet...)* · ALMOST READY... |
-| 19,5–24 s | Logo oficial armándose con puntos + flores | GREEN COFFEE · FROM HUILA, COLOMBIA · COMING SOON · @JUANITOCOFFEE |
+| `v1_noir.py` | 18 s | Fondo oscuro, elegante. El empaque se arma con puntos que vuelan y gira en 3D; macro del empaque con HUILA; cada variedad en pantalla completa con su color; los dos empaques girando; logo. |
+| `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
+| `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-Los cortes se tapan con un barrido de píxeles naranja/magenta/vino.
+Cada script genera su propia música (lo‑fi / chiptune, 120 BPM) con `audio.py`.
 
 ## Cómo regenerar
 
 Las imágenes **no están en el repositorio** (es público). Van en `assets/`:
+`pack_color_front.png`, `pack_dark_front.jpg`, `logo_white.png`,
+`wc_cherries.jpg`, `wc_picker.jpg`, `wc_mule_dog.jpg`.
 
-```
-assets/wc_cherries.jpg      acuarela cerezas + montañas
-assets/wc_picker.jpg        acuarela recolector (solo se usa la parte de montañas)
-assets/wc_mule_dog.jpg      acuarela casa roja (solo se usa la casa)
-assets/logo_white.png       logo oficial en blanco con transparencia
-```
-
-Fuentes (OFL) desde npm, copiadas a `fonts/`:
-
-```
-npm pack @fontsource/montserrat@5.0.19 @fontsource/pixelify-sans
-# extraer y copiar montserrat-latin-*-{normal,italic}.woff y pixelify-sans-latin-*-normal.woff
-```
-
-Luego:
+Fuentes (OFL) desde npm, copiadas a `fonts/`: `@fontsource/montserrat@5.0.19`
+(`montserrat-latin-*-{normal,italic}.woff`) y `@fontsource/pixelify-sans`.
 
 ```
 pip install numpy pillow scipy
-python3 make_reel.py --stills 1,5,8   # vistas previas en build/
-python3 make_reel.py                  # build/reel_silent.mp4
-python3 make_audio.py                 # build/soundtrack.wav
-ffmpeg -i build/reel_silent.mp4 -i build/soundtrack.wav -c:v libx264 -crf 20 -maxrate 10M \
-  -bufsize 20M -pix_fmt yuv420p -c:a aac -b:a 192k -shortest build/juanito_teaser.mp4
+python3 v1_noir.py --stills 2,5,9    # vistas previas en build/
+python3 v1_noir.py                   # build/v1_noir.mp4 (con música)
+python3 v2_pop.py
+python3 v3_grid.py
 ```
