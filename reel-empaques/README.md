@@ -34,7 +34,7 @@ assets/wc_mule_dog.jpg      acuarela mula + perro + casa roja
 assets/wc_mule_blue.jpg     acuarela mula + ventana azul
 assets/pack_color_front.png frente del empaque de colores
 assets/pack_dark_front.jpg  frente del empaque oscuro
-assets/logo_white.png       logo blanco con transparencia
+assets/logo_white.png       logo oficial en blanco con transparencia
 ```
 
 Fuente Montserrat (OFL) desde npm:

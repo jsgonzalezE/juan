@@ -81,7 +81,7 @@ PACK1_D = np.asarray(PACK1.resize((P1_W, P1_H), Image.LANCZOS)).astype(np.float3
 PACK2_D = np.asarray(PACK2.resize((P2_W, P2_H), Image.LANCZOS)).astype(np.float32) / 255
 
 LOGO = Image.open(os.path.join(HERE, "assets", "logo_white.png"))
-LOGO_W = 400
+LOGO_W = 420
 LOGO_H = round(LOGO_W * LOGO.height / LOGO.width)
 LOGO_A = np.asarray(LOGO.resize((LOGO_W, LOGO_H), Image.LANCZOS))[..., 3].astype(np.float32) / 255
 LOGO_CELL = 6
