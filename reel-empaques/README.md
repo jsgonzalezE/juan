@@ -13,6 +13,13 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
+### Versiones minimalistas (más cerca del video de referencia)
+
+| Versión | Duración | Idea |
+|---|---|---|
+| `m1_still_life.py` | 15 s | Un solo objeto en puntos naranjas sobre negro que va cambiando: la flor y las cerezas recortadas de la acuarela, un grano girando mientras aparecen las variedades una por una, el empaque apenas insinuado girando *(and a new look)* y el logo. |
+| `m2_glimpse.py` | 15 s | Los empaques solo se ven por una franja delgada que se desplaza; en medio aparecen Huila y las variedades; casi al final la franja se abre un poco *(almost)* y se cierra antes del logo. |
+
 Cada script genera su propia música (lo‑fi / chiptune, 120 BPM) con `audio.py`.
 
 ## Cómo regenerar
