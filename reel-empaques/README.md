@@ -1,55 +1,54 @@
-# Reel — Juanito Coffee · nuevos empaques / café verde
+# Teaser — Juanito Coffee · nueva cosecha / café verde
 
-Reel vertical (1080×1920, 24 fps, 23,5 s) en inglés, estilo píxel / dot‑matrix
-inspirado en el reel de referencia. Todo se genera por código: animación
-(`make_reel.py`) y banda sonora lo‑fi / chiptune (`make_audio.py`).
+Teaser vertical (1080×1920, 24 fps, 24 s) en inglés, en pixel art. No muestra
+los empaques reales (solo una bolsa “bloqueada” con píxeles revueltos) ni a
+ninguna persona: las acuarelas se recortan para dejar solo paisaje, casa y
+cerezas. Todo se genera por código: animación (`make_reel.py`, `sprites.py`,
+`fx.py`) y banda sonora lo‑fi / chiptune (`make_audio.py`).
 
-## Guion (en inglés, como sale en el video)
+## Guion
+
+Abajo corre una barra de “viaje” con íconos que se van encendiendo:
+BLOOM → ORIGIN → CHERRY → VARIETIES → CUP → PACKAGING.
 
 | Tiempo | Escena | Texto |
 |---|---|---|
-| 0,0–1,0 s | Estática de TV + logo | — |
-| 1,0–4,0 s | Acuarela (cerezas y montañas) en píxel | (origin **HUILA** COLOMBIA) |
-| 4,0–5,5 s | Coordenadas | HUILA, · 02°32′ N · 75°31′ W |
-| 5,5–9,0 s | Acuarela (recolector) en píxel | **GROWN** (with love & respect for the land) · EVERY BEAN THAT REACHES YOUR CUP TELLS OUR STORY |
-| 9,0–13,5 s | Grano de café girando en píxeles | (coming soon) NEW VARIETIES · **JAVA · CASTILLO · GEISHA · BOURBON** · FOUR VARIETIES · ONE ORIGIN |
-| 13,5–17,5 s | Empaques nuevos (se “despixelan”) | **NEW PACKAGING** (a new look for a new harvest) |
-| 17,5–19,5 s | Acuarelas con mula | FROM OUR **MOUNTAINS** → TO YOUR **ROASTERY** |
-| 19,5–23,5 s | Logo + cierre | NEW LOOK · NEW HARVEST · **GREEN COFFEE** (samples & pricing via DM) · @JUANITOCOFFEE |
+| 0–2 s | Una flor de café se abre en píxeles | SOMETHING IS BLOOMING *(in Huila, Colombia)* |
+| 2–4 s | Campo de flores que brotan | NEW HARVEST · COMING SOON |
+| 4–7 s | Tres franjas de acuarela en píxel (montañas, casa, cerezas) | ORIGIN · **HUILA** · COLOMBIA 02°32′N 75°31′W |
+| 7–9,5 s | Rama con cerezas que maduran de verde a rojo | FROM FLOWER → TO CHERRY *(ripening in the mountains of Huila)* |
+| 9,5–13,5 s | Cuatro tarjetas con granos verdes | NEW VARIETIES *(coming soon)* · **JAVA · CASTILLO · GEISHA · BOURBON** · ONE ORIGIN · HUILA |
+| 13,5–16 s | Granos verdes cayendo en una taza con vapor | YOUR NEXT FAVORITE CUP *(every bean tells a story)* |
+| 16–19,5 s | Bolsa bloqueada con candado + barra de carga al 87 % | NEW PACKAGING *(we can't show it yet...)* · ALMOST READY... |
+| 19,5–24 s | Logo oficial armándose con puntos + flores | GREEN COFFEE · FROM HUILA, COLOMBIA · COMING SOON · @JUANITOCOFFEE |
 
-No se usa ningún dato técnico de los empaques (altura, región, variedad,
-receta, etc.); solo se muestran los frentes, sin texto de ficha técnica.
-Las coordenadas son las del departamento del Huila; se pueden cambiar por
-las de la finca en `fx.py`/`make_reel.py` (`build_hud`, `scene_coords`).
+Los cortes se tapan con un barrido de píxeles naranja/magenta/vino.
 
 ## Cómo regenerar
 
-Las imágenes (acuarelas, empaques, logo) **no están en el repositorio**
-porque es público. Hay que ponerlas en `assets/` con estos nombres:
+Las imágenes **no están en el repositorio** (es público). Van en `assets/`:
 
 ```
 assets/wc_cherries.jpg      acuarela cerezas + montañas
-assets/wc_picker.jpg        acuarela recolector
-assets/wc_mule_dog.jpg      acuarela mula + perro + casa roja
-assets/wc_mule_blue.jpg     acuarela mula + ventana azul
-assets/pack_color_front.png frente del empaque de colores
-assets/pack_dark_front.jpg  frente del empaque oscuro
+assets/wc_picker.jpg        acuarela recolector (solo se usa la parte de montañas)
+assets/wc_mule_dog.jpg      acuarela casa roja (solo se usa la casa)
 assets/logo_white.png       logo oficial en blanco con transparencia
 ```
 
-Fuente Montserrat (OFL) desde npm:
+Fuentes (OFL) desde npm, copiadas a `fonts/`:
 
 ```
-npm pack @fontsource/montserrat@5.0.19 && tar xzf fontsource-montserrat-*.tgz
-mkdir -p fonts && cp package/files/montserrat-latin-*-{normal,italic}.woff fonts/
+npm pack @fontsource/montserrat@5.0.19 @fontsource/pixelify-sans
+# extraer y copiar montserrat-latin-*-{normal,italic}.woff y pixelify-sans-latin-*-normal.woff
 ```
 
 Luego:
 
 ```
 pip install numpy pillow scipy
-python3 make_reel.py --stills 3,7,12   # vistas previas en build/
-python3 make_reel.py                   # build/reel_silent.mp4
-python3 make_audio.py                  # build/soundtrack.wav
-ffmpeg -i build/reel_silent.mp4 -i build/soundtrack.wav -c:v copy -c:a aac -b:a 192k -shortest build/juanito_reel.mp4
+python3 make_reel.py --stills 1,5,8   # vistas previas en build/
+python3 make_reel.py                  # build/reel_silent.mp4
+python3 make_audio.py                 # build/soundtrack.wav
+ffmpeg -i build/reel_silent.mp4 -i build/soundtrack.wav -c:v libx264 -crf 20 -maxrate 10M \
+  -bufsize 20M -pix_fmt yuv420p -c:a aac -b:a 192k -shortest build/juanito_teaser.mp4
 ```

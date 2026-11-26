@@ -5,7 +5,8 @@ import wave
 import numpy as np
 from scipy.signal import butter, fftconvolve, sosfilt
 
-from make_reel import DURATION, BUILD
+from make_reel import (BEAN_LAND, BUILD, CUTS, DURATION, FLOWER_POPS, LOAD_TICKS,
+                        VARIETIES)
 
 SR = 48000
 N = int(DURATION * SR)
@@ -186,102 +187,138 @@ CHORDS = {  # midi notes (A minor: Am7 – Fmaj7 – Cmaj7 – G6)
 }
 ROOT = {"Am7": 33, "Fmaj7": 29, "Cmaj7": 36, "G6": 31}
 PROG = ["Am7", "Fmaj7", "Cmaj7", "G6"]
+BARS = [(2.0 * k, PROG[k % 4]) for k in range(10)]  # 0 .. 19.5
+
+
+def chime(m, t0, gain=0.10, pan=0.0):
+    n = int(1.6 * SR)
+    t = np.arange(n) / SR
+    f = hz(m)
+    sig = (np.sin(2 * np.pi * f * t) + 0.35 * np.sin(2 * np.pi * f * 2.76 * t) * np.exp(-t / 0.2)
+           + 0.2 * np.sin(2 * np.pi * f * 5.4 * t) * np.exp(-t / 0.08))
+    add(sig * np.exp(-t / 0.55), t0, gain, pan=pan, rev=0.6)
+
+
+def whoosh(t_end, dur=0.3, gain=0.10):
+    n = int(dur * SR)
+    sig = rng.standard_normal(n)
+    out = np.zeros(n)
+    for k in range(12):
+        a, b = k * n // 12, (k + 1) * n // 12
+        fc = 500 * (10 ** (k / 12))
+        out[a:b] = filt(sig[a:b], "bandpass", [fc * 0.6, min(fc * 1.6, 20000)])
+    add(out * np.linspace(0, 1, n) ** 2, t_end - dur, gain, rev=0.2)
+
+
+def tok(t0, gain=0.10):
+    n = int(0.12 * SR)
+    t = np.arange(n) / SR
+    f = 700 + rng.uniform(-80, 120)
+    add(np.sin(2 * np.pi * f * t * (1 - 0.3 * t / 0.12)) * np.exp(-t / 0.025), t0, gain,
+        pan=rng.uniform(-0.3, 0.3), rev=0.2)
+
 
 vinyl()
-# intro: TV static rising into the first downbeat
-static_noise(0.0, 0.98, 0.11, sweep=True)
-riser(0.2, 1.0, 0.10)
 
-bars = []
-t = 1.0
-k = 0
-while t < 21.5:
-    bars.append((t, PROG[k % 4]))
-    t += 2.0
-    k += 1
+# pads (chords change every bar; suspense pad holds during the loading bar)
+for (t0, ch) in BARS:
+    if t0 >= 19.5:
+        continue
+    pad(CHORDS[ch], t0, min(t0 + 2.0, 19.5), gain=0.06 if t0 < 2 else 0.08)
+pad(CHORDS["Am7"] + [71], 19.5, DURATION - 0.1, gain=0.09)
 
-for (t0, ch) in bars:
-    t1 = min(t0 + 2.0, 21.5)
-    pad(CHORDS[ch], t0, t1)
-
-# final chord rings out
-pad(CHORDS["Am7"] + [71], 21.5, DURATION - 0.1, gain=0.09)
-bass(ROOT["Am7"], 21.5, 1.6, 0.3)
+# intro: music-box chimes while the flower blooms
+for k, m in enumerate([81, 76, 84, 79, 88]):
+    chime(m, 0.15 + k * 0.36, 0.13, pan=[-0.3, 0.3][k % 2])
 
 
-def drums_on(t):
-    if 4.0 <= t < 5.5:      # coordinates breakdown
-        return False
-    if t >= 19.5:           # outro
-        return False
-    return t >= 1.0
+def groove(t):
+    return 2.0 <= t < 16.0
 
 
-beat_t = 1.0
-i = 0
-while beat_t < 21.5:
-    if drums_on(beat_t):
+beat_t, i = 2.0, 0
+while beat_t < 19.5:
+    if groove(beat_t):
         if i % 2 == 0:
             kick(beat_t)
         else:
             snare(beat_t)
         hat(beat_t + BEAT / 2 + 0.012, open_=(i % 4 == 3))
         hat(beat_t, 0.04)
+    else:  # loading suspense: quiet 16th ticks only
+        for q in range(4):
+            hat(beat_t + q * BEAT / 4, 0.035 + 0.01 * q)
     beat_t += BEAT
     i += 1
-# extra kick pickups
-for t0 in (8.75, 12.75, 16.75):
-    kick(t0, 0.6)
+for t0 in (19.5, 20.5, 21.5, 22.5):  # soft half-time pulse on the outro
+    kick(t0, 0.55)
+for t0 in (3.75, 8.75, 12.75, 15.75):
+    kick(t0, 0.5)
 
-# bass line
-for (t0, ch) in bars:
+# bass
+for (t0, ch) in BARS:
+    if t0 < 2.0:
+        continue
     r = ROOT[ch]
-    if t0 >= 19.5:
-        bass(r, t0, 1.9, 0.26)
+    if t0 >= 16.0:
+        bass(r, t0, 2.0 if t0 < 18 else 1.5, 0.22)
         continue
     for off, dur, dm in ((0, 0.45, 0), (0.75, 0.2, 12), (1.0, 0.45, 0), (1.5, 0.4, 7)):
-        tt = t0 + off
-        if 4.0 <= tt < 5.5:
-            continue
-        bass(r + dm, tt, dur)
+        bass(r + dm, t0 + off, dur)
+bass(ROOT["Am7"], 19.5, 2.5, 0.3)
 
-# chiptune arpeggio from the varieties onward
-for (t0, ch) in bars:
-    if t0 < 9.0:
+# chiptune arpeggios (varieties, cup and outro)
+for (t0, ch) in BARS + [(19.5, "Am7"), (21.5, "Fmaj7")]:
+    if not (9.5 <= t0 < 16.0 or t0 >= 19.5):
         continue
     notes = CHORDS[ch]
     seq = [notes[0] + 12, notes[1] + 12, notes[2] + 12, notes[3] + 12,
            notes[2] + 12, notes[1] + 12, notes[3] + 12, notes[2] + 24]
-    for s in range(8):
-        tt = t0 + s * 0.25
-        if tt >= 21.5:
+    for s_ in range(8):
+        tt = t0 + s_ * 0.25
+        if tt >= 23.0:
             break
-        chip(seq[s], tt, 0.18, 0.045 if t0 < 19.5 else 0.035, pan=0.3 if s % 2 else -0.3)
+        chip(seq[s_], tt, 0.18, 0.045 if t0 < 19.5 else 0.035, pan=0.3 if s_ % 2 else -0.3)
 
-# accents on cuts
-impact(1.0)
-impact(9.0, 0.45)
-impact(13.5, 0.4)
-static_noise(8.85, 9.0, 0.10)
-static_noise(15.38, 15.58, 0.10)
-static_noise(17.38, 17.5, 0.08)
-static_noise(18.41, 18.59, 0.08)
-static_noise(19.43, 19.62, 0.14)
-riser(12.5, 13.5, 0.06)
+# transitions: whoosh into every pixel wipe
+for b in CUTS:
+    whoosh(b + 0.05, 0.3, 0.09)
+impact(19.5, 0.5)
+riser(17.5, 19.45, 0.08)
 
-# coordinates: data ticks + tone per item
-for j, t0 in enumerate((4.0, 4.5, 5.0)):
-    ticks(t0, 8, 0.22, 0.06)
-    chip([69, 72, 76][j] + 12, t0 + 0.22, 0.25, 0.07, duty=0.125)
+# flower pops in the field
+for k, t0 in enumerate(FLOWER_POPS):
+    if k % 2 == 0:
+        chip([88, 91, 93, 96][k % 4], t0, 0.08, 0.03, duty=0.5, pan=rng.uniform(-0.6, 0.6))
 
-# variety names: pitched pings
-for j, t0 in enumerate((9.5, 10.5, 11.5, 12.5)):
-    chip([81, 84, 88, 86][j], t0, 0.3, 0.08, duty=0.125, pan=[-0.4, 0.4, -0.4, 0.4][j])
+# cherry ripening: rising notes
+for k, t0 in enumerate((7.4, 7.9, 8.4, 8.9)):
+    chip([69, 72, 76, 81][k] + 12, t0, 0.22, 0.06, duty=0.125)
+
+# variety cards
+for k, (_, t0, _) in enumerate(VARIETIES):
+    chip([81, 84, 88, 86][k], t0, 0.3, 0.08, duty=0.125, pan=[-0.4, 0.4, -0.4, 0.4][k])
     ticks(t0, 5, 0.18, 0.04)
 
+# beans falling into the cup + steam
+for t0 in BEAN_LAND:
+    tok(t0, 0.09)
+static_noise(14.2, 16.0, 0.015)
+
+# loading bar bleeps, then the "almost ready" stall
+for k, t0 in enumerate(LOAD_TICKS):
+    chip(72 + k % 12, t0, 0.04, 0.03, duty=0.5)
+for k in range(3):
+    chip(57, 18.7 + k * 0.5, 0.18, 0.05, duty=0.5)
+    chip(56, 18.7 + k * 0.5 + 0.09, 0.12, 0.05, duty=0.5)
+
+# logo assembling: sparkle
+for k in range(14):
+    blip(19.6 + k * 0.05, 0.02, pan=rng.uniform(-0.7, 0.7))
+
 # text decode blips
-for t0 in (2.0, 2.2, 2.6, 5.7, 6.1, 6.6, 6.9, 7.4, 7.6, 9.3, 9.45, 13.0, 13.55, 13.8, 14.5,
-           17.65, 17.75, 18.65, 18.75, 19.8, 20.6, 20.9, 21.3, 21.5):
+for t0 in (0.9, 1.15, 1.5, 2.8, 3.1, 4.45, 4.6, 5.0, 7.15, 7.55, 8.1, 9.6, 9.8, 12.4, 13.65,
+           13.95, 14.6, 16.1, 16.45, 20.5, 20.75, 21.1, 21.5):
     blip(t0, 0.035, pan=rng.uniform(-0.5, 0.5))
 
 # ---------------------------------------------------------------- mix
