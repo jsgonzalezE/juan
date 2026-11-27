@@ -13,7 +13,28 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-### "The Sniff Test" — Noah dibujado a mano (dirección actual)
+### "Noah's shift" — con el Noah en pixel art de la marca (dirección actual)
+
+`t2_noah.py` (22 s) + `t2_audio.py`. Noah no se redibuja ni se calca: `pixref.py` recorta del fondo
+blanco las ilustraciones en pixel art de la marca (`assets/noah_pix/*.png`: `sack`, `roaster`,
+`cupping`, `barista`, `sugar`, `mug`, …), les pone un borde crema para que se lean sobre negro y
+separa los acentos sueltos (chispas, rayitas) para que parpadeen.
+
+Historia: Noah sale de un saco de café verde *(origin HUILA COLOMBIA)* → oye el primer crack
+*(first crack? I heard it first.)* → control de calidad con las cuatro variedades
+*JAVA · CASTILLO · GEISHA · BOURBON* → de barista presenta los cuatro empaques reales
+*(a new look)* → en el cuarto ve al perro pintado *(...who's HE?) (dog included.)* → los cuatro
+empaques, *New look? Noah approved.* → logo, *COMING SOON*, *green coffee · Huila, Colombia*,
+@juanitocoffee. Noah rebota al ritmo; los empaques se materializan desde píxeles.
+
+```
+python3 t2_noah.py --cues && python3 t2_noah.py          # video sin sonido
+/ruta/al/venv/de/earshot/bin/python t2_audio.py          # build/t2_noah.wav (efectos en build/sfx)
+ffmpeg -i build/t2_noah_silent.mp4 -i build/t2_noah.wav -c:v libx264 -crf 20 -pix_fmt yuv420p \
+  -c:a aac -b:a 192k -shortest build/t2_noah.mp4
+```
+
+### "The Sniff Test" — Noah dibujado a mano (descartado: no se parecía a Noah)
 
 `t1_sniff_test.py` (23 s) + `t1_audio.py`. Noah ya no se genera calcando los dibujos: es un sprite
 de pixel art hecho a mano (`assets/noah_px/final/front_sit.txt`, 56×64; se dibujaron cuatro
