@@ -9,8 +9,10 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FR = path.join(ROOT, 'storyboards', 'frames');
 const frames = JSON.parse(fs.readFileSync(path.join(FR, 'frames.json'), 'utf8'));
-const extra = path.join(FR, 'frames_d.json'); // idea D: la genera src/pixel_mix.py
-if (fs.existsSync(extra)) frames.push(...JSON.parse(fs.readFileSync(extra, 'utf8')));
+for (const f of ['frames_d.json', 'frames_e.json']) { // ideas D y E: las generan pixel_mix.py y pixel_walk.py
+  const extra = path.join(FR, f);
+  if (fs.existsSync(extra)) frames.push(...JSON.parse(fs.readFileSync(extra, 'utf8')));
+}
 const url = (p) => pathToFileURL(p).href;
 const font = (w, s) => url(path.join(ROOT, 'node_modules/@fontsource/montserrat/files', `montserrat-latin-${w}-${s}.woff2`));
 
@@ -40,6 +42,13 @@ META.d = {
   what: 'Junta tus dos referencias. La ficha con el color de cada variedad, pero dibujada toda en pixel art. Empieza apagada; Noah ladra, cada ladrido pone una letra del nombre y al completarlo todo se enciende con el color del empaque.',
   tone: 'Animación de personaje: Noah hace que pasen las cosas. Cuatro encendidos, un color distinto cada vez.',
   noah: 'En estos borradores van tus ilustraciones como marcador. Aquí es donde entran las animaciones nuevas: caminar, ladrar, celebrar, mirar de reojo, dormirse.',
+};
+META.e = {
+  file: 'idea_e_recorrido', n: 'Idea E · el recorrido', name: 'FOLLOW NOAH', sub: 'Noah camina de empaque en empaque y termina en la tostadora',
+  what: 'Un solo camino, de izquierda a derecha. Noah va caminando, se detiene en cada empaque y lo presenta; el color del fondo cambia con cada variedad. Al final llega a la tostadora.',
+  tone: 'Un paseo. Los empaques son objetos de pixel art dentro del mundo de Noah, no la foto de la bolsa.',
+  noah: 'Aquí Noah camina de verdad: la animación de caminar es la más importante. En el borrador van tus ilustraciones fijas y unas huellitas donde camina.',
+  pano: 'idea_e_recorrido_panorama.png',
 };
 const ONLY = process.argv[2];
 
@@ -76,6 +85,7 @@ header{display:flex;gap:56px;align-items:flex-start;margin-bottom:34px}
 .desc{display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:17px;line-height:1.5;max-width:1150px;padding-top:4px}
 .desc dt{font-size:12px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#8d857a;padding-top:5px;white-space:nowrap}
 .desc dd{margin:0;font-weight:400;color:#e4dccf}
+.pano{margin:0 0 26px}.pano small{display:block;font-size:12px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#8d857a;margin-bottom:12px}.pano img{display:block;width:100%;border:1px solid #33302c;image-rendering:pixelated}
 main{display:grid;grid-template-columns:repeat(${cols},${TW}px);gap:30px 24px}
 figure{margin:0}
 figure img{display:block;width:${TW}px;height:${Math.round(TW * 16 / 9)}px;border:1px solid #33302c}
@@ -89,6 +99,7 @@ p i{color:#8d857a}
   <div class="id"><small>${m.n} · ${fs_.length} cuadros · 20 s</small><h1>${m.name}</h1><em>(${m.sub})</em></div>
   <dl class="desc"><dt>La idea</dt><dd>${m.what}</dd><dt>Tono</dt><dd>${m.tone}</dd><dt>Noah</dt><dd>${m.noah}</dd></dl>
 </header>
+${m.pano ? `<div class="pano"><small>El recorrido completo, de un vistazo</small><img src="${url(path.join(ROOT, 'storyboards', m.pano))}"></div><div class="pano"><small>Lo que ve el celular en cada parada</small></div>` : ''}
 <main>${cells}</main></div>`;
 };
 

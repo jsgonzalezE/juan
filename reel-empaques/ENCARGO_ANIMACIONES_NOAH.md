@@ -65,6 +65,23 @@ No hace falta ampliar los cuadros: se amplían seis veces en el montaje, sin sua
 
 Si solo alcanza para tres, que sean las tres primeras.
 
+## Si se escoge la otra versión: el recorrido
+
+Hay una segunda lámina, `idea_e_recorrido.jpg`. Ahí Noah no ladra letras: camina de izquierda a
+derecha, se detiene en cada empaque y al final llega a la tostadora. Para esa versión cambia la
+prioridad:
+
+| N.º | Animación | Cuadros | Qué hace |
+|---|---|---|---|
+| 1 | Caminar de perfil | 6 a 8, en bucle | Es la más importante: Noah camina casi todo el video. Debe poder repetirse sin salto |
+| 2 | Frenar y sentarse | 4 | Pasa de caminar a sentado al llegar a cada empaque |
+| 3 | Reposo sentado | 4 a 6, en bucle | Respira y mueve la cola mientras presenta |
+| 4 | Levantarse y arrancar | 3 | De sentado a caminar otra vez |
+| 5 | Mirar de reojo | 3 | En el último empaque, al ver al perro pintado |
+| 6 | Junto a la tostadora | 4, en bucle | Sentado, oreja levantada, como en la ilustración aprobada de la tostadora |
+
+El formato es el mismo de arriba.
+
 ## Qué no hacer
 
 - No cambiar el diseño de Noah ni agregarle accesorios.
