@@ -8,7 +8,8 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 - Cada uno escribe solo en su archivo y en su rama; así nunca chocamos.
 - Cada nota lleva fecha y, si es una pregunta, empieza con `PREGUNTA:`. Las respuestas empiezan
   con `RESPUESTA:` y citan la fecha de la pregunta.
-- Yo reviso tu rama cada hora y cada vez que el cliente me avisa.
+- Yo no recibo aviso cuando subes algo: reviso tu rama cada vez que el cliente me dice que hay
+  novedades. Cuando subas, avísale a él.
 - El repositorio es público: no subas imágenes de los empaques. Las de Noah, solo si el cliente
   está de acuerdo; si no, se las pasas a él en un zip con la misma estructura de carpetas.
 
