@@ -9,6 +9,8 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FR = path.join(ROOT, 'storyboards', 'frames');
 const frames = JSON.parse(fs.readFileSync(path.join(FR, 'frames.json'), 'utf8'));
+const extra = path.join(FR, 'frames_d.json'); // idea D: la genera src/pixel_mix.py
+if (fs.existsSync(extra)) frames.push(...JSON.parse(fs.readFileSync(extra, 'utf8')));
 const url = (p) => pathToFileURL(p).href;
 const font = (w, s) => url(path.join(ROOT, 'node_modules/@fontsource/montserrat/files', `montserrat-latin-${w}-${s}.woff2`));
 
@@ -32,6 +34,14 @@ const META = {
     noah: 'Cinco de tus ilustraciones, sin redibujar. Como está dormido casi todo el video, no hace falta animarlo mucho.',
   },
 };
+
+META.d = {
+  file: 'idea_d_mezcla_pixel', n: 'Idea D · la mezcla', name: 'LIGHTS ON', sub: 'la ficha de color, en pixel art, que Noah enciende',
+  what: 'Junta tus dos referencias. La ficha con el color de cada variedad, pero dibujada toda en pixel art. Empieza apagada; Noah ladra, cada ladrido pone una letra del nombre y al completarlo todo se enciende con el color del empaque.',
+  tone: 'Animación de personaje: Noah hace que pasen las cosas. Cuatro encendidos, un color distinto cada vez.',
+  noah: 'En estos borradores van tus ilustraciones como marcador. Aquí es donde entran las animaciones nuevas: caminar, ladrar, celebrar, mirar de reojo, dormirse.',
+};
+const ONLY = process.argv[2];
 
 const TW = 320; // ancho de cada cuadro en la lamina
 const sheet = (id) => {
@@ -86,6 +96,8 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 2600, height: 1400 }, deviceScaleFactor: 2 });
 const pg = await ctx.newPage();
 for (const id of Object.keys(META)) {
+  if (ONLY && id !== ONLY) continue;
+  if (!frames.some((f) => f.idea === id)) continue;
   const tmp = path.join(FR, `_sheet_${id}.html`);
   fs.writeFileSync(tmp, sheet(id));
   await pg.goto(url(tmp));
