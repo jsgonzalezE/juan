@@ -20,7 +20,18 @@ GLOW = (246, 228, 196)
 yy, xx = np.mgrid[0:LH, 0:LW]
 BAY = B8[yy % 8, xx % 8]
 XC = (LW - 1) / 2
-B = Board('f')
+PLATES = bool(os.environ.get('PLATES'))     # PLATES=1: guarda los fondos sin Noah (p_XX) y donde va en cada cuadro
+B = Board('p' if PLATES else 'f')
+SLOTS = []
+_noah = noah
+
+
+def noah(canvas, key, s, cx, bottom, flip=False):
+    im = Image.open(os.path.join(A, 'sprites', f'noah_{key}.png'))
+    w, h = round(im.width * s), round(im.height * s)
+    SLOTS.append(dict(frame=len(B.frames) + 1, pose=key, x=round(cx - w / 2), y=bottom - h, w=w, h=h, feet_y=bottom))
+    if not PLATES:
+        _noah(canvas, key, s, cx, bottom, flip)
 
 
 def ydome(x):
@@ -254,3 +265,6 @@ spaced(c, 'COMING SOON', font('montserrat', 'montserrat-latin-300-normal.woff', 
 B.save(c, '18,5 – 20 s', 'El logo pasa a normal', 'Los pixeles se afinan en tres saltos hasta volverse el logo normal, nítido. Debajo aparece "coming soon" en letra fina. Fin.',
        'COMING SOON', 'Una nota limpia que se sostiene y se apaga.')
 B.close()
+if PLATES:
+    import json
+    json.dump(SLOTS, open(os.path.join(FR, 'slots.json'), 'w'), indent=1)
