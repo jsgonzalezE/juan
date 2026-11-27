@@ -9,6 +9,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pixelkit import *
+import noah_anim
 
 LW, LH, P, FPS, DUR = 180, 320, 6, 12, 7.5
 GLOW = (246, 228, 196)
@@ -75,6 +76,7 @@ MOT = [(motif(10, 76), -20, 106, -1), (motif(13, 26), 84, 98, 0), (motif(57, 9),
 NOAH = Image.open(os.path.join(A, 'sprites', 'noah_host.png')).convert('RGBA')
 F_TITLE = fit_title('JAVA', 156, 30)
 F_NOTE = font('montserrat', 'montserrat-latin-500-normal.woff', 22)
+WALK, HAPPY, STOP = (noah_anim.load(n) for n in ('caminar', 'contento', 'frenar'))   # None si aun no llegan
 
 
 def frame(t):
@@ -115,14 +117,26 @@ def frame(t):
         text(img, (13, 80), '(the new kid.)'[:int((arr - 0.9) * 26)], F_M, CREAM)
     img.alpha_composite(coffee(c1, c2, h0, curv, lit, scroll))
     c = up(img, P)
-    # Noah: marcador fijo. Sube y baja un poco al caminar y da un saltito al llegar.
-    s = lerp(0.46, 0.58, q)
-    nx = lerp(44, 45, q)
-    n = NOAH.resize((round(NOAH.width * s), round(NOAH.height * s)), Image.LANCZOS)
-    bob = (6 if int(t * 4) % 2 else 0) if t < 2.9 else 0
-    hop = int(40 * max(0.0, np.sin(np.pi * arr / 0.35))) if 0 < arr < 0.35 else 0
-    c.alpha_composite(n, (int(round(nx * P - n.width / 2)), int(round(ground(nx, h0, curv) * P + 8 - n.height - bob - hop))))
-    ImageDraw.Draw(c).text((540, 1836), 'PRUEBA DE FONDO  ·  NOAH ES UN MARCADOR', font=F_NOTE, fill=(120, 112, 102), anchor='ma')
+    feet = ground(lerp(44, 45, q), h0, curv) * P + 8
+    cx, hgt = lerp(44, 45, q) * P, lerp(510, 640, q)
+    if WALK and arr <= 0:                                     # Noah animado: camina a 8 cuadros por segundo
+        noah_anim.place(c, WALK, int(t * 8), cx, feet, hgt)
+    elif HAPPY and arr > 0:                                   # frena (si existe) y hace la expresion
+        k = int(arr * 8)
+        if STOP and k < len(STOP['frames']):
+            noah_anim.place(c, STOP, k, cx, feet, hgt)
+        else:
+            k -= len(STOP['frames']) if STOP else 0
+            n_ = len(HAPPY['frames'])
+            noah_anim.place(c, HAPPY, k if k < n_ else n_ - 1 - ((k // 4) % 2), cx, feet, hgt)
+    else:                                                     # marcador fijo: sube y baja al caminar, saltito al llegar
+        s = lerp(0.46, 0.58, q)
+        n = NOAH.resize((round(NOAH.width * s), round(NOAH.height * s)), Image.LANCZOS)
+        bob = (6 if int(t * 4) % 2 else 0) if t < 2.9 else 0
+        hop = int(40 * max(0.0, np.sin(np.pi * arr / 0.35))) if 0 < arr < 0.35 else 0
+        c.alpha_composite(n, (int(round(cx - n.width / 2)), int(round(feet - n.height - bob - hop))))
+    note = 'PRUEBA DE MOVIMIENTO' if (WALK or HAPPY) else 'PRUEBA DE FONDO  ·  NOAH ES UN MARCADOR'
+    ImageDraw.Draw(c).text((540, 1836), note, font=F_NOTE, fill=(120, 112, 102), anchor='ma')
     return c
 
 
