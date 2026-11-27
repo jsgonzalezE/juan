@@ -13,25 +13,38 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-### "Noah's shift" — con el Noah en pixel art de la marca (dirección actual)
+### "Noah's shift" — el Noah en pixel art de la marca, animado (dirección actual)
 
-`t2_noah.py` (22 s) + `t2_audio.py`. Noah no se redibuja ni se calca: `pixref.py` recorta del fondo
-blanco las ilustraciones en pixel art de la marca (`assets/noah_pix/*.png`: `sack`, `roaster`,
-`cupping`, `barista`, `sugar`, `mug`, …), les pone un borde crema para que se lean sobre negro y
-separa los acentos sueltos (chispas, rayitas) para que parpadeen.
+`t3_noah.py` (22 s) + `t3_audio.py`. Noah no se redibuja ni se calca: se usan las ilustraciones en
+pixel art de la marca (`assets/noah_pix/*.png`: `sack`, `roaster`, `cupping`, `barista`, `sugar`,
+`mug`).
 
-Historia: Noah sale de un saco de café verde *(origin HUILA COLOMBIA)* → oye el primer crack
-*(first crack? I heard it first.)* → control de calidad con las cuatro variedades
-*JAVA · CASTILLO · GEISHA · BOURBON* → de barista presenta los cuatro empaques reales
-*(a new look)* → en el cuarto ve al perro pintado *(...who's HE?) (dog included.)* → los cuatro
-empaques, *New look? Noah approved.* → logo, *COMING SOON*, *green coffee · Huila, Colombia*,
-@juanitocoffee. Noah rebota al ritmo; los empaques se materializan desde píxeles.
+- `pixref.py` las recorta del fondo blanco, les pone un borde crema para que se lean sobre negro y
+  separa los acentos sueltos (chispas, rayitas).
+- `anim.py` las anima como títeres recortados: cada dibujo se parte en piezas con polígonos (en
+  píxeles del dibujo original) y las poses salen de mover o girar esas piezas.
+  `python3 anim.py hoja.png` genera una hoja de poses.
+
+| Dibujo | Animaciones |
+|---|---|
+| `sack` | Solo la pata en el borde → asoma el copete → asoman los ojos → sale Noah |
+| `roaster` | La oreja salta con cada crack, la tostadora tiembla, saluda con la pata, mueve la cola |
+| `cupping` | Los ojos van de taza en taza; parpadea |
+| `barista` | Cabecea al ritmo, jadea, levanta la taza cuando llega un empaque, se mueve el moño |
+| `sugar_noah` | Mira al empaque y luego a la cámara; le salta el copete |
+| `mug` | Se acurruca contra la taza; la carita de la taza parpadea; vapor |
+
+Historia: sale del saco de café verde *(origin HUILA COLOMBIA)* → primer crack
+*(first crack? I heard it first.)* → control de calidad con *JAVA · CASTILLO · GEISHA · BOURBON* →
+de barista presenta los cuatro empaques reales *(a new look)* → ve al perro pintado
+*(...who's HE?) (dog included.)* → *New look? Noah approved.* → logo, *COMING SOON*,
+*green coffee · Huila, Colombia*, @juanitocoffee.
 
 ```
-python3 t2_noah.py --cues && python3 t2_noah.py          # video sin sonido
-/ruta/al/venv/de/earshot/bin/python t2_audio.py          # build/t2_noah.wav (efectos en build/sfx)
-ffmpeg -i build/t2_noah_silent.mp4 -i build/t2_noah.wav -c:v libx264 -crf 20 -pix_fmt yuv420p \
-  -c:a aac -b:a 192k -shortest build/t2_noah.mp4
+python3 t3_noah.py --cues && python3 t3_noah.py          # video sin sonido
+/ruta/al/venv/de/earshot/bin/python t3_audio.py          # build/t3_noah.wav (efectos en build/sfx)
+ffmpeg -i build/t3_noah_silent.mp4 -i build/t3_noah.wav -c:v libx264 -crf 20 -pix_fmt yuv420p \
+  -c:a aac -b:a 192k -shortest build/t3_noah.mp4
 ```
 
 ### "The Sniff Test" — Noah dibujado a mano (descartado: no se parecía a Noah)

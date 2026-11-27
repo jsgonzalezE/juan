@@ -1,5 +1,5 @@
-"""Soundtrack for T2 (Noah's shift): lo-fi bed made in code + effects made with earshot, placed on
-the cue times exported by `t2_noah.py --cues`. Run with a Python that has soundfile (earshot's venv).
+"""Soundtrack for T3 (Noah's shift, animated): lo-fi bed made in code + effects made with earshot, placed on
+the cue times exported by `t3_noah.py --cues`. Run with a Python that has soundfile (earshot's venv).
 """
 import json
 import os
@@ -13,7 +13,7 @@ from audio import BEAT, CHORDS, ROOT, SR, Track
 HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD = os.path.join(HERE, "build")
 SFX = os.path.join(BUILD, "sfx")
-J = json.load(open(os.path.join(BUILD, "t2_noah_cues.json")))
+J = json.load(open(os.path.join(BUILD, "t3_noah_cues.json")))
 DUR = J["duration"]
 CUES = {}
 for c in J["cues"]:
@@ -75,7 +75,7 @@ def build(path):
                 b += BEAT
                 i += 1
 
-    groove(1.0, 3.0, drums=False, level=0.8)        # sack: just chords and bass
+    groove(2.0, 3.0, drums=False, level=0.8)        # after he pops out: one bar of chords
     groove(3.0, HUH)                                 # roaster, cupping, packs
     groove(FAM, END)                                 # family shot
     tr.pad(CHORDS["Fmaj7"] + [72], END, DUR - 0.2, gain=0.07, cutoff=900)
@@ -85,9 +85,16 @@ def build(path):
         tr.bell(m, END + k * 0.16, 0.06, pan=-0.3 + 0.2 * k)
 
     # ---------------------------------------------------------------- effects
-    put("pop", one("pop"), 0.34, pitch=0.9)
-    put("rustle", one("rustle"), 0.22)
-    put("yap", 1.0, 0.16, rev=0.15)
+    put("rustle", one("rustle"), 0.24)                   # the sack moves
+    put("boop", one("knot"), 0.2, pitch=1.3)             # a topknot comes up
+    put("rustle2", one("knot") + 0.05, 0.12)
+    put("boop", one("peek"), 0.2, pitch=1.6)             # two eyes
+    put("pop", one("pop"), 0.36, pitch=0.9)              # Noah!
+    put("rustle", one("pop"), 0.2)
+    put("yap", one("pop") + 0.12, 0.2, rev=0.15)
+    put("sparkle", one("pop") + 0.1, 0.1, rev=0.3)
+    for k in range(5):                                   # the paw waves
+        put("thump", one("wave") + k * 0.143, 0.1, pitch=1.6, pan=0.1, rev=0.03)
     for t in CUES["cut"]:
         put("whoosh", t - 0.12, 0.13)
         put("pop", t + 0.02, 0.24)
@@ -104,12 +111,14 @@ def build(path):
     for t in CUES["resolve"]:
         put("shine", t - 0.12, 0.2, pan=0.3)
         put("sparkle", t, 0.1, pan=0.3, rev=0.3)
+        put("twinkle", t - 0.03, 0.07, pan=-0.3, rev=0.3)   # he lifts the cup: ta-da
     put("yap", CUES["resolve"][2] + 0.5, 0.15, pan=-0.3, rev=0.15)
     # the side-eye: music stops on a record scratch
     put("scratch", HUH - 0.08, 0.28)
     put("shutter", one("tick"), 0.2, pan=0.35)
     put("boop", one("who"), 0.22, pitch=0.85, pan=-0.3)
-    put("boop", one("who") + 0.5, 0.2, pitch=1.15, pan=-0.3)
+    put("boop", one("glance"), 0.2, pitch=1.15, pan=-0.3)   # he looks at us
+    put("boop", one("glance") + 0.75, 0.14, pitch=0.95, pan=-0.3)
     put("stamp", one("incl") - 0.03, 0.34, pan=0.3)
     put("sparkle", one("incl") + 0.04, 0.1, pan=0.3, rev=0.3)
     t, gap = one("incl") + 0.45, 0.2                 # a reluctant tail starts thumping
@@ -130,4 +139,4 @@ def build(path):
 
 
 if __name__ == "__main__":
-    print(build(os.path.join(BUILD, "t2_noah.wav")))
+    print(build(os.path.join(BUILD, "t3_noah.wav")))
