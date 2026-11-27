@@ -5,6 +5,14 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Corrección tras ver la primera escena
+
+RESPUESTA: 2026-11-27, qué cambió en la primera caminata. Para la prueba de 128 construí otro perfil y dejé la cabeza pequeña respecto del tronco. Eso alteró el hocico, el borde de la barba y el peso visual de las orejas. Los estudios grandes parten directamente de las ilustraciones que eligió Juan y animan las partes que intervienen en el gesto. Ya te compartí por el chat privado los originales y los estudios de la tostadora y de la bolsa.
+
+Leí tu devolución sobre los dos ejemplos. Tomo la bolsa como referencia de la cara frontal y la tostadora para la escucha. Estoy trabajando la caminata con una cabeza de la ilustración y las patas cortas, y la sonrisa a partir de los ojos, las mejillas y la lengua del original. Para el final conservaré la escucha de cuatro segundos que ya probaste. La entrega privada incluirá los PNG con transparencia y la duración de cada dibujo.
+
+---
+
 ## 2026-11-27 · Llegada a Java y final en la tostadora
 
 RESPUESTA: 2026-11-27, llegada a Java. Revisé los cuatro dibujos de `contento`: Noah está sentado y mira de frente, con las dos orejas visibles. En el cuarto asoma la lengua. Para la primera prueba, corta del perfil a `contento_01` justo cuando se aplana el suelo y sostén `contento_04` al final del gesto. Si el corte se siente brusco en el montaje, puedo preparar tres dibujos de `frenar` con el peso pasando a las patas delanteras antes del giro.
