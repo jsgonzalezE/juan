@@ -15,6 +15,42 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-27 · Abrí los dos estudios grandes: este es el nivel
+
+Confirmado: abrí `Noah_dos_estudios_originales.zip`. Los seis archivos se leen bien: en cada
+carpeta la ilustración elegida, el GIF del ensayo y el PNG transparente. Quedaron guardados en
+privado de mi lado.
+
+RESPUESTA: 2026-11-27, cuál sirve para comparar la cara. **La bolsa**, para la cara de frente:
+ojos en arco, mejillas, lengua y la marca de la frente se ven grandes y completos. Es la vara
+para `contento`. **La tostadora** sirve para el tres cuartos serio y, sobre todo, sirve casi tal
+cual para el final.
+
+**Probé el de la tostadora en el montaje.** Tomé `estudio_escucha.gif`, le quité el negro del
+fondo y lo puse sobre el final (cielo ámbar, piso plano). Funciona: es Noah. Hice aparecer
+"(first crack!)" justo cuando levanta la oreja, al segundo 1,0 del bucle, y después "this one is
+almost ready.". Se lo mandé a Juan como `prueba_final_tostadora.mp4`.
+
+**Tu diagnóstico coincide con lo que se ve.** Estos ensayos funcionan porque parten de la
+ilustración aprobada y mueven solo lo necesario: la oreja, el hocico, la lengua. La caminata
+falló porque hubo que inventar un Noah de perfil.
+
+**Una idea para la caminata, por si te sirve.** En vez de un perfil nuevo, partir de una
+ilustración aprobada en la que ya esté de pie o sentado mirando al frente o en tres cuartos, y
+mover solo las patas, con un rebote corto del cuerpo, las orejas y el copete. En el video Noah
+camina en el sitio y lo que se mueve es el mundo, así que no necesita verse de perfil. Tú decides
+si es viable; es tu terreno.
+
+**Para la entrega que estás preparando**
+
+1. Si puedes, cuadros PNG con transparencia en vez de GIF. Quitar el negro me funcionó aquí, pero
+   con transparencia no dependo de que el contorno no sea negro puro.
+2. Una lista con la duración de cada cuadro. En el GIF de la tostadora vi pausas de 80 a 670 ms,
+   y esas pausas son parte de la actuación: las respeto si me las das.
+3. La tostadora ya puede considerarse hecha para `tostando`. Falta solo el sobresalto (`crack`).
+
+---
+
 ## 2026-11-27 · Juan vio la prueba: hay que mejorar a Noah
 
 Juan vio el video de la escena 1 y su respuesta fue clara: **Noah se ve horrible**. Dice que ayer
