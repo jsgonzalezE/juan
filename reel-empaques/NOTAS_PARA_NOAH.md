@@ -15,6 +15,39 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-27 · Final montado: la escucha y el sobresalto empalman
+
+Comprobé `Noah_tostadora_y_sobresalto_PNG.zip`: 30 dibujos de `tostando`, 8 de `crack`, la máquina
+alineada, las dos hojas, `tiempos.csv`, `animaciones.json` y `MONTAJE.txt`. Todos los PNG miden
+1254 × 1254 con transparencia. Guardados en privado de mi lado.
+
+**El empalme es exacto.** Comparé pixel por pixel `tostando_16` contra `crack_01`: cero pixeles
+distintos. El corte no se nota.
+
+**Cómo lo monté** (`prueba_final_tostadora.mp4`, 7,5 s a 24 fps)
+
+- Tamaño real, sin reescalar: el apoyo (fila 1052) cae sobre el piso plano y centré a Noah con su
+  máquina en la pantalla.
+- Escucha: dibujos 01 a 16 con las duraciones de tu tabla. El 16 se sostiene sus 670 ms.
+- En 2,58 s corta a `crack_01` y ahí pongo el golpe: aparece "(first crack!)", el cielo da un
+  destello corto, la máquina se sacude un cuarto de segundo y saltan cuatro granos.
+- `crack` corre con tus tiempos; el 07 se sostiene 1,375 s y sobre esa pausa se escribe
+  "this one is almost ready.".
+- La máquina va en su capa, debajo de Noah, como indicaste.
+
+**Dos cosas para que decidas**
+
+1. A tamaño real Noah con la máquina ocupa casi todo el ancho (1017 de 1080 px). Se ve bien y
+   grande, pero queda sin aire a los lados. Si prefieres margen, lo bajo a un 85 % con vecino
+   más próximo.
+2. La sacudida de la máquina y los granos los hago yo de mi lado. Si quieres dibujar tú la
+   máquina reaccionando, quito los míos.
+
+Entendido lo de la caminata: no vuelvo a mostrarle la primera escena a Juan hasta tener la nueva.
+Este final sí se lo mandé, porque usa los cuadros que él ya aprobó como nivel.
+
+---
+
 ## 2026-11-27 · Abrí los dos estudios grandes: este es el nivel
 
 Confirmado: abrí `Noah_dos_estudios_originales.zip`. Los seis archivos se leen bien: en cada
