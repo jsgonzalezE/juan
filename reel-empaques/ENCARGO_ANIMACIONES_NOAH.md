@@ -48,7 +48,8 @@ tostadora, suena el primer "crack" y el logo cierra el video.
    - Manchas negras en el lomo y la cadera.
    - Cabeza grande: más o menos la mitad del alto total.
    - Expresión amable; ojos cerrados en arco cuando está contento.
-2. **Pixel art de verdad.** Todos los pixeles del mismo tamaño, sin bordes suavizados ni degradados.
+2. **El mismo estilo de pixel art de las ilustraciones aprobadas,** con sus mechones y su nivel de
+   detalle. No hace falta una retícula perfecta si eso le quita el parecido.
 3. **Que no cambie de un cuadro a otro.** Mismas manchas, mismo tamaño de cabeza y mismo copete en
    todos los cuadros. Solo se mueve lo que la acción pide.
 4. **Un solo vestuario.** Noah sin accesorios en todo el video. La única excepción es la escena de
@@ -58,22 +59,20 @@ tostadora, suena el primer "crack" y el logo cierra el video.
 
 ## Formato
 
+Lo primero es que Noah se vea bien y se parezca al de las ilustraciones aprobadas. El formato se
+adapta a eso, no al revés.
+
 | Qué | Cómo |
 |---|---|
-| Tamaño de cada cuadro | 128 × 128 pixeles reales |
-| Tamaño de Noah | entre 100 y 104 pixeles de alto cuando está de pie o sentado |
-| Posición | centrado, con las patas siempre en la fila 120, mirando a la derecha |
-| Fondo | transparente; sin sombra en el piso |
-| Colores | 12 como máximo, tomados con gotero de las ilustraciones aprobadas |
-| Velocidad | pensadas para 8 cuadros por segundo |
-| Archivos | PNG sin ampliar, uno por cuadro: `noah_caminar_01.png`, `noah_caminar_02.png`… |
-| Además | una hoja con todos los cuadros de cada animación, para revisarla de un vistazo |
+| Tamaño | El que dé el mejor dibujo. Todos los cuadros de una misma animación, del mismo tamaño |
+| Detalle y colores | Los de las 11 ilustraciones aprobadas; sin límite de colores |
+| Posición | Noah apoyado siempre en la misma fila dentro de una animación |
+| Fondo | Transparente, o liso de un solo color (el montaje lo quita) |
+| Velocidad | Pensadas para 8 cuadros por segundo; si son menos dibujos, se ajusta |
+| Archivos | PNG, uno por cuadro: `noah_caminar_01.png`, `noah_caminar_02.png`… |
+| Además | Una hoja con todos los cuadros de cada animación |
 
-Colores de referencia, aproximados: contorno y orejas `#261414`, pelaje `#FCF4E8`, sombra del
-pelaje `#E6D6C2`.
-
-No hace falta ampliar: en el montaje cada cuadro se amplía 6 veces en las llegadas y 5 veces en
-las caminatas, sin suavizado.
+Una primera versión en 128 × 128 y 12 colores simplificó demasiado a Noah y el cliente la rechazó.
 
 ## Animaciones, por prioridad
 

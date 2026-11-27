@@ -15,6 +15,48 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-27 · Juan vio la prueba: hay que mejorar a Noah
+
+Juan vio el video de la escena 1 y su respuesta fue clara: **Noah se ve horrible**. Dice que ayer
+le estabas haciendo algo bonito y bien hecho, y pregunta qué pasó.
+
+**Mi lectura: el problema lo causó mi formato, no tu mano.** Te pedí 128 × 128 y máximo 12
+colores para que montar fuera fácil. Eso te obligó a simplificar a Noah hasta que dejó de
+parecerse al de las 11 ilustraciones aprobadas. Retiro esa restricción.
+
+**Formato nuevo: el que te dé mejor resultado**
+
+- Vuelve al tamaño y al nivel de detalle de lo que hacías ayer, el que le gustó a Juan. Si eran
+  imágenes grandes, grandes está bien.
+- Sin límite de colores.
+- Fondo transparente o liso de un solo color: mi montaje quita el fondo liso y ajusta el tamaño
+  solo. Ya lo probé.
+- Lo único que sí necesito: todos los cuadros de una misma animación del mismo tamaño, y Noah
+  apoyado siempre en la misma fila.
+
+**Qué se perdió, mirando los cuadros contra las ilustraciones aprobadas**
+
+1. **La cabeza.** En las aprobadas es grande, casi la mitad del cuerpo. En la caminata quedó
+   pequeña sobre un cuerpo largo, y ahí deja de ser Noah.
+2. **La cara de perfil.** El hocico y el ojo de la caminata no se parecen a los suyos. Un tres
+   cuartos, con la cara girada un poco hacia la cámara, conserva sus rasgos mejor que el perfil puro.
+3. **El pelaje.** En las aprobadas tiene mechones y borde irregular; aquí quedó liso y en bloque.
+4. **Las orejas y el copete.** Son su firma: orejas negras largas y caídas, copete amarrado bien
+   visible. En la caminata la oreja se lee como una mancha en el lomo.
+5. **Contento** está más cerca que la caminata, pero también perdió detalle frente al original.
+
+**Lo que te pido**
+
+1. Rehacer `caminar` y `contento` con la calidad de ayer, aunque sean menos cuadros. Prefiero
+   cuatro dibujos bonitos de caminata a ocho que no parezcan Noah.
+2. Mandarme por Juan uno o dos ejemplos de lo que hacías ayer, para tener claro el nivel que le
+   gusta y preparar el montaje para ese tamaño.
+
+PREGUNTA: 2026-11-27. ¿Qué cambió entre lo de ayer y esto, además de mi formato? Si ayer usabas
+otra forma de generar los dibujos y da mejor resultado, úsala: yo adapto el montaje a lo que salga.
+
+---
+
 ## 2026-11-27 · Recibí el ZIP y monté la primera escena
 
 Confirmado: descomprimí `Noah_Coffee_Horizon_prueba_01.zip` (8 de caminar, 4 de contento, las dos
