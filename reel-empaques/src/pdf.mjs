@@ -10,7 +10,8 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SB = path.join(ROOT, 'storyboards');
 const IMG = path.join(SB, 'pdf', 'img');
-const OUT = path.join(SB, 'Juanito_Coffee_ideas_reel.pdf');
+const MODE = process.argv[2];   // 'f' = PDF solo de la idea F afinada; sin argumento = todas las ideas
+const OUT = path.join(SB, MODE === 'f' ? 'Juanito_Coffee_idea_F_afinada.pdf' : 'Juanito_Coffee_ideas_reel.pdf');
 const url = (p) => pathToFileURL(p).href;
 const img = (name) => url(path.join(IMG, name));
 const font = (w, s) => url(path.join(ROOT, 'node_modules/@fontsource/montserrat/files', `montserrat-latin-${w}-${s}.woff2`));
@@ -51,10 +52,10 @@ const head = (sid, label, name, sub, status, rows) => `
     <dl>${rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
   </div>`;
 
-const rowsOf = (items, cols, cell) => {
+const rowsOf = (items, cols, cell, cls = '') => {
   const out = [];
   for (let i = 0; i < items.length; i += cols) {
-    out.push(`<div class="block grid" style="grid-template-columns:repeat(${cols},1fr)">${items.slice(i, i + cols).map(cell).join('')}</div>`);
+    out.push(`<div class="block grid ${cls}" style="grid-template-columns:repeat(${cols},1fr)">${items.slice(i, i + cols).map(cell).join('')}</div>`);
   }
   return out.join('');
 };
@@ -116,6 +117,47 @@ const closing = `
     </ol>
   </div>`;
 
+const fF = frames.filter((f) => f.idea === 'f');
+const coverF = `
+  <div class="block start cover">
+    <div class="lab"><span>Juanito Coffee · reel de los nuevos empaques</span><b class="st st-now">Versión afinada</b></div>
+    <h1 class="big">COFFEE HORIZON</h1>
+    <em>(Noah camina sobre la curva de una taza de café)</em>
+    <div class="ba">
+      <figure><img src="${img('r_00.png')}"><figcaption><h3>Antes</h3></figcaption></figure>
+      <figure><img src="${img('f_02.png')}"><figcaption><h3>Ahora</h3></figcaption></figure>
+      <div class="chg">
+        <h2>Qué afiné</h2>
+        <ol>
+          <li><b>Noah más grande y al frente.</b> Es el presentador; antes se veía chiquito.</li>
+          <li><b>El empaque sale como un sol.</b> Más grande, sube por detrás del horizonte con un brillo del color de su variedad.</li>
+          <li><b>Más cielo, menos loma.</b> El horizonte baja para que el color tenga más espacio.</li>
+          <li><b>El café refleja el cielo.</b> La superficie toma el color de cada variedad.</li>
+          <li><b>Ambiente en vez de confeti.</b> Menos dibujos sueltos: ramas y flores grandes que entran por los bordes, con neblina.</li>
+          <li><b>Final con el primer "crack".</b> Noah avisa que el café ya casi está listo; después solo el logo y coming soon.</li>
+        </ol>
+      </div>
+    </div>
+    <h2>El video completo, de un vistazo</h2>
+    <div class="thumbs nine">${fF.map((f) => `<img src="${img(`${f.id}.png`)}">`).join('')}</div>
+    <p class="note">En las páginas siguientes va cada cuadro en grande, con lo que pasa, el texto en pantalla y el sonido. Noah aparece con tus ilustraciones fijas: son un marcador hasta que lleguen las animaciones.</p>
+  </div>`;
+const closingF = `
+  <div class="block start sec">
+    <div class="lab"><span>Para seguir</span></div>
+    <h1>LO QUE SIGUE</h1>
+    <ol class="todo">
+      <li><b>Tu visto bueno a esta versión,</b> o lo que quieras cambiar: puedes rayar encima de cualquier cuadro.</li>
+      <li><b>Empaque y variedad.</b> Hoy va Java con las cerezas, Castillo con el de colores, Geisha con la casa azul y Bourbon con la casa roja. Falta confirmarlo.</li>
+      <li><b>Notas de sabor.</b> Dos o tres palabras reales por variedad, para escoger qué entra por los bordes de cada cielo.</li>
+      <li><b>Animaciones de Noah.</b> Caminar en el sitio, una expresión por empaque y el sobresalto del "crack". El encargo está en ENCARGO_ANIMACIONES_NOAH.md.</li>
+      <li><b>Después:</b> una prueba de movimiento de una sola escena, antes de hacer el video completo.</li>
+    </ol>
+  </div>`;
+const CONTENT = MODE === 'f'
+  ? coverF + rowsOf(fF, 2, frameCell, 'bigcap') + closingF
+  : cover + SECTIONS.map(section).join('') + closing;
+
 const html = `<!doctype html><meta charset="utf-8"><style>
 @font-face{font-family:M;font-weight:300;src:url(${font(300, 'normal')})}
 @font-face{font-family:M;font-weight:300;font-style:italic;src:url(${font(300, 'italic')})}
@@ -162,11 +204,21 @@ td{padding:2.2mm 0;border-top:.2mm solid #2c2825;vertical-align:top;color:#cfc6b
 td.nm{width:52mm;color:#efe7da;font-weight:500;padding-right:4mm}
 td.pg{width:12mm;text-align:right;color:#e0903f}
 .note{margin-top:8mm;font-size:7.6pt;color:#8d857a;max-width:150mm}
+.ba{display:grid;grid-template-columns:38mm 38mm 1fr;gap:5mm;margin:8mm 0 2mm;align-items:start}
+.ba h3{font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:#8d857a}
+.chg h2{margin:0 0 2mm}
+.chg ol{margin:0;padding-left:4.5mm;font-size:8pt;line-height:1.45;color:#cfc6b8}
+.chg li{margin-bottom:1.8mm}.chg b{color:#efe7da;font-weight:500}
+.thumbs.nine{grid-template-columns:repeat(9,1fr);gap:2mm;margin:2mm 0 0}
+.bigcap{gap:8mm;padding:0 3mm}
+.bigcap h3{font-size:11pt;margin-bottom:1.6mm}
+.bigcap p{font-size:8.4pt;line-height:1.45}
+.bigcap .k{font-size:7.5pt}.bigcap .k b{font-size:10pt}
 .todo{margin:7mm 0 0;padding-left:6mm;font-size:9.6pt;line-height:1.6;color:#cfc6b8}
 .todo li{margin-bottom:4mm}.todo b{color:#efe7da;font-weight:500}
 </style>
 <div id="book"></div>
-<div id="src">${cover}${SECTIONS.map(section).join('')}${closing}</div>
+<div id="src">${CONTENT}</div>
 <script>
 window.paginate = () => {
   const book = document.getElementById('book');
@@ -184,7 +236,7 @@ window.paginate = () => {
     if (body.scrollHeight > body.clientHeight + 1 && body.children.length > 1) { body.removeChild(b); newPage(); body.appendChild(b); }
   }
   const pages = [...document.querySelectorAll('.page')];
-  pages.forEach((p, i) => { p.querySelector('footer').innerHTML = i ? '<span>Juanito Coffee · ideas para el reel</span><span>' + (i + 1) + ' / ' + pages.length + '</span>' : ''; });
+  pages.forEach((p, i) => { p.querySelector('footer').innerHTML = i ? '<span>Juanito Coffee · ' + (document.querySelector('.bigcap') ? 'idea F afinada' : 'ideas para el reel') + '</span><span>' + (i + 1) + ' / ' + pages.length + '</span>' : ''; });
   document.querySelectorAll('[data-goto]').forEach((td) => { td.textContent = 'p. ' + (pages.indexOf(document.getElementById(td.dataset.goto).closest('.page')) + 1); });
   const over = pages.map((p, i) => [i + 1, p.querySelector('.body')]).filter(([, b]) => b.scrollHeight > b.clientHeight + 1).map(([i]) => i);
   return { pages: pages.length, over };
