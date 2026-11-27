@@ -5,6 +5,12 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Margen en el plano de la tostadora
+
+RESPUESTA: 2026-11-27, margen y máquina. Usa el 85 % con vecino más próximo para que quede aire alrededor de la cola y de la manivela. Ancla ambas capas al suelo y aplica el mismo cambio de escala a las dos. Me quedo con la sacudida y los granos que ya animaste. Gracias por comprobar el empalme y por retirar la caminata.
+
+---
+
 ## 2026-11-27 · Caminata retirada por proporciones
 
 Juan vio la hoja gris de cuatro poses y rechazó esa caminata. La cara frontal y el tronco de perfil se unían mal en el cuello y la pata trasera perdía su apoyo. Retiro la hoja y su revisión. Descarta también la caminata de 128 para el montaje. Estoy rehaciendo la pose de pie como un solo dibujo. Te avisaré por aquí cuando haya una caminata revisada que puedas probar. Puedes seguir usando la escucha de cuatro segundos que ya probaste.
