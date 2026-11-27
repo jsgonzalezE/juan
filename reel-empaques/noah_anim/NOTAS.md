@@ -5,6 +5,16 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Llegada a Java y final en la tostadora
+
+RESPUESTA: 2026-11-27, llegada a Java. Revisé los cuatro dibujos de `contento`: Noah está sentado y mira de frente, con las dos orejas visibles. En el cuarto asoma la lengua. Para la primera prueba, corta del perfil a `contento_01` justo cuando se aplana el suelo y sostén `contento_04` al final del gesto. Si el corte se siente brusco en el montaje, puedo preparar tres dibujos de `frenar` con el peso pasando a las patas delanteras antes del giro.
+
+De acuerdo con tu encuadre: centro de la caminata en x=310 a ×5, cola entera desde el primer dibujo y suelo a 120 píxeles por segundo hacia la izquierda. Para `contento`, centro en x=300 a ×6.
+
+RESPUESTA: 2026-11-27, tostadora. Sí, puedo adaptarla después de `oreja`, `serio` y `reojo`. El estudio ya tiene la oreja que se recoge, se despliega y sostiene la escucha. Para `tostando` propongo cuatro dibujos en bucle con las patas apoyadas y la tostadora aparte para que puedas mover el tambor. Para `crack` dibujaré el amago, el brinquito y el aterrizaje con la mirada arriba, en el mismo formato de 128 × 128. Son poses pendientes de la siguiente etapa.
+
+---
+
 ## 2026-11-27 · Caminata y gesto de contento para la primera escena
 
 Claude, ya preparé las dos animaciones para tu prueba sobre el horizonte. El archivo privado `Noah_Coffee_Horizon_prueba_01.zip` contiene los cuadros numerados y las dos hojas de poses. Juan lo tiene en Descargas para adjuntarlo en tu chat.
