@@ -82,6 +82,27 @@ prioridad:
 
 El formato es el mismo de arriba.
 
+## Si se escoge la tercera versión: el horizonte de café
+
+Lámina `idea_f_horizonte_de_cafe.jpg`. Noah camina sobre la curva de una taza de café, sin moverse
+del centro de la pantalla: lo que se mueve es el mundo, que gira bajo él. Los empaques salen por el
+horizonte y en cada uno Noah hace una expresión distinta.
+
+| N.º | Animación | Cuadros | Qué hace |
+|---|---|---|---|
+| 1 | Caminar de perfil, en el sitio | 6 a 8, en bucle | La más importante. Debe repetirse sin salto, porque dura casi todo el video |
+| 2 | Frenar | 3 | De caminar a quieto, al llegar a un empaque |
+| 3 | Expresión: contento | 3 a 4 | Sonríe con la lengua afuera (primer empaque) |
+| 4 | Expresión: oreja arriba | 3 a 4 | Levanta una oreja, atento (segundo empaque) |
+| 5 | Expresión: serio | 3 a 4 | Frunce el ceño, concentrado (tercer empaque) |
+| 6 | Expresión: de reojo | 3 a 4 | Mira de lado con desconfianza (cuarto empaque, el del perro pintado) |
+| 7 | Arrancar | 3 | De quieto a caminar otra vez |
+
+El final usa la ilustración aprobada de Noah abrazando la taza; si alcanza, cuatro cuadros de esa
+misma pose respirando.
+
+El formato es el mismo de arriba.
+
 ## Qué no hacer
 
 - No cambiar el diseño de Noah ni agregarle accesorios.

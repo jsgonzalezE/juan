@@ -217,7 +217,7 @@ save(6, c, '15 – 17,5 s', 'Final: Noah tostador', 'Al final del camino está l
 # 7 · cierre
 img = scene(s)
 text(img, (90, 150), 'COMING SOON', fit_title('COMING SOON', 150, 22), CREAM, 'ma')
-text(img, (90, 180), '(green coffee - Huila, Colombia)', F_S, CREAM, 'ma')
+text(img, (90, 180), '(green coffee - Huila, Colombia)', F_S, INK, 'ma')
 text(img, (90, 194), '@juanitocoffee', F_S, INK, 'ma')
 c = up(img, 6)
 logo = Image.open(os.path.join(A, 'logo_blanco.png')).convert('RGBA')

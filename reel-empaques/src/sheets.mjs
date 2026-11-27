@@ -9,7 +9,7 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FR = path.join(ROOT, 'storyboards', 'frames');
 const frames = JSON.parse(fs.readFileSync(path.join(FR, 'frames.json'), 'utf8'));
-for (const f of ['frames_d.json', 'frames_e.json']) { // ideas D y E: las generan pixel_mix.py y pixel_walk.py
+for (const f of ['frames_d.json', 'frames_e.json', 'frames_f.json']) { // ideas D y E: las generan pixel_mix.py y pixel_walk.py
   const extra = path.join(FR, f);
   if (fs.existsSync(extra)) frames.push(...JSON.parse(fs.readFileSync(extra, 'utf8')));
 }
@@ -49,6 +49,12 @@ META.e = {
   tone: 'Un paseo. Los empaques son objetos de pixel art dentro del mundo de Noah, no la foto de la bolsa.',
   noah: 'Aquí Noah camina de verdad: la animación de caminar es la más importante. En el borrador van tus ilustraciones fijas y unas huellitas donde camina.',
   pano: 'idea_e_recorrido_panorama.png',
+};
+META.f = {
+  file: 'idea_f_horizonte_de_cafe', n: 'Idea F · el horizonte de café', name: 'COFFEE HORIZON', sub: 'Noah camina sobre la curva de una taza de café',
+  what: 'El horizonte curvo de tu referencia, pero es la superficie de una taza de café. Noah camina por encima y el mundo gira bajo él: los empaques van saliendo por el horizonte, el cielo cambia de color con cada variedad y flotan referencias a los sabores. Al final la imagen se aleja y la curva resulta ser su taza.',
+  tone: 'Un paseo con atmósfera. Cada empaque trae su propio cielo y Noah reacciona con una expresión distinta.',
+  noah: 'Noah camina en el sitio mientras el mundo gira; hace falta la animación de caminar y una expresión por empaque. En el borrador van tus ilustraciones fijas.',
 };
 const ONLY = process.argv[2];
 
