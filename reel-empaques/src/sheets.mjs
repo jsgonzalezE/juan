@@ -9,7 +9,7 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FR = path.join(ROOT, 'storyboards', 'frames');
 const frames = JSON.parse(fs.readFileSync(path.join(FR, 'frames.json'), 'utf8'));
-for (const f of ['frames_d.json', 'frames_e.json', 'frames_f.json']) { // ideas D y E: las generan pixel_mix.py y pixel_walk.py
+for (const f of ['frames_d.json', 'frames_e.json', 'frames_f.json', 'frames_g.json']) { // ideas D y E: las generan pixel_mix.py y pixel_walk.py
   const extra = path.join(FR, f);
   if (fs.existsSync(extra)) frames.push(...JSON.parse(fs.readFileSync(extra, 'utf8')));
 }
@@ -55,6 +55,12 @@ META.f = {
   what: 'El horizonte curvo de tu referencia, pero es una taza de café: se ve la loza crema, el borde y el café encima. Noah camina sobre el café y el mundo gira bajo él: los empaques van saliendo por el horizonte, el cielo cambia de color con cada variedad y flotan referencias a los sabores. Al final llega a la tostadora: los granos saltan, arman el logo en pixel art y el logo pasa a normal con "coming soon".',
   tone: 'Un paseo con atmósfera. Cada empaque trae su propio cielo y Noah reacciona con una expresión distinta.',
   noah: 'Noah camina en el sitio mientras el mundo gira; hace falta la animación de caminar y una expresión por empaque. En el borrador van tus ilustraciones fijas.',
+};
+META.g = {
+  file: 'idea_g_viaje_por_los_mundos', n: 'Idea G · el viaje', name: 'FOUR WORLDS', sub: 'cada empaque es un mundo y Noah los recorre',
+  what: 'No se muestran las bolsas: cada empaque se vuelve un mundo, hecho con su propio dibujo en pixel art y con su ambiente. Noah viaja de uno a otro y cada entrada es distinta: el capuchino, un portal de café, una marea de café, una puerta. Al final llega a la tostadora, suena el primer "crack" y avisa que ya casi está listo.',
+  tone: 'Un viaje. Cuatro ambientes muy distintos entre sí y un final corto y limpio con el logo.',
+  noah: 'Camina dentro de cada mundo y hace una expresión distinta en cada uno. En el borrador van tus ilustraciones fijas.',
 };
 const ONLY = process.argv[2];
 
