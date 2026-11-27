@@ -105,32 +105,90 @@ for k, v in enumerate(VAR):
         noah(c, v['noah'], v['s'], 58 * P, int(yd(58)) * P + 8)
     B.save(c, times[k], f"Empaque: {v['name'].capitalize()}", desc[k], f"{v['n']} / 04 · {v['name']} · {v['line']}", 'Nota al llegar. Cambia el ambiente de fondo.')
 
-# 6 · se aleja: era su taza
+# ---------- final: Noah tostando -> los granos arman el logo -> el logo pasa de pixel art a normal ----------
 warm = [(104, 58, 22), (226, 160, 70)]
-img = sky(*warm)
-text(img, (90, 76), '(Noah in his', F_M, CREAM, 'ma')
-text(img, (90, 96), 'happy place.)', F_M, CREAM, 'ma')
-yy, xx = np.mgrid[0:LH, 0:LW]
-floor = Image.fromarray(np.dstack([np.full((LH, LW, 3), CREAM, np.uint8), ((yy >= 262) * 255).astype(np.uint8)]), 'RGBA')
-img.alpha_composite(floor)
-ImageDraw.Draw(img).line([(0, 262), (LW, 262)], fill=INK)
-c = up(img, P)
-noah(c, 'mug', 0.86, 540, 262 * P + 8)
-B.save(c, '15 – 17,5 s', 'Se aleja: era su taza', 'La imagen se aleja de golpe y la curva resulta ser el café de la taza de Noah, la de tu ilustración. Noah la abraza.',
-       '(Noah in his happy place.)', 'Sorbo. Suspiro.')
+LOGO = Image.open(os.path.join(A, 'logo_blanco.png')).convert('RGBA')
+rng = np.random.default_rng(4)
 
-# 7 · cierre
+
+def pixel_logo(w, drop=0.0):
+    """El logo oficial llevado a pixel art (solo se reduce: no se redibuja)."""
+    h = round(LOGO.height * w / LOGO.width)
+    on = np.asarray(LOGO.split()[3].resize((w, h), Image.BOX)) >= 92
+    if drop:
+        on &= rng.random(on.shape) > drop
+    out = np.zeros((h, w, 4), np.uint8); out[on] = CREAM + (255,)
+    return Image.fromarray(out, 'RGBA')
+
+
+def puff(img, cx, cy, r, col=(226, 214, 196)):
+    """Bocanada de humo en puntos."""
+    d = ImageDraw.Draw(img)
+    for y in range(cy - r, cy + r + 1):
+        for x in range(cx - r, cx + r + 1):
+            q = ((x - cx) ** 2 + (y - cy) ** 2) / (r * r + 0.1)
+            if q <= 1 and B8[y % 8, x % 8] > q * 0.8:
+                d.point((x, y), fill=col)
+
+
+def spaced(canvas, s, f, cx, y, track, fill):
+    """Texto fino con espacio entre letras (letra normal, no pixel)."""
+    d = ImageDraw.Draw(canvas)
+    ws = [f.getlength(ch) for ch in s]
+    total = sum(ws) + track * (len(s) - 1)
+    x = cx - total / 2
+    for ch, wch in zip(s, ws):
+        d.text((x, y), ch, font=f, fill=fill); x += wch + track
+
+
+# 6 · llega a la tostadora
 img = sky(*warm)
-text(img, (90, 146), 'COMING SOON', fit_title('COMING SOON', 150, 22), CREAM, 'ma')
-text(img, (90, 176), '(green coffee - Huila, Colombia)', F_S, INK, 'ma')
-text(img, (90, 190), '@juanitocoffee', F_S, INK, 'ma')
-img.alpha_composite(floor)
-ImageDraw.Draw(img).line([(0, 262), (LW, 262)], fill=INK)
+text(img, (90, 64), '(first crack?', F_M, CREAM, 'ma')
+text(img, (90, 84), 'I heard it first.)', F_M, CREAM, 'ma')
+for (cx_, cy_, r_) in [(112, 124, 6), (120, 108, 4), (106, 112, 3)]:
+    puff(img, cx_, cy_, r_)
+for (mk, mw, mx, my) in [(53, 9, 126, 138), (56, 8, 96, 132), (25, 9, 134, 118)]:
+    img.alpha_composite(motif(mk, mw), (mx, my))
+img.alpha_composite(coffee(warm[0]))
 c = up(img, P)
-logo = Image.open(os.path.join(A, 'logo_blanco.png')).convert('RGBA')
-lw = 340; logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
-c.alpha_composite(logo, (540 - lw // 2, 330))
-noah(c, 'mug', 0.42, 540, 262 * P + 8)
-B.save(c, '17,5 – 20 s', 'Cierre', 'Misma escena. Entra el logo y los datos.',
-       'COMING SOON · (green coffee - Huila, Colombia) · @juanitocoffee', 'Taza que se apoya en la mesa. Fin.')
+noah(c, 'roaster', 0.42, 86 * P, int(yd(86)) * P + 8)
+B.save(c, '15 – 16,5 s', 'Final: Noah tostando', 'Ya no hay empaques. Por el horizonte aparece la tostadora y Noah se sienta al lado, con la oreja levantada. El tambor gira, sale humo y saltan los primeros granos.',
+       '(first crack? I heard it first.)', 'Tambor girando. Un "crack".')
+
+# 7 · los granos suben y arman el logo
+img = sky((40, 24, 12), (150, 92, 36), glow=(214, 150, 80))
+lg = pixel_logo(30, drop=0.42)
+big = lg.resize((lg.width * 2, lg.height * 2), Image.NEAREST)      # pixeles gordos: el logo apenas se esta armando
+img.alpha_composite(big, (90 - big.width // 2, 34))
+for i in range(46):                                               # chorro de pixeles y granos que sube desde la tostadora
+    tt = rng.random()
+    x = int(104 + (90 - 104) * tt + rng.normal(0, 10 * (0.3 + tt)))
+    y = int(150 - 96 * tt + rng.normal(0, 4))
+    ImageDraw.Draw(img).rectangle([x, y, x + 1, y + 1], fill=CREAM if rng.random() > 0.3 else (226, 160, 70))
+for (mk, mw, mx, my) in [(53, 9, 112, 132), (56, 8, 84, 118), (25, 8, 100, 104), (53, 7, 70, 98)]:
+    img.alpha_composite(motif(mk, mw), (mx, my))
+img.alpha_composite(coffee(warm[0]))
+c = up(img, P)
+noah(c, 'roaster', 0.42, 86 * P, int(yd(86)) * P + 8)
+B.save(c, '16,5 – 17,5 s', 'Los granos arman el logo', 'Con el "crack" los granos salen disparados hacia arriba, se vuelven pixeles y empiezan a formar el logo de Juanito en el cielo. Noah lo mira.',
+       '(sin texto)', 'Palomitas de "crack" cada vez más rápidas, subiendo de tono.')
+
+# 8 · solo el logo, en pixel art
+img = Image.new('RGBA', (LW, LH), BLACK + (255,))
+lg = pixel_logo(62)
+img.alpha_composite(lg, (90 - lg.width // 2, 96))
+for (x, y) in [(52, 90), (130, 104), (60, 172), (126, 166), (90, 84)]:
+    ImageDraw.Draw(img).point((x, y), fill=(226, 160, 70))
+c = up(img, P)
+B.save(c, '17,5 – 18,5 s', 'Solo el logo, en pixel art', 'Todo se va a negro. Queda únicamente el logo de Juanito, armado en pixel art. Sin empaques y sin Noah.',
+       '(logo en pixel art)', 'Último pixel que encaja: un "clic".')
+
+# 9 · el logo pasa a normal + coming soon
+c = Image.new('RGBA', (LW * P, LH * P), BLACK + (255,))
+lw = 62 * P
+logo = LOGO.resize((lw, round(LOGO.height * lw / LOGO.width)), Image.LANCZOS)
+c.alpha_composite(logo, (540 - lw // 2, 96 * P))
+spaced(c, 'COMING SOON', font('montserrat', 'montserrat-latin-300-normal.woff', 40), 540, 96 * P + logo.height + 70, 20, CREAM)
+B.save(c, '18,5 – 20 s', 'El logo pasa a normal', 'Los pixeles se afinan en tres saltos hasta volverse el logo normal, nítido. Debajo aparece "coming soon" en letra fina. Fin.',
+       'COMING SOON', 'Una nota limpia que se sostiene y se apaga.')
 B.close()

@@ -98,8 +98,10 @@ horizonte y en cada uno Noah hace una expresión distinta.
 | 6 | Expresión: de reojo | 3 a 4 | Mira de lado con desconfianza (cuarto empaque, el del perro pintado) |
 | 7 | Arrancar | 3 | De quieto a caminar otra vez |
 
-El final usa la ilustración aprobada de Noah abrazando la taza; si alcanza, cuatro cuadros de esa
-misma pose respirando.
+| 8 | Tostando | 4, en bucle | Sentado junto a la tostadora, oreja levantada, como en la ilustración aprobada |
+| 9 | Sobresalto | 3 | Con el "crack" da un brinquito y mira hacia arriba, siguiendo los granos |
+
+El final ya no muestra empaques ni a Noah: solo el logo.
 
 El formato es el mismo de arriba.
 
