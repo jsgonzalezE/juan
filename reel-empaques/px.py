@@ -41,6 +41,14 @@ PALETTE = {
     "b": (82, 16, 40),         # wine shade
     "C": (240, 228, 206),      # cream (bandana bean emblem, collar tag)
     "g": (110, 104, 98),       # neutral grey (misc. accessory)
+    # props: jute sack and green coffee
+    "J": (201, 174, 131),      # jute, lit
+    "j": (166, 139, 101),      # jute, mid
+    "i": (124, 101, 73),       # jute, shade
+    "I": (82, 65, 47),         # jute, deep shade / stitching
+    "G": (164, 186, 150),      # green coffee bean
+    "q": (118, 142, 112),      # green coffee bean, shade
+    "N": (64, 44, 32),         # roasted-bean brown (emblem)
 }
 BG_DARK = (17, 15, 14)
 BG_LIGHT = (236, 232, 226)

@@ -13,7 +13,42 @@ ni la foto de los dueños.
 | `v2_pop.py` | 16 s | Fondo gris claro, tipografía gruesa vino. El empaque se construye con bloques que caen; lista de variedades con cuadritos de color; el empaque oscuro aparece en ola; logo vino. |
 | `v3_grid.py` | 15 s | Fondo gris oscuro, cuadrícula de 3×4. Las piezas del empaque aparecen revueltas y se ordenan como rompecabezas; los cuadros giran al ritmo para mostrar variedades, origen y el empaque oscuro; cierre en vino con el logo. |
 
-### Noah en pixel art (dirección actual)
+### "The Sniff Test" — Noah dibujado a mano (dirección actual)
+
+`t1_sniff_test.py` (23 s) + `t1_audio.py`. Noah ya no se genera calcando los dibujos: es un sprite
+de pixel art hecho a mano (`assets/noah_px/final/front_sit.txt`, 56×64; se dibujaron cuatro
+propuestas y un jurado eligió y corrigió la mejor contra los dibujos de la marca).
+
+- `px.py`: formato de sprite en texto (un carácter por píxel), paleta pensada para fondo negro y
+  herramientas (`render`, `check`, `strip`, `onion`, `anim`).
+- `rig.py`: "esqueleto" de Noah sentado: ojos (abiertos, entrecerrados, cerrados, felices, mirando
+  a los lados, sorprendidos, serios), boca (lengua, cerrada, seria, jadeo), nariz que olfatea,
+  orejas que se levantan, copete que rebota, cabeza que se inclina, pata arriba y cola.
+- `props.py`: saco de yute con café verde, patas sobre el borde y sello de huella.
+- `stage.py`: empaques reales que se materializan desde píxeles, partículas y saltos.
+
+Historia: un saco de café verde de Huila se mueve → Noah se asoma, olfatea y salta → el saco se
+vuelve píxeles y se convierte en el primer empaque → Noah olfatea y sella con la pata
+*(new look: approved)*, *(approved)*, *(muy approved)* → en el cuarto ve al perro pintado:
+*(...who's HE?)*, primer plano serio, *(not jealous.)*, *(...approved.)* y *(dog included.)* →
+los cuatro empaques con *(four new varieties) JAVA · CASTILLO · GEISHA · BOURBON* y
+*New look? I sniffed it first.* → logo, *COMING SOON*, *green coffee · Huila, Colombia*,
+@juanitocoffee.
+
+Sonido: cama lo-fi por código (`audio.py`) y efectos generados con
+[earshot](https://github.com/Leonxlnx/earshot) (`earshot make`), colocados en los tiempos de
+`build/t1_sniff_test_cues.json` y revisados con `earshot timeline` (volumen −15,7 LUFS, sin cortes
+sin sonido). Para regenerar:
+
+```
+python3 t1_sniff_test.py --cues && python3 t1_sniff_test.py      # video sin sonido
+# efectos: ver la lista de `earshot make --sound ...` en t1_audio.py (carpeta build/sfx)
+/ruta/al/venv/de/earshot/bin/python t1_audio.py                  # build/t1_sniff_test.wav
+ffmpeg -i build/t1_sniff_test_silent.mp4 -i build/t1_sniff_test.wav -c:v libx264 -crf 20 \
+  -pix_fmt yuv420p -c:a aac -b:a 192k -shortest build/t1_sniff_test.mp4
+```
+
+### Noah en pixel art (versiones anteriores)
 
 Noah se convierte a pixel art a partir de los dibujos de la marca (`noah.py`: recorta cada pose,
 la reduce a una cuadrícula pequeña, separa líneas y manchas negras y rellena el blanco). Los

@@ -264,6 +264,8 @@ def pack_photo(key, width):
     h = round(width * im.height / im.width)
     big = im.resize((width, h), Image.LANCZOS)
     from PIL import ImageEnhance
+    if width > im.width:          # the watercolour mockups are small: restore a little crispness
+        big = big.filter(ImageFilter.UnsharpMask(radius=1.6, percent=int(60 * min(1.6, width / im.width)), threshold=2))
     big = ImageEnhance.Contrast(ImageEnhance.Color(big).enhance(1.08)).enhance(1.05)
     rgb = np.asarray(big).astype(np.float32) / 255
     ss = 3   # supersampled rounded-rect mask for a clean edge
