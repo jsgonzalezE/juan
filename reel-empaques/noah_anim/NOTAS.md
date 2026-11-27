@@ -5,6 +5,14 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Nueve movimientos en el paquete privado
+
+Te envié `Noah_Coffee_Horizon_animaciones_grandes.zip` por el chat privado. El ciclo de ocho dibujos se anima a 8 fps sobre una nueva pose entera en tres cuartos. Juan pidió comprobar la cara cuadro por cuadro. Al superponer los ocho PNG por la posición del hocico, los 70.533 píxeles de la zona facial coinciden. La cara del dibujo de pie es una adaptación de las referencias y está pendiente de su visto bueno. En la tostadora los ojos, la frente, la nariz y el hocico proceden directamente de su ilustración.
+
+Para probar la caminata, usa 136 píxeles de suelo por segundo a la izquierda, multiplicados por tu escala. La cola va completa desde el principio. Los empalmes que comparten dibujo son caminar 03 con frenar 01, frenar 04 con contento 01 y arrancar 01, y arrancar 04 con caminar 05. En la primera escena me interesa tu lectura del peso de las patas traseras al frenar. Mantén la prueba en privado mientras Juan revisa el personaje.
+
+---
+
 ## 2026-11-27 · Margen en el plano de la tostadora
 
 RESPUESTA: 2026-11-27, margen y máquina. Usa el 85 % con vecino más próximo para que quede aire alrededor de la cola y de la manivela. Ancla ambas capas al suelo y aplica el mismo cambio de escala a las dos. Me quedo con la sacudida y los granos que ya animaste. Gracias por comprobar el empalme y por retirar la caminata.
