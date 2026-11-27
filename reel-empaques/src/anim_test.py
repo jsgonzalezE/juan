@@ -86,7 +86,8 @@ def frame(t):
     lit = lerp(0.0, 0.6, walk ** 1.5) if t < 2.4 else lerp(0.6, 1.0, q)
     c1, c2, glow = (mix3(DIM[i], GREEN[i], lit) for i in range(3))
     h0, curv = lerp(212, 234, q), lerp(1 / 300.0, 0.0, q)
-    scroll = t * 16 if t < 2.4 else 2.4 * 16 + (t - 2.4) * 16 * (1 - q) * 0.5
+    v = 20                                                   # 120 px de pantalla por segundo: acompana los apoyos de la caminata
+    scroll = t * v if t < 2.4 else 2.4 * v + (t - 2.4) * v * (1 - q) * 0.5
 
     img = sky(c1, c2, glow, h0, mist=q, drift=t * 5)
     if arr > 0:                                               # el ambiente entra por los bordes y luego flota
@@ -117,8 +118,9 @@ def frame(t):
         text(img, (13, 80), '(the new kid.)'[:int((arr - 0.9) * 26)], F_M, CREAM)
     img.alpha_composite(coffee(c1, c2, h0, curv, lit, scroll))
     c = up(img, P)
-    feet = ground(lerp(44, 45, q), h0, curv) * P + 8
-    cx, hgt = lerp(44, 45, q) * P, lerp(510, 640, q)
+    nx = lerp(310 / P, 300 / P, q) if WALK else lerp(44, 45, q)   # con Noah animado: centro en x=310 y 300
+    feet = ground(nx, h0, curv) * P + 8
+    cx, hgt = nx * P, lerp(520, 624, q) if WALK else lerp(510, 640, q)
     if WALK and arr <= 0:                                     # Noah animado: camina a 8 cuadros por segundo
         noah_anim.place(c, WALK, int(t * 8), cx, feet, hgt)
     elif HAPPY and arr > 0:                                   # frena (si existe) y hace la expresion
