@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pixelkit import *
 import noah_anim
 
-LW, LH, P, FPS, DUR = 180, 320, 6, 12, 7.5
+LW, LH, P, FPS, DUR = 180, 320, 6, 24, 7.5     # 24 fps: cada dibujo de Noah (8 fps) dura 3 fotogramas
 GLOW = (246, 228, 196)
 DIM = [(22, 20, 19), (40, 36, 32), (86, 76, 64)]
 GREEN = [(40, 84, 40), (132, 170, 60), GLOW]
@@ -119,18 +119,18 @@ def frame(t):
     img.alpha_composite(coffee(c1, c2, h0, curv, lit, scroll))
     c = up(img, P)
     nx = lerp(310 / P, 300 / P, q) if WALK else lerp(44, 45, q)   # con Noah animado: centro en x=310 y 300
-    feet = ground(nx, h0, curv) * P + 8
-    cx, hgt = nx * P, lerp(520, 624, q) if WALK else lerp(510, 640, q)
-    if WALK and arr <= 0:                                     # Noah animado: camina a 8 cuadros por segundo
-        noah_anim.place(c, WALK, int(t * 8), cx, feet, hgt)
-    elif HAPPY and arr > 0:                                   # frena (si existe) y hace la expresion
+    feet = ground(nx, h0, curv) * P + (2 if WALK else 8)
+    cx = nx * P
+    sc = lerp(5, 6, q)                                        # x5 al caminar, x6 en la llegada
+    if WALK and arr <= 0:                                     # camina en el sitio a 8 cuadros por segundo
+        noah_anim.place_exact(c, WALK, int(t * 8), cx, feet, sc)
+    elif HAPPY and arr > 0:                                   # corte al gesto: se reproduce una vez y sostiene el ultimo
         k = int(arr * 8)
         if STOP and k < len(STOP['frames']):
-            noah_anim.place(c, STOP, k, cx, feet, hgt)
+            noah_anim.place_exact(c, STOP, k, cx, feet, sc)
         else:
             k -= len(STOP['frames']) if STOP else 0
-            n_ = len(HAPPY['frames'])
-            noah_anim.place(c, HAPPY, k if k < n_ else n_ - 1 - ((k // 4) % 2), cx, feet, hgt)
+            noah_anim.place_exact(c, HAPPY, min(k, len(HAPPY['frames']) - 1), cx, feet, sc)
     else:                                                     # marcador fijo: sube y baja al caminar, saltito al llegar
         s = lerp(0.46, 0.58, q)
         n = NOAH.resize((round(NOAH.width * s), round(NOAH.height * s)), Image.LANCZOS)
@@ -145,11 +145,11 @@ def frame(t):
 n = int(DUR * FPS)
 for i in range(n):
     frame(i / FPS).convert('RGB').save(os.path.join(TMP, f'{i:04d}.png'))
-out = os.path.join(SB, 'prueba_movimiento_fondo.mp4')
+out = os.path.join(SB, 'prueba_escena_1_con_noah.mp4' if WALK else 'prueba_movimiento_fondo.mp4')
 subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-framerate', str(FPS), '-i', os.path.join(TMP, '%04d.png'),
                 '-vf', 'fps=30', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '14', '-preset', 'slow', '-movflags', '+faststart', out], check=True)
 # hoja de control: 8 momentos
-picks = [0.2, 1.4, 2.3, 2.8, 3.2, 3.6, 4.6, 7.0]
+picks = [0.2, 1.0, 1.4, 2.3, 2.9, 3.3, 3.5, 3.8, 4.6, 7.0]
 sheet = Image.new('RGB', (len(picks) * 276 - 6, 480), (60, 60, 60))
 for k, t in enumerate(picks):
     sheet.paste(Image.open(os.path.join(TMP, f'{int(t * FPS):04d}.png')).resize((270, 480), Image.BOX), (k * 276, 0))

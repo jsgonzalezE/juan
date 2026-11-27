@@ -63,6 +63,14 @@ def place(canvas, anim, i, cx, feet_y, height):
     canvas.alpha_composite(f, (int(round(cx - f.width / 2)), int(round(feet_y - f.height))))
 
 
+def place_exact(canvas, anim, i, cx, feet_y, scale, ax=64, ay=120):
+    """Para cuadros en el formato acordado (128 x 128, centro en x=64, apoyo en y=120): amplia el cuadro
+    entero por `scale` sin suavizar y hace coincidir ese punto con (cx, feet_y)."""
+    f = anim['frames'][i % len(anim['frames'])]
+    f = f.resize((max(1, round(f.width * scale)), max(1, round(f.height * scale))), Image.NEAREST)
+    canvas.alpha_composite(f, (int(round(cx - ax * scale)), int(round(feet_y - ay * scale))))
+
+
 def report(base=None):
     base = base or DEFAULT
     names = sorted(n for n in os.listdir(base) if os.path.isdir(os.path.join(base, n))) if os.path.isdir(base) else []

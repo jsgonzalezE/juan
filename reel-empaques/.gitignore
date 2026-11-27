@@ -3,3 +3,5 @@ assets/
 storyboards/
 node_modules/
 __pycache__/
+# los cuadros de Noah son privados: no se suben desde esta rama
+noah_anim/**/*.png
