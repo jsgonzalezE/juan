@@ -4,64 +4,15 @@ import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { META, loadFrames } from './ideas.mjs';
 
 const { chromium } = createRequire(import.meta.url)('playwright');
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FR = path.join(ROOT, 'storyboards', 'frames');
-const frames = JSON.parse(fs.readFileSync(path.join(FR, 'frames.json'), 'utf8'));
-for (const f of ['frames_d.json', 'frames_e.json', 'frames_f.json', 'frames_g.json']) { // ideas D y E: las generan pixel_mix.py y pixel_walk.py
-  const extra = path.join(FR, f);
-  if (fs.existsSync(extra)) frames.push(...JSON.parse(fs.readFileSync(extra, 'utf8')));
-}
+const frames = loadFrames(FR);
 const url = (p) => pathToFileURL(p).href;
 const font = (w, s) => url(path.join(ROOT, 'node_modules/@fontsource/montserrat/files', `montserrat-latin-${w}-${s}.woff2`));
 
-const META = {
-  a: {
-    file: 'idea_a_galeria', n: 'Idea A', name: 'THE COLLECTION', sub: 'la galería',
-    what: 'Los empaques nuevos se cuelgan como cuadros en una sala oscura, cada uno bajo su lámpara y con una ficha de museo que dice la variedad. Noah hace la visita guiada.',
-    tone: 'Elegante y pausada. La más minimal de las tres.',
-    noah: 'Seis de tus ilustraciones, sin redibujar. Noah es anfitrión: está quieto y cambia de pose en cada corte.',
-  },
-  b: {
-    file: 'idea_b_dog_not_included', n: 'Idea B', name: 'DOG NOT INCLUDED', sub: 'Noah opina',
-    what: 'Cada empaque empieza con un primerísimo plano de su dibujo (cerezas, fiesta, mula, perro) y se abre hasta mostrar la bolsa completa con su variedad. Noah comenta cada uno y se pone celoso del perro pintado.',
-    tone: 'Con humor y ritmo rápido. Remata con la frase de la marca.',
-    noah: 'Seis de tus ilustraciones, sin redibujar. Noah se queda fijo abajo a la derecha y cambia de pose con cada comentario.',
-  },
-  c: {
-    file: 'idea_c_el_sueno', n: 'Idea C', name: "NOAH'S DREAM", sub: 'el sueño',
-    what: 'Noah duerme y sueña con los cuatro empaques dentro de una burbuja. El perro pintado en el último lo despierta, y los empaques resultan ser de verdad.',
-    tone: 'Tierna, un cuento corto con principio y final.',
-    noah: 'Cinco de tus ilustraciones, sin redibujar. Como está dormido casi todo el video, no hace falta animarlo mucho.',
-  },
-};
-
-META.d = {
-  file: 'idea_d_mezcla_pixel', n: 'Idea D · la mezcla', name: 'LIGHTS ON', sub: 'la ficha de color, en pixel art, que Noah enciende',
-  what: 'Junta tus dos referencias. La ficha con el color de cada variedad, pero dibujada toda en pixel art. Empieza apagada; Noah ladra, cada ladrido pone una letra del nombre y al completarlo todo se enciende con el color del empaque.',
-  tone: 'Animación de personaje: Noah hace que pasen las cosas. Cuatro encendidos, un color distinto cada vez.',
-  noah: 'En estos borradores van tus ilustraciones como marcador. Aquí es donde entran las animaciones nuevas: caminar, ladrar, celebrar, mirar de reojo, dormirse.',
-};
-META.e = {
-  file: 'idea_e_recorrido', n: 'Idea E · el recorrido', name: 'FOLLOW NOAH', sub: 'Noah camina de empaque en empaque y termina en la tostadora',
-  what: 'Un solo camino, de izquierda a derecha. Noah va caminando, se detiene en cada empaque y lo presenta; el color del fondo cambia con cada variedad. Al final llega a la tostadora.',
-  tone: 'Un paseo. Los empaques son objetos de pixel art dentro del mundo de Noah, no la foto de la bolsa.',
-  noah: 'Aquí Noah camina de verdad: la animación de caminar es la más importante. En el borrador van tus ilustraciones fijas y unas huellitas donde camina.',
-  pano: 'idea_e_recorrido_panorama.png',
-};
-META.f = {
-  file: 'idea_f_horizonte_de_cafe', n: 'Idea F · el horizonte de café', name: 'COFFEE HORIZON', sub: 'Noah camina sobre la curva de una taza de café',
-  what: 'El horizonte curvo de tu referencia, pero es la superficie de una taza de café. Noah camina por encima y el mundo gira bajo él: los empaques van saliendo por el horizonte, el cielo cambia de color con cada variedad y flotan referencias a los sabores. Al final llega a la tostadora: los granos saltan, arman el logo en pixel art y el logo pasa a normal con "coming soon".',
-  tone: 'Un paseo con atmósfera. Cada empaque trae su propio cielo y Noah reacciona con una expresión distinta.',
-  noah: 'Noah camina en el sitio mientras el mundo gira; hace falta la animación de caminar y una expresión por empaque. En el borrador van tus ilustraciones fijas.',
-};
-META.g = {
-  file: 'idea_g_viaje_por_los_mundos', n: 'Idea G · el viaje', name: 'FOUR WORLDS', sub: 'cada empaque es un mundo y Noah los recorre',
-  what: 'No se muestran las bolsas: cada empaque se vuelve un mundo, hecho con su propio dibujo en pixel art y con su ambiente. Noah viaja de uno a otro y cada entrada es distinta: el capuchino, un portal de café, una marea de café, una puerta. Al final llega a la tostadora, suena el primer "crack" y avisa que ya casi está listo.',
-  tone: 'Un viaje. Cuatro ambientes muy distintos entre sí y un final corto y limpio con el logo.',
-  noah: 'Camina dentro de cada mundo y hace una expresión distinta en cada uno. En el borrador van tus ilustraciones fijas.',
-};
 const ONLY = process.argv[2];
 
 const TW = 320; // ancho de cada cuadro en la lamina

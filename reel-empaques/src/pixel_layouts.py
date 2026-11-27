@@ -2,7 +2,7 @@
 
 Uso: python3 src/pixel_layouts.py -> storyboards/opciones_taza.jpg + storyboards/frames/h_0N.png
 """
-import os, sys
+import os, sys, json
 import numpy as np
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -188,4 +188,6 @@ for i, name, es, c in OPTS:
     for k, ln in enumerate(wrap(es, f_b, TW - 4)):
         d.text((x, y + TH + 92 + k * 30), ln, font=f_b, fill=(207, 198, 184))
 sheet.save(os.path.join(SB, 'opciones_taza.jpg'), quality=90)
+json.dump([dict(id=f'h_{i:02d}', idea='h', n=i, title=name, es=es) for i, name, es, _ in OPTS],
+          open(os.path.join(FR, 'frames_h.json'), 'w'), indent=1)
 print('ok', len(OPTS), sheet.size)
