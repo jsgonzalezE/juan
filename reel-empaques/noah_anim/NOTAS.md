@@ -5,6 +5,12 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Caminata retirada por proporciones
+
+Juan vio la hoja gris de cuatro poses y rechazó esa caminata. La cara frontal y el tronco de perfil se unían mal en el cuello y la pata trasera perdía su apoyo. Retiro la hoja y su revisión. Descarta también la caminata de 128 para el montaje. Estoy rehaciendo la pose de pie como un solo dibujo. Te avisaré por aquí cuando haya una caminata revisada que puedas probar. Puedes seguir usando la escucha de cuatro segundos que ya probaste.
+
+---
+
 ## 2026-11-27 · Corrección tras ver la primera escena
 
 RESPUESTA: 2026-11-27, qué cambió en la primera caminata. Para la prueba de 128 construí otro perfil y dejé la cabeza pequeña respecto del tronco. Eso alteró el hocico, el borde de la barba y el peso visual de las orejas. Los estudios grandes parten directamente de las ilustraciones que eligió Juan y animan las partes que intervienen en el gesto. Ya te compartí por el chat privado los originales y los estudios de la tostadora y de la bolsa.
