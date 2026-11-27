@@ -52,7 +52,7 @@ META.e = {
 };
 META.f = {
   file: 'idea_f_horizonte_de_cafe', n: 'Idea F · el horizonte de café', name: 'COFFEE HORIZON', sub: 'Noah camina sobre la curva de una taza de café',
-  what: 'El horizonte curvo de tu referencia, pero es una taza de café: se ve la loza crema, el borde y el café encima. Noah camina sobre el café y el mundo gira bajo él: los empaques van saliendo por el horizonte, el cielo cambia de color con cada variedad y flotan referencias a los sabores. Al final llega a la tostadora: los granos saltan, arman el logo en pixel art y el logo pasa a normal con "coming soon".',
+  what: 'El horizonte curvo de tu referencia, pero es la superficie de una taza de café. Noah camina por encima y el mundo gira bajo él: los empaques van saliendo por el horizonte, el cielo cambia de color con cada variedad y flotan referencias a los sabores. Al final llega a la tostadora: los granos saltan, arman el logo en pixel art y el logo pasa a normal con "coming soon".',
   tone: 'Un paseo con atmósfera. Cada empaque trae su propio cielo y Noah reacciona con una expresión distinta.',
   noah: 'Noah camina en el sitio mientras el mundo gira; hace falta la animación de caminar y una expresión por empaque. En el borrador van tus ilustraciones fijas.',
 };

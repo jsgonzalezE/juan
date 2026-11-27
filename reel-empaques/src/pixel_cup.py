@@ -16,7 +16,7 @@ H0, R = 192, 300                      # tope de la curva y radio
 GLOW = (246, 228, 196)
 
 
-def yd(x): return H0 + R - np.sqrt(R * R - (np.asarray(x, float) - (LW - 1) / 2) ** 2)   # centro entre dos pixeles: curva simetrica
+def yd(x): return H0 + R - np.sqrt(R * R - (np.asarray(x, float) - LW / 2) ** 2)
 
 
 def sky(c1, c2, glow=GLOW):
@@ -26,67 +26,23 @@ def sky(c1, c2, glow=GLOW):
     return Image.fromarray(dither_ramp(t, ramp, 0.34, H0 / LH + 0.02), 'RGB').convert('RGBA')
 
 
-MUG, MUG_SH, MUG_HI = (252, 236, 212), (224, 200, 174), (255, 248, 234)   # colores de la taza de Noah
-
-
-def ylip(x): return H0 + 13 + 520 - np.sqrt(520.0 ** 2 - (np.asarray(x, float) - (LW - 1) / 2) ** 2)
-
-
 def coffee(tint=None, lit=True):
-    """La taza vista de cerca: cafe con crema arriba, el borde de la taza y su cuerpo color crema."""
+    """La superficie del cafe: curva oscura con borde de crema y brillos en puntos."""
     yy, xx = np.mgrid[0:LH, 0:LW]
-    top, lip = yd(xx), ylip(xx)
-    depth = yy - top
+    depth = yy - yd(xx)
+    base = (46, 26, 15) if lit else (26, 20, 17)
+    if tint is not None:
+        base = mixc(base, tint, 0.14)
+    dark = (20, 11, 7) if lit else (14, 12, 11)
+    k = np.clip(depth / (LH - H0), 0, 1)
     out = np.zeros((LH, LW, 4), np.uint8)
-    # cafe
-    base = (58, 32, 18) if tint is None else mixc((58, 32, 18), tint, 0.12)
-    out[..., :3] = base
-    streak = (depth >= 4) & (B8[yy % 8, (xx + yy // 2) % 8] < 0.12) & (yy % 3 == 0)
-    out[streak, :3] = (104, 62, 32)
-    out[(depth >= 0) & (depth < 3), :3] = (168, 114, 64)       # crema
-    out[(depth >= 0) & (depth < 1), :3] = (226, 184, 126)      # brillo de la crema
-    # borde de la taza
-    d2 = yy - lip
-    rim = (d2 >= 0) & (d2 < 7)
-    out[rim, :3] = MUG_HI
-    out[(d2 >= 0) & (d2 < 1), :3] = OUTLINE
-    out[(d2 >= 6) & (d2 < 7), :3] = OUTLINE
-    # cuerpo de la taza, con sombra en puntos a los lados y bajo el borde
-    body = d2 >= 7
-    side = (np.abs(xx - LW / 2) / (LW / 2)) ** 2 * 0.75
-    under = np.clip(1 - (d2 - 7) / 9.0, 0, 1) * 0.8
-    shade = np.maximum(side, under) > B8[yy % 8, xx % 8]
-    out[body, :3] = MUG
-    out[body & shade, :3] = MUG_SH
+    out[..., :3] = np.where((k * 1.1 > B8[yy % 8, xx % 8])[..., None], dark, base)
+    streak = (depth >= 5) & (depth < 22) & (B8[yy % 8, (xx + yy // 3) % 8] < 0.09) & ((yy // 2) % 3 == 0)
+    out[streak, :3] = (96, 58, 30) if lit else (44, 36, 30)
+    out[(depth >= 0) & (depth < 3), :3] = (152, 100, 54) if lit else (58, 48, 40)      # crema
+    out[(depth >= 0) & (depth < 1), :3] = (218, 174, 116) if lit else (84, 72, 60)     # brillo del borde
     out[..., 3] = (depth >= 0) * 255
     return Image.fromarray(out, 'RGBA')
-
-
-def mug_wide(img):
-    """La taza completa (toma inicial): cuerpo crema, asa, carita y cafe arriba, como la taza de Noah."""
-    d = ImageDraw.Draw(img)
-    x1, x2, yt, yb = 34, 132, 198, 292
-    d.ellipse([x2 - 12, yt + 14, x2 + 30, yt + 70], fill=OUTLINE)                 # asa
-    d.ellipse([x2 - 6, yt + 20, x2 + 24, yt + 64], fill=MUG)
-    d.ellipse([x2 - 2, yt + 30, x2 + 14, yt + 54], fill=OUTLINE)
-    d.ellipse([x2, yt + 32, x2 + 12, yt + 52], fill=tuple(int(v) for v in np.asarray(img)[yt + 40, x2 + 40, :3]))
-    d.rounded_rectangle([x1 - 2, yt - 2, x2 + 2, yb + 2], radius=14, fill=OUTLINE)  # cuerpo
-    d.rounded_rectangle([x1, yt, x2, yb], radius=12, fill=MUG)
-    a = np.asarray(img).copy()
-    yy, xx = np.mgrid[0:LH, 0:LW]
-    inside = (a[..., :3] == MUG).all(2)
-    sh = inside & (((xx - x1) / (x2 - x1)) ** 3 * 0.9 > B8[yy % 8, xx % 8])
-    a[sh, :3] = MUG_SH
-    img.paste(Image.fromarray(a, 'RGBA'))
-    d = ImageDraw.Draw(img)
-    d.ellipse([x1 - 4, yt - 12, x2 + 4, yt + 8], fill=OUTLINE)                    # boca de la taza
-    d.ellipse([x1 - 2, yt - 10, x2 + 2, yt + 6], fill=MUG_HI)
-    d.ellipse([x1 + 4, yt - 9, x2 - 4, yt + 3], fill=OUTLINE)
-    d.ellipse([x1 + 5, yt - 8, x2 - 5, yt + 2], fill=(58, 32, 18))                # cafe
-    d.arc([x1 + 8, yt - 7, x2 - 8, yt + 1], 200, 340, fill=(226, 184, 126))       # brillo de crema
-    for ex in (66, 98):                                                           # carita
-        d.rounded_rectangle([ex - 3, yt + 34, ex + 3, yt + 46], radius=3, fill=OUTLINE)
-    d.arc([60, yt + 40, 104, yt + 72], 20, 160, fill=OUTLINE, width=3)
 
 
 VAR = [
@@ -112,21 +68,18 @@ def compose(sky_img, behind, front_fn, tint=None, lit=True):
     return c
 
 
-# 1 · la taza completa
-img = sky((26, 21, 18), (62, 46, 32), glow=(44, 34, 26))
+# 1 · amanece
+img = sky((22, 20, 19), (40, 36, 32), glow=(86, 76, 64))
 text(img, (90, 96), 'FOUR NEW VARIETIES', F_M, CREAM, 'ma')
 text(img, (90, 118), '(follow Noah.)', F_S, SOFT, 'ma')
-ImageDraw.Draw(img).rectangle([0, 294, LW, LH], fill=BLACK)
-ImageDraw.Draw(img).line([(0, 294), (LW, 294)], fill=(70, 62, 54))
-mug_wide(img)
-c = up(img, P)
-noah(c, 'host', 0.15, 70 * P, 190 * P + 4)
-B.save(c, '0 – 2 s', 'La taza completa', 'Abre con la taza de Noah entera, humeando, y él chiquito caminando por encima del café. Así queda claro desde el primer segundo que el mundo es una taza.',
-       'FOUR NEW VARIETIES · (follow Noah.)', 'Café sirviéndose. Pasitos.')
+b = bag_obj('cerezas', 46)
+c = compose(img, [(b, (124, int(yd(148)) - 34))], lambda c: noah(c, 'host', 0.33, 62 * P, int(yd(62)) * P + 8), lit=False)
+B.save(c, '0 – 2,5 s', 'Amanece sobre el café', 'Todo oscuro. El horizonte curvo es la superficie de una taza de café. Noah camina por encima; el primer empaque empieza a salir por el horizonte, como un sol.',
+       'FOUR NEW VARIETIES · (follow Noah.)', 'Pasitos. Un zumbido grave, como café sirviéndose.')
 
 # 2-5 · un empaque, un cielo, una expresion
-times = ['2 – 6 s', '6 – 9 s', '9 – 12 s', '12 – 15 s']
-desc = ['La cámara baja hasta el borde de la taza: abajo se ve la loza crema, encima el café con su crema. Noah camina sobre el café, sale el primer empaque, el cielo se pinta de verde y flotan cerezas y hojas.',
+times = ['2,5 – 6 s', '6 – 9 s', '9 – 12 s', '12 – 15 s']
+desc = ['El mundo gira bajo Noah y el empaque termina de salir. El cielo se pinta de verde y aparecen flotando cerezas y hojas. Noah sonríe.',
         'Noah sigue caminando; el cielo pasa a magenta y naranja y flotan flores y estrellas. Segundo empaque. Noah levanta la oreja.',
         'El cielo pasa a azul, flotan flores de café. Tercer empaque. Noah se asoma por el horizonte, muy serio.',
         'El cielo pasa a rojo. Cuarto empaque: Noah ve al perro pintado y lo mira de reojo.']
@@ -190,8 +143,8 @@ def spaced(canvas, s, f, cx, y, track, fill):
 
 # 6 · llega a la tostadora
 img = sky(*warm)
-text(img, (90, 64), '(first crack?', F_M, CREAM, 'ma')
-text(img, (90, 84), 'I heard it first.)', F_M, CREAM, 'ma')
+text(img, (90, 64), '(first crack!)', F_M, CREAM, 'ma')
+text(img, (90, 88), 'this one is almost ready.', F_S, CREAM, 'ma')
 for (cx_, cy_, r_) in [(112, 124, 6), (120, 108, 4), (106, 112, 3)]:
     puff(img, cx_, cy_, r_)
 for (mk, mw, mx, my) in [(53, 9, 126, 138), (56, 8, 96, 132), (25, 9, 134, 118)]:
@@ -199,8 +152,8 @@ for (mk, mw, mx, my) in [(53, 9, 126, 138), (56, 8, 96, 132), (25, 9, 134, 118)]
 img.alpha_composite(coffee(warm[0]))
 c = up(img, P)
 noah(c, 'roaster', 0.42, 86 * P, int(yd(86)) * P + 8)
-B.save(c, '15 – 16,5 s', 'Final: Noah tostando', 'Ya no hay empaques. Por el horizonte aparece la tostadora y Noah se sienta al lado, con la oreja levantada. El tambor gira, sale humo y saltan los primeros granos.',
-       '(first crack? I heard it first.)', 'Tambor girando. Un "crack".')
+B.save(c, '15 – 16,5 s', 'Final: Noah tostando', 'Ya no hay empaques. Noah llega a la tostadora y se sienta. Suena el primer "crack": levanta la oreja de golpe, sale humo, saltan los granos y avisa que este café ya casi está listo.',
+       '(first crack!) · this one is almost ready.', 'Tambor girando. Un "crack".')
 
 # 7 · los granos suben y arman el logo
 img = sky((40, 24, 12), (150, 92, 36), glow=(214, 150, 80))
