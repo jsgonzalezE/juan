@@ -124,17 +124,20 @@ const coverF = `
     <h1 class="big">COFFEE HORIZON</h1>
     <em>(Noah camina sobre la curva de una taza de café)</em>
     <div class="ba">
-      <figure><img src="${img('r_00.png')}"><figcaption><h3>Antes</h3></figcaption></figure>
+      <figure><img src="${img('prev_f_02.png')}"><figcaption><h3>Antes</h3></figcaption></figure>
       <figure><img src="${img('f_02.png')}"><figcaption><h3>Ahora</h3></figcaption></figure>
       <div class="chg">
-        <h2>Qué afiné</h2>
+        <h2>Qué cambió en esta vuelta</h2>
         <ol>
-          <li><b>Noah más grande y al frente.</b> Es el presentador; antes se veía chiquito.</li>
-          <li><b>El empaque sale como un sol.</b> Más grande, sube por detrás del horizonte con un brillo del color de su variedad.</li>
-          <li><b>Más cielo, menos loma.</b> El horizonte baja para que el color tenga más espacio.</li>
-          <li><b>El café refleja el cielo.</b> La superficie toma el color de cada variedad.</li>
-          <li><b>Ambiente en vez de confeti.</b> Menos dibujos sueltos: ramas y flores grandes que entran por los bordes, con neblina.</li>
-          <li><b>Final con el primer "crack".</b> Noah avisa que el café ya casi está listo; después solo el logo y coming soon.</li>
+          <li><b>El horizonte curvo es solo para caminar.</b> Mientras Noah va de un empaque al siguiente, el mundo gira bajo él.</li>
+          <li><b>Al llegar, el piso se aplana.</b> En cada empaque y en la tostadora el horizonte queda recto.</li>
+          <li><b>Todo más grande en las llegadas.</b> La cámara se acerca: Noah y el empaque ocupan casi toda la pantalla, y el empaque se ve completo.</li>
+        </ol>
+        <h2 style="margin-top:4mm">Se mantiene</h2>
+        <ol>
+          <li>El brillo detrás del empaque y el café que refleja el color de cada variedad.</li>
+          <li>Ramas y flores grandes entrando por los bordes, con neblina.</li>
+          <li>El final: primer "crack", el logo en pixel art que pasa a normal y coming soon.</li>
         </ol>
       </div>
     </div>
@@ -209,7 +212,7 @@ td.pg{width:12mm;text-align:right;color:#e0903f}
 .chg h2{margin:0 0 2mm}
 .chg ol{margin:0;padding-left:4.5mm;font-size:8pt;line-height:1.45;color:#cfc6b8}
 .chg li{margin-bottom:1.8mm}.chg b{color:#efe7da;font-weight:500}
-.thumbs.nine{grid-template-columns:repeat(9,1fr);gap:2mm;margin:2mm 0 0}
+.thumbs.nine{grid-template-columns:repeat(10,1fr);gap:2mm;margin:2mm 0 0}
 .bigcap{gap:8mm;padding:0 3mm}
 .bigcap h3{font-size:11pt;margin-bottom:1.6mm}
 .bigcap p{font-size:8.4pt;line-height:1.45}

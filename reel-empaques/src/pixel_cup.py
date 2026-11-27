@@ -10,7 +10,12 @@ from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pixelkit import *
 
-LW, LH, P, R, H0 = 180, 320, 6, 300, 212
+LW, LH, P, R = 180, 320, 6, 300
+HZ = dict(h0=212, flat=False)        # horizonte: curvo cuando Noah camina, plano y mas abajo cuando llega
+
+
+def curved(): HZ.update(h0=212, flat=False)
+def flat(): HZ.update(h0=234, flat=True)
 GLOW = (246, 228, 196)
 yy, xx = np.mgrid[0:LH, 0:LW]
 BAY = B8[yy % 8, xx % 8]
@@ -18,12 +23,17 @@ XC = (LW - 1) / 2
 B = Board('f')
 
 
-def ydome(x): return H0 + R - np.sqrt(R * R - (np.asarray(x, float) - XC) ** 2)
+def ydome(x):
+    x = np.asarray(x, float)
+    if HZ['flat']:
+        return np.full_like(x, HZ['h0'])
+    return HZ['h0'] + R - np.sqrt(R * R - (x - XC) ** 2)
 
 
 def sky(c1, c2, glow=GLOW, mist=True):
     t = yy / LH + 0.010 * np.sin(xx / LW * 2 * np.pi * 0.9 + 0.6)
     ramp = [BLACK, mixc(BLACK, c1, .5), c1, mixc(c1, c2, .5), c2, mixc(c2, glow, .6), glow]
+    H0 = HZ['h0']
     rgb = dither_ramp(t, ramp, 0.37, H0 / LH + 0.02)
     if mist:                                                # dos capas de neblina: dan profundidad
         for yc, amp, k in [(H0 - 22, 3.0, 0.55), (H0 - 46, 4.0, 0.35)]:
@@ -40,7 +50,7 @@ def coffee(c1, c2, lit=True):
     base = mixc((46, 26, 15), c1, 0.14) if lit else (26, 20, 17)
     dark = (20, 11, 7) if lit else (14, 12, 11)
     out = np.zeros((LH, LW, 4), np.uint8)
-    k = np.clip(depth / (LH - H0), 0, 1)
+    k = np.clip(depth / (LH - HZ['h0']), 0, 1)
     out[..., :3] = np.where((k * 1.1 > BAY)[..., None], dark, base)
     streak = (depth >= 5) & (depth < 22) & (B8[yy % 8, (xx + yy // 3) % 8] < 0.09) & ((yy // 2) % 3 == 0)
     out[streak, :3] = (96, 58, 30) if lit else (44, 36, 30)
@@ -71,28 +81,44 @@ def rising_bag(img, bag, c1, c2, sunk=26, x=110, glow=GLOW, power=1.0):
     img.alpha_composite(b, (x - b.width // 2, top))
 
 
+def standing_bag(img, bag, c1, c2, x=136, w=72):
+    """Llegada: el empaque completo, grande, parado sobre el horizonte plano, con su brillo detras."""
+    b = bag_obj(bag, w)
+    top = HZ['h0'] + 2 - b.height
+    halo(img, c1, c2, x, top + 34, 88)
+    img.alpha_composite(b, (x - b.width // 2, top))
+
+
 def header(img, n, name, line):
-    text(img, (13, 40), f'{n} / 04', F_S, CREAM)
-    text(img, (12, 50), name, fit_title(name, 156, 30), CREAM)
-    text(img, (13, 92), line, F_M if F_M.getlength(line) <= 160 else F_S, CREAM)
+    text(img, (13, 30), f'{n} / 04', F_S, CREAM)
+    text(img, (12, 40), name, fit_title(name, 156, 30), CREAM)
+    text(img, (13, 80), line, F_M if F_M.getlength(line) <= 160 else F_S, CREAM)
+
+
+def sky_blend(ca, cb):
+    """Cielo a medio cambiar: el color del empaque que queda atras (izquierda) se funde con el que viene."""
+    a, b = np.asarray(sky(*ca)), np.asarray(sky(*cb))
+    pick = (xx / LW + (BAY - 0.5) * 0.7) > 0.5
+    return Image.fromarray(np.where(pick[..., None], b, a), 'RGBA')
 
 
 VAR = [
-    dict(name='JAVA', n='01', bag='cerezas', c=[(40, 84, 40), (132, 170, 60)], noah='host', s=0.46, x=36, line='(the new kid.)',
-         amb=[(10, 64, -14, 102), (13, 34, 154, 98), (57, 8, 70, 124), (58, 7, 150, 150)],
-         es='El mundo gira bajo Noah y el empaque sube por detrás del horizonte, como un sol, con su brillo. El cielo se pinta de verde, entran ramas con cerezas por los bordes y el café refleja el color. Noah, al frente, sonríe.'),
-    dict(name='CASTILLO', n='02', bag='colores', c=[(150, 30, 86), (234, 124, 30)], noah='listen', s=0.54, x=36, line='(the loud one.)',
-         amb=[(15, 40, -10, 104), (18, 30, 156, 100), (28, 12, 66, 122), (42, 10, 152, 150)],
-         es='Noah sigue caminando; el sol anterior se oculta y sale el segundo empaque. El cielo pasa a magenta y naranja, entran flores grandes por los bordes. Noah levanta la oreja.'),
-    dict(name='GEISHA', n='03', bag='casa_azul', c=[(26, 66, 122), (96, 154, 200)], noah='peek', s=0.50, x=40, line='(the fancy one.)',
-         amb=[(5, 62, -16, 102), (19, 36, 152, 100), (42, 10, 72, 124), (12, 12, 156, 150)],
-         es='El cielo pasa a azul con neblina, entran ramas con flores de café. Sale el tercer empaque. Noah se asoma por el horizonte, muy serio.'),
-    dict(name='BOURBON', n='04', bag='casa_roja', c=[(124, 28, 24), (216, 90, 52)], noah='sideeye', s=0.50, x=38, line="(...who's that dog?)",
-         amb=[(7, 38, -10, 104), (2, 44, 146, 104), (51, 9, 68, 124), (26, 16, 150, 148)],
-         es='El cielo pasa a rojo. Sale el cuarto empaque, el que tiene un perro pintado: Noah lo descubre y lo mira de reojo.'),
+    dict(name='JAVA', n='01', bag='cerezas', c=[(40, 84, 40), (132, 170, 60)], noah='host', s=0.58, x=45, line='(the new kid.)',
+         amb=[(10, 76, -20, 106), (13, 26, 84, 98), (57, 9, 160, 96), (58, 8, 92, 150)],
+         es='Noah llega al primer empaque. El piso se aplana y la cámara se acerca: Noah y el empaque se ven grandes. Cielo verde, ramas con cerezas, y el café refleja el color. Noah sonríe.'),
+    dict(name='CASTILLO', n='02', bag='colores', c=[(150, 30, 86), (234, 124, 30)], noah='listen', s=0.68, x=44, line='(the loud one.)',
+         amb=[(15, 48, -14, 104), (18, 24, 84, 98), (28, 11, 160, 96), (42, 10, 92, 150)],
+         es='Llegada al segundo empaque, otra vez en plano y de cerca. Cielo magenta y naranja con flores grandes. Noah levanta la oreja.'),
+    dict(name='GEISHA', n='03', bag='casa_azul', c=[(26, 66, 122), (96, 154, 200)], noah='peek', s=0.60, x=47, line='(the fancy one.)',
+         amb=[(5, 72, -20, 104), (19, 30, 80, 98), (42, 10, 160, 96), (12, 12, 92, 150)],
+         es='Llegada al tercer empaque. Cielo azul con neblina y flores de café. Noah se asoma desde atrás del horizonte, muy serio.'),
+    dict(name='BOURBON', n='04', bag='casa_roja', c=[(124, 28, 24), (216, 90, 52)], noah='sideeye', s=0.62, x=45, line="(...who's that dog?)",
+         amb=[(7, 44, -12, 106), (2, 34, 76, 100), (51, 9, 160, 96), (26, 14, 92, 150)],
+         es='Llegada al cuarto empaque, el del perro pintado. Cielo rojo. Noah lo descubre y lo mira de reojo.'),
 ]
 
 # ---------- 1 · amanece ----------
+curved()
 dim = [(22, 20, 19), (40, 36, 32)]
 img = sky(*dim, glow=(86, 76, 64), mist=False)
 rising_bag(img, 'cerezas', (40, 84, 40), (132, 170, 60), sunk=84, glow=(150, 170, 110), power=0.55)
@@ -101,27 +127,47 @@ text(img, (90, 100), '(follow Noah.)', F_S, SOFT, 'ma')
 img.alpha_composite(coffee(*dim, lit=False))
 c = up(img, P)
 noah(c, 'host', 0.46, 44 * P, int(ydome(44)) * P + 8)
-B.save(c, '0 – 2,5 s', 'Amanece sobre el café', 'Todo oscuro. El horizonte curvo es la superficie de una taza de café. Noah camina por encima, grande y al frente. Por la derecha ya se asoma el primer empaque, con un brillo verde, como un sol que va a salir.',
+B.save(c, '0 – 2,5 s', 'Amanece sobre el café', 'Todo oscuro. Noah camina sobre el horizonte curvo, que es la superficie de una taza de café. Por la derecha ya se asoma el primer empaque, con un brillo verde, como un sol que va a salir.',
        'FOUR NEW VARIETIES · (follow Noah.)', 'Pasitos. Un zumbido grave, como café sirviéndose.')
 
-# ---------- 2-5 · un empaque, un cielo, una expresion ----------
-times = ['2,5 – 6 s', '6 – 9 s', '9 – 12 s', '12 – 15 s']
-for k, v in enumerate(VAR):
+# ---------- llegadas (plano y grande), con una caminata de ejemplo entre la primera y la segunda ----------
+def arrival(v):
+    flat()
     c1, c2 = v['c']
     img = sky(c1, c2)
     for (mk, mw, mx, my) in v['amb']:
         img.alpha_composite(motif(mk, mw), (mx, my))
-    rising_bag(img, v['bag'], c1, c2)
+    standing_bag(img, v['bag'], c1, c2)
     header(img, v['n'], v['name'], v['line'])
     if v['noah'] == 'peek':                                   # Noah asomado detras del horizonte
         c = up(img, P)
-        noah(c, 'peek', v['s'], v['x'] * P, int(ydome(v['x'])) * P + 26)
+        noah(c, 'peek', v['s'], v['x'] * P, HZ['h0'] * P + 30)
         c.alpha_composite(up(coffee(c1, c2), P))
     else:
         img.alpha_composite(coffee(c1, c2))
         c = up(img, P)
-        noah(c, v['noah'], v['s'], v['x'] * P, int(ydome(v['x'])) * P + 8)
-    B.save(c, times[k], f"Empaque: {v['name'].capitalize()}", v['es'], f"{v['n']} / 04 · {v['name']} · {v['line']}", 'Nota al llegar. Cambia el ambiente de fondo.')
+        noah(c, v['noah'], v['s'], v['x'] * P, HZ['h0'] * P + 8)
+    return c
+
+
+def walk(va, vb):
+    curved()
+    img = sky_blend(va['c'], vb['c'])
+    rising_bag(img, va['bag'], *va['c'], sunk=74, x=24, power=0.6)       # el anterior se oculta
+    rising_bag(img, vb['bag'], *vb['c'], sunk=66, x=156, power=0.8)      # el siguiente empieza a salir
+    img.alpha_composite(coffee(mixc(va['c'][0], vb['c'][0], .5), mixc(va['c'][1], vb['c'][1], .5)))
+    c = up(img, P)
+    noah(c, 'host', 0.46, 90 * P, int(ydome(90)) * P + 8)
+    return c
+
+
+times = ['2,5 – 5,5 s', '6,5 – 9 s', '9,5 – 12 s', '12,5 – 15 s']
+B.save(arrival(VAR[0]), times[0], 'Llegada: Java', VAR[0]['es'], '01 / 04 · JAVA · (the new kid.)', 'Nota al llegar. Los pasitos se detienen.')
+B.save(walk(VAR[0], VAR[1]), '5,5 – 6,5 s', 'Camina al siguiente', 'Entre empaque y empaque vuelve el horizonte curvo y la cámara se aleja: Noah camina, el mundo gira, el empaque anterior se oculta por la izquierda y el siguiente empieza a salir por la derecha. El cielo cambia de color sobre la marcha. Esto se repite entre cada llegada.',
+       '(sin texto)', 'Pasitos. El ambiente de fondo se funde con el siguiente.')
+for k in (1, 2, 3):
+    v = VAR[k]
+    B.save(arrival(v), times[k], f"Llegada: {v['name'].capitalize()}", v['es'], f"{v['n']} / 04 · {v['name']} · {v['line']}", 'Nota al llegar. Los pasitos se detienen.')
 
 # ---------- final: la tostadora -> los granos arman el logo -> el logo pasa a normal ----------
 warm = [(104, 58, 22), (226, 160, 70)]
@@ -156,19 +202,20 @@ def spaced(canvas, s, f, cx, y, track, fill):
         d.text((x, y), ch, font=f, fill=fill); x += wch + track
 
 
-NX = 78                                                       # donde se sienta Noah con la tostadora
+NX = 86                                                       # donde se sienta Noah con la tostadora
+flat()
 # 6 · llega a la tostadora
 img = sky(*warm)
 text(img, (90, 62), '(first crack!)', F_M, CREAM, 'ma')
 text(img, (90, 86), 'this one is almost ready.', F_S, CREAM, 'ma')
-for (qx, qy, qr) in [(118, 126, 7), (128, 108, 5), (112, 110, 4), (134, 94, 3)]:
+for (qx, qy, qr) in [(132, 122, 8), (144, 104, 6), (126, 104, 4), (150, 88, 3)]:
     puff(img, qx, qy, qr)
-for (mk, mw, mx, my) in [(53, 10, 134, 142), (56, 9, 100, 130), (25, 10, 146, 120)]:
+for (mk, mw, mx, my) in [(53, 11, 152, 140), (56, 10, 116, 126), (25, 11, 162, 116)]:
     img.alpha_composite(motif(mk, mw), (mx, my))
 img.alpha_composite(coffee(*warm))
 c = up(img, P)
-noah(c, 'roaster', 0.56, NX * P, int(ydome(NX)) * P + 8)
-B.save(c, '15 – 16,5 s', 'Final: el primer crack', 'Ya no hay empaques. Noah llega a la tostadora y se sienta. Suena el primer "crack": levanta la oreja de golpe, sale humo, saltan los granos y avisa que este café ya casi está listo.',
+noah(c, 'roaster', 0.70, NX * P, HZ['h0'] * P + 8)
+B.save(c, '15 – 16,5 s', 'Final: el primer crack', 'Ya no hay empaques. Noah llega a la tostadora, otra vez en plano y de cerca, y se sienta. Suena el primer "crack": levanta la oreja de golpe, sale humo, saltan los granos y avisa que este café ya casi está listo.',
        '(first crack!) · this one is almost ready.', 'Tambor girando. Un "crack" seco.')
 
 # 7 · los granos suben y arman el logo
@@ -178,14 +225,14 @@ big = lg.resize((lg.width * 2, lg.height * 2), Image.NEAREST)
 img.alpha_composite(big, (90 - big.width // 2, 34))
 for i in range(52):                                           # chorro de pixeles que sube desde la tostadora
     tt = rng.random()
-    x = int(112 + (90 - 112) * tt + rng.normal(0, 10 * (0.3 + tt)))
-    y = int(160 - 104 * tt + rng.normal(0, 4))
+    x = int(132 + (90 - 132) * tt + rng.normal(0, 10 * (0.3 + tt)))
+    y = int(140 - 84 * tt + rng.normal(0, 4))
     ImageDraw.Draw(img).rectangle([x, y, x + 1, y + 1], fill=CREAM if rng.random() > 0.3 else (226, 160, 70))
-for (mk, mw, mx, my) in [(53, 10, 122, 140), (56, 9, 92, 124), (25, 9, 108, 108), (53, 8, 76, 100)]:
+for (mk, mw, mx, my) in [(53, 11, 140, 132), (56, 10, 112, 118), (25, 10, 126, 102), (53, 8, 96, 96)]:
     img.alpha_composite(motif(mk, mw), (mx, my))
 img.alpha_composite(coffee(*warm))
 c = up(img, P)
-noah(c, 'roaster', 0.56, NX * P, int(ydome(NX)) * P + 8)
+noah(c, 'roaster', 0.70, NX * P, HZ['h0'] * P + 8)
 B.save(c, '16,5 – 17,5 s', 'Los granos arman el logo', 'Con el "crack" los granos salen disparados hacia arriba, se vuelven pixeles y empiezan a formar el logo de Juanito en el cielo. Noah los sigue con la mirada.',
        '(sin texto)', 'Palomitas de "crack" cada vez más rápidas, subiendo de tono.')
 
