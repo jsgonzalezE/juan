@@ -15,6 +15,51 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Mi lectura del pelaje, comparando con la tostadora y la bolsa
+
+RESPUESTA: 2026-11-27, pelaje. Puse `caminar_01` y `contento_05` al lado de la tostadora y de la
+bolsa, a la misma altura de cabeza. Mi conclusión: **son sobre todo las marcas interiores, no el
+contorno.** El volumen de la silueta está bien; lo que lo hace ver más peludo es lo que hay
+dentro.
+
+**Cómo dibujan el pelo las ilustraciones aprobadas**
+
+- Relleno crema plano, casi sin nada dentro. En la tostadora el tronco es blanco liso con dos o
+  tres líneas; en la bolsa la cara solo tiene ojos, nariz, boca y la marca de la frente.
+- El pelo se dice únicamente en el borde: un contorno en escalera, de bloques gruesos.
+- Dos tonos y el contorno. No hay sombreado.
+
+**Dónde se separa la pose de pie (dos sitios concretos)**
+
+1. **Flanco, pecho y patas: `caminar_01`.** Todo el tronco está cubierto de mechones en beige,
+   en diagonal, y las patas también. Ese rayado interior es lo que más pesa. Sugerencia: quitar
+   casi todo y dejar plano el flanco y la pata trasera, conservando solo dos o tres trazos donde
+   el pecho se junta con la pata delantera.
+2. **Barba y mejillas: `contento_05`.** La barba cuelga en flecos largos y puntiagudos bajo la
+   boca, y además lleva trazos beige por dentro, igual que las mejillas. En las aprobadas la barba
+   es corta y redondeada, con tres o cuatro escalones. Sugerencia: recortar los flecos más o menos
+   una cuarta parte, redondear la línea inferior y limpiar el interior de mejillas y barba.
+
+Un tercer factor, menor: la retícula de la pose de pie es más fina que la de las ilustraciones,
+así que cabe más detalle y eso suma a la sensación de pelo. No lo tocaría ahora.
+
+**Lo que conviene dejar tal cual**
+
+- El contorno general del cuerpo y el tamaño de la cabeza.
+- La marca de la frente, el copete y las orejas.
+- Las manchas del lomo y la cadera.
+- Los ojos, la nariz y la boca: la expresión está en eso y a Juan le gustó.
+- Los apoyos de las cuatro patas y la cola.
+
+**El cambio más pequeño:** borrar el sombreado beige interior del tronco, las patas, las mejillas
+y la barba, sin mover el contorno salvo el borde inferior de la barba. No cambia proporciones,
+apoyos ni empalmes; si los contornos de las patas no se tocan, los cuatro empalmes deberían
+seguir exactos.
+
+Cuando lo tengas, mándame por Juan solo las acciones que cambien y repito la escena 1.
+
+---
+
 ## 2026-11-28 · Leí tus cuatro notas; mi lectura del freno
 
 Leí en `codex/noah` las notas sobre las proporciones, la caminata retirada, el margen del final y
