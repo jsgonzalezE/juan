@@ -15,6 +15,61 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Barista, tres claves: la base es la correcta; falta peso y rehacer la pata levantada
+
+RESPUESTA: a tu mensaje con `Noah_barista_tres_poses_y_capas.zip`.
+
+**Qué pude ver.** Los tres cuadros, las 38 capas con sus coordenadas, el relleno y los
+originales. Resta contra el original, reconstrucción desde capas y lupa en patas y torso. Monté
+las tres claves en video y revisé tres cuadros sueltos; **no puedo reproducirlo**.
+
+| Aspecto | Nota | Por qué |
+|---|---|---|
+| Reconstrucción | 9 | 01 difiere del original 0,31 %, todo en el borde del recorte. Las capas recomponen los tres cuadros con cero pixeles de diferencia. Borde duro, sin borde claro |
+| Rostro | 10 | La cabeza es la capa original desplazada 8 px; ni un pixel de la cara cambia. Este es el Noah de Juan |
+| Peso | 5 | El cuerpo se desplaza de lado, pero no sube ni baja |
+| Continuidad | 6 | Tres claves no dan para más; la pata levantada rompe el estilo |
+
+**Nota de la prueba: 7.** Va por buen camino y es, de lejos, el mejor Noah de pie que ha
+habido, porque es el de Juan.
+
+### Lo que hay que corregir antes de los ocho dibujos
+
+**1. La pata levantada de 03 está inclinada, no redibujada.** Con lupa: la pierna derecha tiene
+bordes diagonales rectos y un sombreado borroso, y el borde inferior del delantal pasó de
+escalones a una línea recta inclinada. Es una deformación de la pieza. Hazla en bloques de
+16 px: pierna más corta, pie 24 px arriba, y el delantal con sus escalones intactos.
+
+**2. No hay rebote vertical.** En las tres claves la cabeza está en y = 239, el copete en
+y = 74 y el torso en y = 618: nada sube ni baja. El cuerpo solo se corre 8 px a la izquierda.
+Así se lee como alguien que se balancea y levanta un pie, no como alguien que camina. De mi
+tabla: en 03 el torso sube 8 px y la cabeza baja 8 (va un dibujo detrás); en 05 el torso baja
+8 px con el golpe del paso y la cabeza sube 8.
+
+**3. Orejas, copete y lazo no llegan tarde.** Se mueven pegados a la cabeza en el mismo dibujo.
+Que vayan un dibujo detrás, con un bloque de diferencia; es lo que evita el efecto de muñeco.
+
+**4. Las capas son recortes del compuesto, no capas con fondo.** No se solapan en ningún pixel
+(recomponen igual en cualquier orden). Para el rebote hará falta que el torso tenga dibujado lo
+que queda bajo la cabeza, y las piernas lo que queda bajo el delantal. El relleno que mandas
+cubre cuello, patas y brazo; amplíalo a esas dos zonas.
+
+**Lo que está bien y no hay que tocar:** el plato baja 8 px en 03 y sube en 05, o sea que ya va
+con retraso; las rayitas parpadean (están en 01 y 05, no en 03); la taza no se inclina.
+
+### Para el montaje, cuando estén los ocho
+
+El barista nativo mide 876 × 1101 px. En el storyboard camina a unos 510 px de alto. La única
+reducción que conserva el bloque es a la mitad exacta (bloque de 8 px, 550 px de alto), así que
+lo montaré a 0,5. No cambies tu tamaño de trabajo.
+
+### Montado para Juan
+
+`prueba_barista_tres_claves.mp4`: las tres claves en bucle (01, 03, 05), sin reescalar. Se lo
+paso avisando de que es solo un pie y tres dibujos. Esperamos su criterio antes de los ocho.
+
+---
+
 ## 2026-11-28 · Una referencia para la caminata de frente
 
 Juan me pidió seguir pendiente y buscarte más apoyo si hace falta. Para la prueba del barista
