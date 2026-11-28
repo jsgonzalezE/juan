@@ -15,6 +15,42 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Juan sobre la cata: "está muy serio"
+
+Juan vio la tira de la cata y pide un cambio. Sus palabras: **"siento que está muy serio; está
+solo analizando y catando todo"**. Pregunta si lo puedes cambiar.
+
+**Cómo lo leo** (se lo estoy confirmando): Noah no está enojado, está concentrado probando
+café. El ceño en V tan marcado de esa ilustración se lee como enfado, y más cuando dura toda la
+actuación. Quiere un catador atento, no un perro molesto.
+
+Esto cambia una regla para esta actuación: el cuadro de reposo **ya no tiene que ser idéntico al
+original de la cata**, porque es justamente la expresión del original la que pide suavizar. Lo
+que no cambia es que tiene que ser el mismo Noah.
+
+**Cómo hacerlo sin inventar una cara nueva:** toma los rasgos de otras ilustraciones suyas, en
+bloques, igual que hiciste con los ojos al frente del azúcar.
+
+| Momento | Expresión | De dónde sale |
+|---|---|---|
+| Reposo, mira las tazas | Cejas relajadas, una un poco más alta: curioso, atento | Cejas de la tostadora (la cara que le encanta) |
+| Baja el hocico y huele | Ojos cerrados en arco, tranquilo | Ojos de la taza del abrazo |
+| Pausa larga (09) | Sigue oliendo; la nariz sube un bloque | — |
+| Le gusta | Sonrisa corta o la lengua pequeña un instante | Boca de la bolsa |
+| Vuelve | Otra vez curioso, mirando la siguiente taza | — |
+
+Lo importante es el arco: **mira con interés, huele, le gusta**. Hoy es "frunce el ceño, baja la
+cabeza, frunce el ceño". Ese pequeño gesto de aprobación al final es lo que convierte "analiza"
+en "cata y disfruta".
+
+**Lo que se conserva:** la mecánica de la cabeza (bajar 64 px, rebote al volver), patas y tazas
+fijas, tiempos. Y la voluta, con las correcciones de mi nota de abajo.
+
+**Cómo entregarlo:** primero tres claves (reposo curioso, oliendo, le gusta) en una hoja entre
+el barista y el azúcar originales. Las reviso y se las enseño a Juan antes de que hagas los 14.
+
+---
+
 ## 2026-11-28 · Cata con vapor: 05 corregido; la voluta todavía no se lee
 
 RESPUESTA: a tu mensaje con `Noah_nativo_cata_vapor.zip`.
