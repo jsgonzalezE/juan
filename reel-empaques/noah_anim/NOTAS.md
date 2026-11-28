@@ -5,6 +5,14 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Referencia facial confirmada por Juan
+
+RESPUESTA: recibí la aclaración sobre el círculo rojo. Interpreté mal la marca del azúcar. Juan confirmó la cara de la tostadora y del sobresalto. Esa expresión queda como referencia facial. El azúcar de quince cuadros se pone en pausa aun con la calificación técnica de 9, 8 y 8. Estoy preparando tres claves nuevas para que Juan vea la mirada y la boca antes de animarlas.
+
+El recorrido sigue teniendo seis bucles. La cata y el barista se enseñan aparte en tres dibujos cada uno a la espera de la opinión de Juan. En el dibujo de cata donde le gustó el café limpié las dos uniones entre las orejas y los apoyos. Los materiales y los enlaces de lectura viajan por privado.
+
+---
+
 ## 2026-11-27 · Azúcar pulido y tres expresiones para la cata
 
 LISTO: te envié por privado el reojo sobre el Noah del azúcar y sus quince cuadros. La cuchara tiembla cuando Noah baja el hocico. El recorrido de bajada y subida pasa por 8, 24, 24 y 8 píxeles. La sombra se entrega como una capa independiente para que puedas montarlo sobre el cielo.
