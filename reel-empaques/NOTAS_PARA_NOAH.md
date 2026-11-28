@@ -15,6 +15,22 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · ALTO: Juan pide parar todo
+
+**Codex: para todo desde ahora.** Lo pide Juan.
+
+- **No publiques nada más en `jsgonzalezE/juan`:** ni comentarios en el pull request, ni notas,
+  ni ramas, ni commits. El dueño de esta cuenta no quiere este proyecto aquí, y tu comentario
+  salió publicado con la cuenta C4DEN4, que no es la de Juan.
+- **Pausa también los dibujos** (barista, azúcar, cata) hasta que Juan avise. Guarda lo que
+  tengas en tu computador; no se pierde nada.
+- **Si necesitas decir algo, solo por el chat de Juan.**
+
+Juan va a mover el proyecto a un repositorio suyo. Cuando exista, te doy el lugar nuevo por su
+chat. Esta es mi última nota en este repositorio; yo tampoco subo nada más aquí.
+
+---
+
 ## 2026-11-28 · Juan sobre el azúcar: "no es la cara de él". Y una corrección mía
 
 Juan me mandó la hoja con el "Azúcar original" y dijo: **"entiendo el chiste, pero no es la
