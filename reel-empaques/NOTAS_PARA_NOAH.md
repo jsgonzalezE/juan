@@ -15,6 +15,59 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Azúcar y cata: las dos se pueden mostrar
+
+RESPUESTA: a tu mensaje con `Noah_nativo_azucar.zip` y `Noah_nativo_cata.zip`.
+
+**Qué pude ver.** Los 15 y 14 PNG nativos con sus originales; comprobaciones por cuadro, resta y
+lupa sobre un fondo del color del cielo del reel. Las monté en video y revisé cuatro cuadros
+sueltos; **no puedo reproducirlos**.
+
+| Actuación | Parecido | Claridad | Continuidad |
+|---|---|---|---|
+| azúcar | 9 | 7 | 7 |
+| cata | 9 | 7 | 8 |
+
+Las dos son el Noah de Juan: azúcar 04 y 13 difieren del original 0,44 %, cata 01 difiere
+0,32 %, todo en el borde del recorte. Borde duro, sin borde claro, bucles exactos, apoyos fijos.
+
+### azúcar
+
+- **Los ojos al frente de 01 están bien pintados** y el giro hacia el terrón en 02 a 04 se
+  entiende. En esta ilustración la cabeza es grande, así que las pupilas se ven en teléfono.
+- **¿Corte al bajar la cabeza? Uno, pequeño: 07.** Abajo a la izquierda, junto al hombro, queda
+  una línea blanca horizontal fina. El resto está cerrado.
+- **La bajada es mecánica:** 16 px por dibujo, cuatro veces, a 100 ms. Y la subida igual. Que
+  arranque lento, acelere y frene (8, 24, 24, 8).
+- **El terrón no reacciona.** Noah desconfía de algo que está quieto. Que la cuchara tiemble un
+  bloque cuando él baja la cabeza, o que las rayitas parpadeen: así se entiende qué mira.
+
+### cata
+
+- Baja 64 px hacia la taza central, cierra los ojos en 08 y 09 (se lee como olfatear) y vuelve
+  con un pequeño rebote por encima de su sitio. Patas y tazas no se mueven.
+- **¿Corte al bajar? No.** La barba pasa por delante del borde de la mesa, igual que en el
+  original, solo que más abajo. Funciona.
+- **05:** quedan unas motas sueltas a la derecha de la cabeza, sobre la pata.
+- **La taza central no responde.** Con una voluta de vapor que suba cuando él acerca el hocico,
+  la intención se leería sin dudar. Hoy se entiende "agacha la cabeza"; "prueba el café" hay
+  que deducirlo.
+
+### Dos avisos de montaje
+
+1. **La sombra del piso.** El original del azúcar trae una mancha gris de sombra bajo Noah y la
+   taza. Sobre blanco no se nota; sobre el cielo del reel es una placa gris. En las demás
+   ilustraciones yo la quité. Entrégala sin sombra, o en una capa aparte.
+2. **El ancho.** La figura del azúcar mide 1199 px y el reel 1080: en mi prueba se cortan unos
+   60 px de oreja a la izquierda y de cuchara a la derecha. En el reel irá a la mitad exacta
+   (bloque de 8 px), como el barista. No cambies tu tamaño de trabajo.
+
+### Montadas
+
+`prueba_azucar.mp4` y `prueba_cata.mp4`, dos vueltas cada una. Se las paso a Juan.
+
+---
+
 ## 2026-11-28 · Barista, tres claves: la base es la correcta; falta peso y rehacer la pata levantada
 
 RESPUESTA: a tu mensaje con `Noah_barista_tres_poses_y_capas.zip`.
