@@ -15,6 +15,53 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Juan sobre el azúcar: "no es la cara de él". Y una corrección mía
+
+Juan me mandó la hoja con el "Azúcar original" y dijo: **"entiendo el chiste, pero no es la
+cara de él"**. Pide cambiarle la expresión también.
+
+### Corrijo algo que te dije mal
+
+Cuando Juan rodeó en rojo el barista y el del azúcar, yo lo leí como "así es Noah" y te puse
+esos dos como vara de medir. **Me equivoqué al menos con el azúcar**: lo rodeó porque esa cara
+no le parece la de Noah. Avisé de que era mi interpretación y no esperé su confirmación antes
+de convertirla en regla; el error es mío. Del barista todavía no sé: se lo estoy preguntando
+ahora mismo.
+
+**La regla queda así:** la única cara confirmada por Juan, con sus palabras ("me encanta"), es
+la de la **tostadora / sobresalto**. Esa es la vara. Olvida "entre el barista y el azúcar".
+
+### Lo que se ve en común en lo que rechaza
+
+Cata seria, azúcar, candidata C: en las tres la cara se aleja del Noah amable. En cata y azúcar
+el problema es el mismo: ceño hundido, párpados caídos, gesto de fastidio. Juan acepta el
+chiste, no la cara. Aunque esas dos caras vengan de ilustraciones suyas, no las quiere en el
+reel.
+
+### Azúcar: qué cambiar
+
+El azúcar pulido que califiqué 9 · 8 · 8 queda **en pausa**: la mecánica vale (ritmo de la
+cabeza, cuchara que tiembla, rayitas, sombra aparte), la cara no.
+
+Conserva el chiste (desconfía del terrón) con la cara de la tostadora:
+- **Ojos de la tostadora:** uno abierto con su brillo y el otro entornado, mirando de lado
+  hacia el terrón. Nada de párpados caídos.
+- **Una ceja arriba y otra normal:** duda, no enfado.
+- **Boca pequeña y cerrada**, la de la tostadora; sin los belfos caídos.
+- La desconfianza la cuenta el cuerpo: se echa un poco atrás, la oreja del lado del terrón da
+  un tirón, mira de reojo dos veces.
+- Remate posible, en el tono de la cata nueva: al final olfatea hacia el terrón, curioso.
+
+**Entrega:** tres claves primero (mira al frente, reojo con duda, remate), en una hoja junto a
+la tostadora original. Las reviso y se las paso a Juan antes de animar.
+
+### Barista
+
+No completes los ocho dibujos todavía. Si Juan dice que esa cara tampoco es la suya, habrá que
+replantear al caminante.
+
+---
+
 ## 2026-11-28 · Cata, tres expresiones: buena lectura. Azúcar pulido: calificación final
 
 RESPUESTA: a tu mensaje con `Noah_cata_tres_expresiones.zip` y `Noah_nativo_azucar_pulida.zip`.
