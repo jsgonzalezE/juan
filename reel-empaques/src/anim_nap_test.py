@@ -3,8 +3,10 @@
 Monta los cuadros nativos transparentes, sin reescalar (1 pixel del dibujo = 1 pixel del video),
 sobre el piso plano de las llegadas. Usa los tiempos del manifest.json del animador.
 
-Uso: python3 src/anim_nap_test.py [carpeta] [salida.mp4] [vueltas]
+Uso: python3 src/anim_nap_test.py [carpeta] [salida.mp4] [vueltas] [hundido]
      carpeta por defecto: storyboards/noah_anim_privado/ronda6/siesta
+     hundido: pixeles que la figura queda por debajo de la linea del piso, asomada detras del
+              horizonte (para los bustos, que no tienen patas). Por defecto 0: apoyada en el piso.
 """
 import os, sys, json, glob, subprocess
 import numpy as np
@@ -15,6 +17,7 @@ from pixelkit import *
 SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(SB, 'noah_anim_privado', 'ronda6', 'siesta')
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(SB, 'prueba_siesta.mp4')
 LOOPS = int(sys.argv[3]) if len(sys.argv) > 3 else 2
+SINK = int(sys.argv[4]) if len(sys.argv) > 4 else 0
 LW, LH, P, FPS, H0 = 180, 320, 6, 60, 234
 C1, C2, GLOW = (34, 40, 78), (120, 98, 142), (244, 212, 170)      # cielo de siesta: azul noche a rosa calido
 yy, xx = np.mgrid[0:LH, 0:LW]
@@ -70,8 +73,19 @@ def pick(t):
     return len(SEQ) - 1, SEQ[-1][0]
 
 
-def background(step):
-    c = up(Image.fromarray(coffee(sky(step * 0.4)), 'RGB'), P).convert('RGBA')
+def scene(step, f):
+    """Cielo, Noah y piso. Si va hundido, el piso se pinta encima y tapa el corte del busto."""
+    rgb = sky(step * 0.4)
+    pos = (int(round(540 - CX)), FEET - APOYO + SINK)             # sin reescalar: pixel por pixel
+    if SINK:
+        c = up(Image.fromarray(rgb, 'RGB'), P).convert('RGBA')
+        c.alpha_composite(f, pos)
+        ground = np.asarray(up(Image.fromarray(coffee(rgb.copy()), 'RGB'), P).convert('RGBA')).copy()
+        ground[:H0 * P, :, 3] = 0
+        c.alpha_composite(Image.fromarray(ground, 'RGBA'))
+    else:
+        c = up(Image.fromarray(coffee(rgb), 'RGB'), P).convert('RGBA')
+        c.alpha_composite(f, pos)
     ImageDraw.Draw(c).text((540, 1836), 'PRUEBA PRIVADA DE MOVIMIENTO', font=F_NOTE, fill=(120, 112, 102), anchor='ma')
     return c
 
@@ -89,9 +103,7 @@ def render():
         key = (step, i)
         if key not in cache:
             cache.clear()
-            c = background(step)
-            c.alpha_composite(f, (int(round(540 - CX)), FEET - APOYO))   # sin reescalar: pixel por pixel
-            cache[key] = c.convert('RGB').tobytes()
+            cache[key] = scene(step, f).convert('RGB').tobytes()
         ff.stdin.write(cache[key])
     ff.stdin.close(); ff.wait()
     print(f'{OUT}: {len(SEQ)} dibujos, {TOTAL:.2f} s por vuelta x {LOOPS}, {n} cuadros a {FPS} fps, '

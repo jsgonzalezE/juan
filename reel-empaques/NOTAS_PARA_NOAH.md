@@ -15,6 +15,101 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Tostadora, sobresalto, gorra y estudio de llegada
+
+RESPUESTA: a tus tres mensajes con `Noah_nativo_tostadora.zip`, `Noah_nativo_sobresalto.zip`,
+`Noah_gorra_dibujos_de_oreja.zip` y `Noah_nativo_actuaciones_llegada.zip`.
+
+**Qué pude ver.** Todos los PNG nativos de los cuatro paquetes. Comprobaciones por cuadro, resta
+contra el original y lupa. Monté dos videos, pero **no puedo reproducirlos**: revisé cuadros
+sueltos de cada uno. Todo sigue siendo comparación por dibujos.
+
+| Actuación | Parecido | Actuación / claridad | Continuidad | ¿La mostraría? |
+|---|---|---|---|---|
+| tostadora (21) | 9 | 7 | 8 | Sí, ya montada |
+| sobresalto (12) | 8 | 8 | 8 | Sí, ya montada |
+| gorra (20) | 8 | 8 | 8 | Sí, ya montada |
+| llegada (26) | 6 | 7 | 8 | Solo como estudio |
+| serio (7) | 6 | 6 | 7 | Solo como estudio |
+| reojo (7) | 6 | 4 | 7 | No |
+| oreja (7) | 6 | 3 | 5 | No |
+
+### tostadora
+
+- **13 es el original** (0,18 % de diferencia) y es idéntico al 01 del sobresalto: empalme exacto.
+- **Mejilla:** ya está en bloques y con contorno en 01 a 12. **Codo:** el brazo de 07 a 09 es
+  escalonado, no un palo girado. **Oreja:** sube pegada a la cabeza. **Máquina:** la manivela
+  gira y los granos cambian. **La vuelta** (14 a 21) no repite ningún dibujo de la subida.
+
+Reservas para montaje:
+1. **Borde suave.** Los 21 cuadros tienen entre 6400 y 8800 pixeles semitransparentes, casi
+   todos a menos de 2 px del exterior. En siesta y gorra el borde es duro (cero). Juntas en el
+   mismo video, la tostadora se verá con un filo más blando. Pásalo a todo o nada.
+2. **Antebrazo sin contorno por el lado del pecho** en 01 a 04 y 15 a 21: hay bloques blancos
+   que tocan el fondo directamente (2,2 a 2,7 % del borde es casi blanco; en 13 es 0 %).
+3. La cara cambia poco: cejas en 04 a 06 y un parpadeo. Por eso actuación 7.
+
+### sobresalto
+
+Mejor que la versión de la ronda 2 y ahora sobre el original. La máquina da el golpe en 04
+(cambian 76 000 pixeles suyos) y Noah despega en 05: causa y efecto en orden. En el aire (05 a
+07) el cuerpo está redibujado en bloques, con patas completas, ojos redondos y boca en "o". Cae
+en la misma fila y cierra en el original.
+
+Reserva: en 03 y 05 hay una línea diagonal clara de un pixel entre la oreja izquierda y la
+cabeza. Es una costura; se quita.
+
+### gorra: sí la mostraría
+
+Comprobé el remate: en 11 la oreja carga, en 12 y 13 el borde superior ya es escalonado y la
+oreja conserva sus franjas de brillo. Quedan líneas de un pixel dentro de la oreja en 12 a 14;
+a tamaño de teléfono no se distinguen. Subo continuidad de 7 a 8.
+
+### Lo que monté
+
+- `prueba_tostadora_y_sobresalto.mp4`: tostadora 01 a 12, sobresalto 01 a 12, tostadora 14 a 21;
+  4,41 s por vuelta, dos vueltas.
+- `prueba_gorra.mp4`: tres vueltas. Como es un busto, lo puse asomado detrás del horizonte:
+  el piso tapa el corte del pecho.
+
+Las dos a 1080 × 1920, 60 cuadros por segundo, dibujos sin reescalar. Se las paso a Juan.
+
+### Estudio de llegada
+
+**Lo que mejora mucho.** La cara ya es la de Juan: cabeza con los bloques del original, barba y
+copete de la bolsa, expresión amable. Camina sin cara de enojo. Al llegar sonríe con ojos
+cerrados y lengua, y lo acompañan cabeza (24 px arriba) y cola (24 px).
+
+**Patas:** funcionan. La pata apoyada retrocede 22 o 23 px por dibujo, parejo, que son tus
+179,5 px por segundo; la fila de apoyo no cambia en los 26 cuadros. Al frenar (11 a 14) el
+apoyo se queda clavado en el mismo sitio. **Cuello:** la cabeza sube y baja 8 px con el paso y
+se hunde 16 px al frenar; funciona. **Ojos:** en contento sí; en reojo no (abajo).
+
+**Lo que descartaría hoy: el cuerpo.** Cabeza y cuerpo están dibujados con dos tamaños de
+pixel. La cabeza usa el bloque de 16 px con contorno grueso; el cuerpo tiene contorno fino y
+escalones de 4 a 6 px. Medido en el cuadro 14: las líneas oscuras de la cabeza miden 28 px de
+mediana, las del cuerpo 17. Se ve como una cabeza de un dibujo pegada al cuerpo de otro. El
+cuerpo hay que rehacerlo con el bloque de 16 px y el contorno de dos bloques, con las manchas y
+sombras por bloques como en la tostadora sentada.
+
+**oreja: descartada.** En 04 (650 ms, la pausa) la oreja levantada son triángulos negros lisos,
+como un moño, y debajo queda una solapa crema. No se lee como oreja.
+
+**serio:** ahora sí hay contraste, porque parte de una cara amable: bajan las cejas y la boca
+pasa de sonrisa a línea. Se entiende, justo.
+
+**reojo:** se mueven las pupilas y sube una ceja; la cabeza no gira. En el reel la pupila medirá
+unos 10 px. No se va a ver.
+
+**Reserva de tamaño.** El Noah de pie mide 1320 × 1030 px y el reel tiene 1080 de ancho: no
+cabe sin reducir. Propongo una sola escala para todo el reel, 5/8, que deja el bloque de 16 px
+en 10 px exactos. Si dibujas el cuerpo nuevo sobre esa retícula de 16, reduce limpio.
+
+**Para Juan:** le voy a mostrar la pose de pie como pregunta ("¿este Noah de pie es tu Noah?"),
+no como avance. El cuerpo es dibujo nuevo y la decisión es suya.
+
+---
+
 ## 2026-11-28 · Bolsa nativa (30 cuadros): todavía no está al nivel de la siesta
 
 RESPUESTA: a tu mensaje con `Noah_nativo_bolsa.zip`.
