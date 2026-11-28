@@ -15,6 +15,72 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Bolsa nativa (30 cuadros): todavía no está al nivel de la siesta
+
+RESPUESTA: a tu mensaje con `Noah_nativo_bolsa.zip`.
+
+**Qué pude ver.** Los 30 PNG nativos y el original. Comprobaciones por cuadro, resta contra el
+original y lupa. **Comparación por dibujos; no la he montado ni reproducido.**
+
+| Actuación | Parecido | Claridad | Continuidad |
+|---|---|---|---|
+| bolsa | 7 | 7 | 5 |
+
+### Lo que funciona
+
+- **Se entiende la acción.** En 01 ya se ven ojos, nariz y una pata dentro de la boca de la
+  bolsa; sale, apoya las dos patas, sonríe con lengua y vuelve. Sin la solapa inventada.
+- **La bolsa reacciona.** Entre 03 y 12 la bolsa cambia (hasta 10 000 pixeles en 04), no es un
+  cartón rígido.
+- **La cabeza no cambia de tamaño** y nariz, ojos y marca viajan con ella.
+- La lengua es la del original. Sin transparencias parciales; borde claro por debajo de 2 %.
+
+### Parecido 7: ningún cuadro es el original
+
+En siesta y gorra el cuadro 01 es la ilustración de Juan (0,25 % y 0,15 % de diferencia). Aquí
+no hay ninguno:
+
+- **14** es el que tiene la cabeza en la posición del original, y aun así difiere 8,4 %. La
+  diferencia está repartida por toda la cara: los contornos no caen en el mismo sitio.
+- **16 y 17**, la pose que se sostiene medio segundo, tienen la cabeza un bloque (16 px) más a
+  la izquierda que el original. Difieren 9,1 y 9,3 %.
+
+Corrección: que la pose sostenida sea el original. El paso de más puede quedarse como rebote en
+15, y en 16 y 17 la cabeza vuelve a su sitio. Prueba: 17 menos original, cerca de cero.
+
+### Continuidad 5
+
+**1. La vuelta es la salida al revés.** Los cuadros 18 a 29 son idénticos, pixel por pixel, a
+15, 14, 13 … 04. Es lo que te pedí evitar en la tostadora. Un perro que retrocede no rebobina:
+primero se hunde la cabeza, las patas se quedan apoyadas un par de dibujos y entran al final.
+
+**2. La salida es un deslizamiento.** De 04 a 15 son doce dibujos de 40 ms en los que el borde
+izquierdo avanza 8 o 16 px cada vez (235, 227, 211, 203, 187, 171, 155, 139, 123, 107, 99, 83).
+Velocidad constante a 25 dibujos por segundo, cuando la siesta y la gorra van a 6 a 12. Al
+lado de ellas se verá como un recorte que se desliza suave. Corrección: cuatro o cinco dibujos
+de 80 a 120 ms, con arranque lento, tramo rápido y frenada.
+
+### Problemas que se verán en teléfono
+
+- **16 y 17 (500 ms seguidos):** entre la pata izquierda y el mentón hay una rendija curva
+  transparente. En esa zona el original tiene unos 1100 pixeles de fondo; el cuadro 17 tiene
+  3200. Sobre un cielo de color se verá una raya de cielo dentro de Noah.
+- **01 (650 ms, y otros 650 al cerrar el bucle):** la oreja y la sombra bajo el mentón son
+  polígonos negros de bordes rectos inclinados. Es el cuadro que más tiempo está en pantalla.
+- **04:** el borde superior de la oreja izquierda es una diagonal recta desde el copete.
+- **12 a 17:** arcos finos y lisos alrededor de la pata derecha y en el borde entre pecho y
+  bolsa; el borde superior izquierdo de la boca de la bolsa es una línea recta.
+
+Las rachas de 1 a 3 px van de 139 (cuadro 01) a 277 (cuadro 09).
+
+### En resumen
+
+La idea y el parecido general ya están. Faltan tres cosas, en este orden: que 16 y 17 sean el
+original; rehacer la salida en pocos dibujos con ritmo y la vuelta como acción propia; y pasar a
+bloques los polígonos de 01 y la rendija de 16 y 17. Con eso la monto para Juan.
+
+---
+
 ## 2026-11-28 · Siesta y gorra con todos los cuadros nativos: tercera calificación
 
 RESPUESTA: a tu mensaje con `Noah_nativo_siesta.zip` y las dos partes de la gorra.
