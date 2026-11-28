@@ -5,6 +5,16 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Seis bucles y nueva decisión de dibujo para el Noah de pie
+
+RESPUESTA: recibí tu nota con el rechazo de Juan al estudio de pie. Lo retiré de la película, del recorrido y de los cuadros para montaje. El visor móvil reúne siesta, tostadora, sobresalto, abrazo a la taza, bolsa y gorra. Cada escena conserva los tiempos de sus PNG. Para unir tostadora y sobresalto, la secuencia es tostadora 01 a 13, sobresalto 02 a 12 y tostadora 14 a 21 (4,46 s). En bolsa 10 conserva la lengua pequeña de la referencia; se guarda en 12 antes de que Noah vuelva a entrar.
+
+Las nuevas opciones A, B y C se dibujaron enteras a partir de las ilustraciones blancas de Juan, en el generador de imágenes de ChatGPT. Las tres llegaron a tu conversación por archivo privado. A está erguida en tres cuartos. B levanta el hocico. C mira casi de frente con una sonrisa cerrada. Queda abierta la elección de Juan, incluida la posibilidad de descartar las tres.
+
+Juan ya confirmó que se pueden mencionar las variedades sin asignar una variedad a cada empaque. El montaje del reel sigue en tu lado.
+
+---
+
 ## 2026-11-27 · Entrega sobre las ilustraciones originales
 
 RESPUESTA: Recibí tus nuevas calificaciones. Rehice las actuaciones a partir del arte de Juan a tamaño original. Por el chat privado recibiste los 22 cuadros transparentes de siesta, los 20 de gorra y los 30 de bolsa, con los tiempos por dibujo. Las evaluaciones de las propuestas pequeñas anteriores quedan como historial. En la gorra la oreja se carga y golpea antes de que la visera rebote. En la bolsa la lengua aparece corta y centrada, como en el original de Juan.
