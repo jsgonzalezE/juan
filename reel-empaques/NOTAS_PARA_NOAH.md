@@ -15,6 +15,100 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Ronda 2 completa (2a + 2b): diez actuaciones
+
+RESPUESTA: a tu mensaje con los dos ZIP en el chat de Juan.
+
+**Qué pude ver.** Los dos ZIP llegaron bien; el 2a es idéntico al que ya había bajado. Vi las
+diez: llegada, oreja, serio, reojo, bolsa, taza, siesta, tostadora, sobresalto (crack) y gorra.
+**Todo por comparación de dibujos, nada en reproducción**: PNG ampliados, tiempos, medidas y
+cada referencia junto a su original de Juan.
+
+### Notas (sobre 10) y lo que me haría descartar la toma
+
+| Actuación | Parecido | Actuación | Continuidad | Cuadro y defecto para descartar |
+|---|---|---|---|---|
+| sobresalto | 6 | 8 | 7 | Ninguno. Corregir **08**: el cuerpo en el aire queda deforme, como un bulto |
+| siesta | 6 | 7 | 7 | Ninguno. Corregir **06 a 08**: la voluta se deshace en pedazos |
+| tostadora | 6 | 6 | 5 | **05 a 07**: la oreja queda suelta de la cabeza y con un borde blanco alrededor |
+| bolsa | 4 | 6 | 4 | **03 a 04**: el hocico atraviesa la solapa de papel |
+| taza | 4 | 5 | 6 | **02**: se abre un hueco transparente entre cabeza y taza (106 pixeles) que en 04 ya no está |
+| llegada | 4 | 5 | 5 | **15 a 18**: hueco transparente en el cuello (de 19 a 138 pixeles) justo en la sonrisa |
+| oreja | 4 | 5 | 5 | **04**: la oreja es un óvalo flotando, sin base; parece una boina |
+| gorra | 6 | 4 | 5 | Toda la toma: no se entiende qué reconoce (abajo) |
+| serio | 4 | 2 | 6 | Toda la toma: no se lee en teléfono |
+| reojo | 4 | 2 | 6 | Toda la toma: no se lee, y no se distingue de serio |
+
+**Lo mejor de la ronda es el sobresalto.** Tiene lo que le faltaba a todo lo demás: se encoge
+en 03, despega en 04, cara de susto con ojos redondos y boca en "o" de 05 a 07, cae aplastado en
+09 y 10 y se recompone. Y empalma exacto con tostadora 16. Ese es el nivel de actuación que
+deben tener las otras. Su fallo: el crack viene de la máquina y la máquina es lo que menos se
+mueve (cambia un tercio de lo que cambia en el bucle normal). Debe sacudirse y soltar chispas en
+04, un dibujo antes de que Noah salte.
+
+### Tus tres preguntas
+
+**¿Apoyan las patas?** Sí. En la caminata las dos patas cercanas retroceden 4 pixeles por
+dibujo, parejo (115, 111, 107, 104, 100 la delantera; 31, 27, 23, 20 la trasera), y la fila de
+apoyo no cambia. Yo muevo el suelo a esa velocidad (32 pixeles por segundo) y no patina. En el
+sobresalto despega completo de 04 a 08 y cae en la misma fila. Lo que falla no es el apoyo: la
+pata sube solo 2 o 3 pixeles, así que se lee como arrastrar los pies, y el cuerpo casi no sube
+ni baja con el paso.
+
+**¿La bolsa tapa bien el hocico?** Lo tapa, pero mal resuelto, por tres razones:
+- La solapa que lo tapa no existe en el original de Juan y sobresale por debajo de la base de la
+  bolsa: parece una tabla apoyada delante, no parte de la bolsa.
+- En 03 la solapa está delante del hocico y en 04 está debajo del mentón. No hay un dibujo donde
+  la cabeza la empuje: la atraviesa.
+- Adentro (01 a 03) la cara mide poco más de la mitad de lo que mide afuera (06). Parece otro
+  perro más pequeño, o un dibujo reescalado.
+
+Corrección: sin solapa. Que lo tape la sombra de la boca de la bolsa: en 01 solo dos ojos y la
+nariz dentro del oscuro, al tamaño final; en 02 y 03 la cabeza avanza por bloques hacia la luz.
+
+**¿Se entiende qué reconoce en la gorra?** No. Cierra la boca, mira hacia un lado y vuelve a
+abrirla. Nunca mira hacia arriba, hacia la gorra, y la gorra no hace nada. Yo sé que el parche
+es su propia cara porque conozco el original; alguien que ve el reel no lo deduce. Para que se
+entienda hacen falta tres tiempos: (1) los ojos suben hacia la visera; (2) la gorra se inclina o
+él la levanta con una pata, y el parche queda a la vista; (3) reacción: el parche le guiña o él
+copia la sonrisa del parche.
+
+### Retícula y redibujo: sí hay problema, en las diez
+
+Es el mismo de mi revisión dura (más abajo): se redibujó a Noah a unos 200 px en vez de animar
+el original de 1254 px. En esta ronda se ve en cuatro cosas concretas:
+
+- **Borde blanco** alrededor de la oreja en tostadora 05 a 07 y del contorno en varios cuadros:
+  es resto del fondo blanco del recorte.
+- **Huecos transparentes** que aparecen y desaparecen (llegada 15 a 18, taza 01 a 03, bolsa 08
+  y 09). Sobre el cielo del reel serán rayas de color que parpadean.
+- **Color perdido:** cinta gris en taza (es naranja), copa de la gorra blanca (es crema).
+- **Muestras a escala no entera** (1,29 / 1,47 / 1,62 / 1,72 / 2,18): eso es lo que Juan ve.
+
+Además, la mitad final de la tostadora (17 a 27) son los dibujos 11 a 01 puestos al revés. La
+oreja baja por donde subió y la pata también: se lee como rebobinar.
+
+**Cuadro modelo: tostadora 16.** Es la pose de la ilustración de Juan, así que tiene que ser esa
+ilustración, pixel por pixel.
+
+Corrección concreta:
+1. Toma el original de la tostadora a 1254 px. Ese archivo, sin reducir ni repintar, es el
+   cuadro 16.
+2. Sepáralo en capas (cabeza, oreja levantada, otra oreja, copete, cejas y ojos, boca, pata
+   levantada, cuerpo, cola, pañoleta, tambor, manivela, chispas) y rellena lo que queda detrás.
+3. Los demás cuadros se hacen moviendo esas capas en pasos de 16 px. La oreja sale siempre del
+   mismo punto del cráneo.
+4. **Prueba de aceptación:** resta el cuadro 16 del original. Fuera de lo animado, la
+   diferencia debe ser cero. Hoy no pasa: manivela distinta, sombra gris en la panza, líneas más
+   delgadas.
+5. Muestra a 1080 px de ancho o a un múltiplo entero, sobre fondo oscuro.
+
+**Lo que te pido:** tostadora y sobresalto juntos con este método, conservando la actuación del
+sobresalto tal como está. Son el final del reel y lo más cercano a quedar bien. Con eso armo el
+video de prueba para Juan.
+
+---
+
 ## 2026-11-28 · Ronda 2a: mejora la actuación, el dibujo sigue igual
 
 RESPUESTA: 2026-11-27, segunda ronda de dibujos para calificar.
