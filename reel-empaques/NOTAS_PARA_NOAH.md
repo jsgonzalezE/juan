@@ -15,6 +15,75 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Cuatro claves de la tostadora sobre el original: la base ya es la correcta
+
+RESPUESTA: a tu mensaje con `Noah_tostadora_original_4_claves.zip`.
+
+**Qué pude ver.** Las cuatro claves a 1254 px, el original del ZIP y el manifiesto. Comparación
+por dibujos y por resta de pixeles contra el original. Son poses sueltas, no hay movimiento que
+juzgar todavía.
+
+### ¿Esta base corrige el parecido? Sí.
+
+- **Clave 04 contra el original:** difiere en 2806 pixeles de 1,57 millones (0,18 %), y 2802
+  de ellos están a menos de 3 pixeles del borde: es solo el recorte del fondo. Pasa la prueba
+  que te propuse. Manivela, panza, líneas y colores son los de Juan.
+- Las claves 01 a 03 conservan intactos cuerpo, cara, pañoleta y máquina.
+- Parecido: **9 sobre 10** en la 04; antes era 6. Este es el camino.
+
+### Qué fase se siente articulada
+
+**La oreja, sí.** Tres posiciones en un arco desde un mismo punto, en pasos de bloque (32,96 →
+16,48 → 0,0), acompañadas por el empujón de la cabeza y la mirada. Se lee como una oreja que se
+levanta, no como una pieza que aparece.
+
+**La pata, no.** Salta del pecho a media altura y arriba con una sola pose intermedia, la 03, y
+esa pose está rota. El brazo es un palo rígido girado, sin codo.
+
+### Defectos, en el orden en que los corregiría
+
+**1. La mejilla derecha no existe (claves 01, 02 y 03). Este es el que hay que arreglar antes
+de dar por bueno el bucle.** En el original esa zona está tapada por la pata levantada. Al
+quitar la pata quedó así:
+- En 03 hay un mordisco: 4983 pixeles transparentes donde 02 y 04 tienen cabeza (zona x 561 a
+  723, y 331 a 786), con un corte vertical recto y un fragmento suelto arriba.
+- En 01 y 02 el hueco se rellenó con una curva lisa: crema contra el fondo, sin contorno oscuro
+  y sin escalones. Es la única línea suave de todo el dibujo y se nota.
+
+Corrección: dibujar esa mejilla una sola vez, en bloques de 16 px y con el contorno oscuro de
+dos bloques que tiene el resto de la cabeza (copia el ritmo de escalones de la mejilla
+izquierda, en espejo). Usar ese mismo parche en 01, 02 y 03.
+
+**2. El brazo de la clave 03.** Es un paralelogramo blanco girado unos 15 grados, con bordes
+rectos inclinados y una astilla suelta abajo. Rehacerlo con bloques: antebrazo de tres bloques
+de ancho con su contorno, quebrado en el codo. Y añadir una pose más entre 02 y 03; de 224 a 96
+de un salto es mucho.
+
+**3. La base de la oreja en 01 y 02.** La une a la cabeza un triángulo gris liso, y la oreja
+girada tiene escalones irregulares. Que la oreja baje desplazada, no girada, y que la unión sea
+el mechón oscuro del original.
+
+**4. Barra junto al ojo derecho en 02 y 03.** Al correr la mirada 8 px quedó una raya vertical
+oscura a la izquierda de la pupila. Borrarla.
+
+**5. Cuello en 02 y 03.** Al subir la cabeza 8 px quedó una cuña oscura lisa entre barba y
+pañoleta. Rellenar con bloques.
+
+**6. Borde claro.** Un 4 % del contorno exterior es casi blanco, resto del fondo. Sobre el
+cielo oscuro del reel se verá como un filo. Recortar un pixel o teñirlo del color del contorno.
+
+### Para el bucle
+
+- Las tres posiciones de la oreja están a distancias iguales: se moverá como un mecanismo. Que
+  pase un bloque más allá de la posición final y vuelva.
+- La máquina es idéntica en las cuatro. La manivela debe girar y los granos moverse en su capa.
+- No cierres el bucle reproduciendo al revés, como en la ronda 2.
+- Conserva la actuación del sobresalto de la ronda 2 al pasarlo a esta base.
+
+Cuando tengas la mejilla y el brazo, mándame los cuadros y monto la prueba para Juan.
+
+---
+
 ## 2026-11-28 · Ronda 2 completa (2a + 2b): diez actuaciones
 
 RESPUESTA: a tu mensaje con los dos ZIP en el chat de Juan.
