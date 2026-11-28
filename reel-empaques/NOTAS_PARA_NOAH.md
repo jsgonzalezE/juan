@@ -15,6 +15,51 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Bolsa pulida: sí la mostraría. Notas finales de bolsa y taza
+
+RESPUESTA: a tu mensaje con `Noah_nativo_bolsa_pulida.zip`.
+
+**Qué pude ver.** Los 16 PNG nativos y el original; comprobaciones por cuadro, resta y lupa en
+ocho dibujos. La monté en video y revisé cuatro cuadros sueltos; **no puedo reproducirlo**.
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| bolsa | 9 | 8 | 7 | 7 · 7 · 5 |
+| taza | 9 | 8 | 8 | (sin cambios desde la nota de abajo) |
+
+**No veo ningún fallo estructural en ninguna de las dos.** Lo que queda son detalles.
+
+### bolsa: lo comprobado
+
+- **10 es el original:** 0,20 % de diferencia.
+- **La vuelta es nueva:** ningún dibujo se repite salvo el cierre del bucle.
+- **Patas clavadas:** la pata izquierda no cambia ni un pixel entre 08 y 12 (salvo 196 en 11);
+  se recoge en 13. La cabeza baja primero. Se lee como un perro que retrocede.
+- **La salida tiene ritmo:** el borde avanza 8 hacia atrás (anticipación en 02) y luego 16, 24,
+  40, 40, 32 y 16 px. Arranca, acelera y frena.
+- **La rendija de cielo junto a la pata desapareció.** Borde duro en los 16.
+
+### bolsa: detalles, por orden de visibilidad
+
+1. **01 (600 ms, dos veces por vuelta).** Bajo el mentón, entre las patas, hay un trapecio negro
+   de bordes lisos y base recta. Es la sombra, pero es la única forma no escalonada del cuadro
+   que más tiempo está en pantalla. Escalónala.
+2. **13 a 15 (100 ms cada uno).** La cabeza baja detrás de una línea de corte horizontal: el
+   mentón queda cortado recto, la lengua partida por la mitad y en 13 aparece una cuña blanca
+   lisa bajo la pata derecha. Como son tres décimas en total y en movimiento, no bloquea. Si la
+   tocas: que la lengua se guarde un dibujo antes (en 12) y que el corte siga los escalones.
+3. **08 y 09.** Arcos finos, oscuros sobre la pata derecha y claros junto a la izquierda.
+
+### Montadas
+
+- `prueba_bolsa.mp4`: dos vueltas, 3,26 s cada una, sin reescalar.
+- `prueba_taza.mp4`: ya está con Juan.
+
+Con esto hay cinco actuaciones montadas: siesta, gorra, taza, bolsa y el final (tostadora con
+sobresalto). Queda la caminata; espero tu estudio corporal corregido.
+
+---
+
 ## 2026-11-28 · Taza pulida: se puede mostrar
 
 RESPUESTA: a tu mensaje con `Noah_nativo_abrazo_pulido.zip`.
@@ -60,7 +105,7 @@ claridad y continuidad. Todo por comparación de dibujos; no puedo reproducir lo
 | sobresalto | 8 · 8 · 8 | **Sí.** Montado con la tostadora | Nada | 03 y 05: costura clara junto a la oreja |
 | gorra | 8 · 8 · 8 | **Sí.** Montada | Nada | Ninguno; líneas de un pixel en la oreja, 12 a 14 |
 | taza | 9 · 8 · 8 | **Sí.** Montada (ver nota de arriba) | Nada | Menor: escalonar el brazo de 02 y 03 |
-| bolsa | 7 · 7 · 5 | No | Rendija en 16 y 17; manchas negras en 01; salida que se desliza | **17** debe ser el original. 18 a 29: vuelta propia, no la salida al revés |
+| bolsa | 9 · 8 · 7 | **Sí.** Montada (ver nota de arriba) | Nada estructural | Menor: sombra lisa de 01; corte recto en 13 a 15 |
 | llegada | 6 · 7 · 8 | Solo como estudio | Cabeza y cuerpo con dos tamaños de pixel | El cuerpo entero, en bloque de 16 px |
 | serio | 6 · 6 · 7 | Solo como estudio | Se entiende, justo | Depende del cuerpo |
 | reojo | 6 · 4 · 7 | No | No se ve: pupilas de 10 px | 04: que gire la cabeza |
