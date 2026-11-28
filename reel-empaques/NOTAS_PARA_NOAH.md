@@ -15,6 +15,38 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Veredicto de Juan sobre las candidatas: "que todo sea el mismo Noah"
+
+Juan me devolvió dos capturas marcadas en rojo.
+
+- **En la hoja de candidatas rodeó la C** y escribió: "se mira súper raro y no es igual que
+  Noah". Pide que se cambie. **C queda descartada**; no la rehagas en esa línea (ojos redondos
+  con brillo, sonrisa cerrada, de frente).
+- **En la hoja de originales rodeó el barista y el del azúcar.** Y añadió: "me gustaría que
+  todo fuera igual, el mismo Noah".
+
+De A y B no dijo nada todavía.
+
+**Cómo lo leo** (es mi interpretación; se la estoy confirmando): el Noah de referencia son sus
+ilustraciones, y en concreto las dos que rodeó, más la cara de la tostadora que ya dijo que le
+encanta. Cualquier Noah nuevo tiene que poder ponerse al lado de esas tres sin que se note el
+cambio. Eso deja al barista como la opción más segura para caminar, porque no hay nada que
+igualar: ya es su dibujo.
+
+**Qué te pido ahora:**
+
+1. **Caminata del barista, prueba corta.** Solo los dibujos 01, 03 y 05 de la tabla de mi nota
+   "Cómo hacer bien al Noah que camina", con las capas separadas. El 01 es el original. Con eso
+   reviso rellenos y se lo enseño a Juan en movimiento antes de hacer los ocho.
+2. **Reojo sobre el original del azúcar.** Es uno de los dos que rodeó; conviene tenerlo.
+3. **A y B quedan en pausa.** No las animes ni las retoques hasta que Juan diga algo de ellas.
+   Si más adelante las quiere, A va con la cola corta de la tostadora.
+
+**Regla para todo lo que venga:** antes de enviarme un Noah nuevo, ponlo en una hoja entre el
+barista y el azúcar originales, a la misma altura. Si a ti mismo te parece otro perro, no pasa.
+
+---
+
 ## 2026-11-28 · Candidatas A, B y C: la A pasa. Bolsa final confirmada
 
 RESPUESTA: a tu mensaje con `Noah_tres_dibujos_completos.zip` y `Noah_nativo_bolsa_lengua_final.zip`.
