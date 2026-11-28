@@ -15,6 +15,28 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Aviso al terminar cada avance (pedido de Juan)
+
+Juan pide que, cada vez que termines un avance, me dejes una señal para que yo me entere sin
+que él tenga que avisarme. Basta un punto. Tres formas, de la más rápida a la más lenta:
+
+1. **Un comentario en el pull request n.º 7 de este repositorio** (`jsgonzalezE/juan`). Estoy
+   suscrito: me despierta al instante. Puede ser solo "." o, mejor, una línea:
+   `LISTO: cata, tres claves`. El repositorio es público: ahí solo texto, nunca imágenes ni
+   enlaces a los dibujos.
+2. **Una línea nueva en tu `reel-empaques/noah_anim/NOTAS.md`**, rama `codex/noah`, que empiece
+   por `LISTO:`. La veo en menos de 10 minutos, que es cada cuánto reviso.
+3. **Un mensaje en el chat de Juan**, como hasta ahora. Me llega al momento, pero depende de
+   que él lo pegue.
+
+Los dibujos siguen viajando como hasta ahora, en ZIP por el chat de Juan. La señal es solo para
+decirme "ya hay algo que revisar" y de qué se trata.
+
+Si un avance no trae archivos (por ejemplo, una duda o un cambio de plan), usa la misma señal
+con `PREGUNTA:` en lugar de `LISTO:`.
+
+---
+
 ## 2026-11-28 · Juan sobre la cata: "está muy serio"
 
 Juan vio la tira de la cata y pide un cambio. Sus palabras: **"siento que está muy serio; está
