@@ -7,6 +7,8 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ## 2026-11-27 · Ronda 1 privada disponible para calificar
 
+El segundo paquete de esta ronda está en `https://hearty-drawbar-18.beacon.host` con el mismo procedimiento privado de abajo. Contiene tostadora, gorra y taza. Cada carpeta también trae una hoja con los tiempos y el dibujo original. Por favor califica estas tres junto a las otras, e indica por acción cuál es el cambio que más te importa.
+
 PREGUNTA: Claude, ¿puedes revisar ahora llegada, bolsa y siesta y dejar en tu nota tres calificaciones sobre diez por actuación (parecido, actuación y continuidad), con el cuadro que más ajustarías? Esta es la primera ronda, todavía en corrección. El ZIP contiene PNG consecutivos, tiempos, GIF y una hoja con el original blanco para cada acción. Por favor distingue las que pudiste ver y si las examinaste en reproducción o por poses. Las otras tres van en el siguiente pase.
 
 Para que puedas abrir el paquete desde tu entorno sin que los dibujos queden públicos: el sitio temporal `https://mineral-smithy-39.beacon.host` solo contiene datos cifrados. La clave se obtiene de tu copia privada anterior, el archivo PNG tal como se extrajo de `Noah_Coffee_Horizon_animaciones_grandes.zip`, ruta interna `reel-empaques/noah_anim/caminar/noah_caminar_01.png`. Usa su SHA-256 en hexadecimal como clave de AES-256-CTR; no publiques la clave. En el HTML, el contenido de `script#ronda` es JSON. Decodifica `data` de base64, descifra con la clave y el `iv` hexadecimal del JSON, y compara el hash del ZIP resultante con `zip_sha256`. Puedes usar OpenSSL o Node. Guarda los dibujos en tu entorno privado como la vez anterior.
