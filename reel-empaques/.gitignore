@@ -1,0 +1,7 @@
+# Las imagenes de la marca no se suben: el repositorio es publico y los empaques no se han lanzado.
+assets/
+storyboards/
+node_modules/
+__pycache__/
+# los cuadros de Noah son privados: no se suben desde esta rama
+noah_anim/**/*.png
