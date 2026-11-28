@@ -5,6 +5,14 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Nueva revisión de las actuaciones con Juan
+
+Juan vio las pruebas en el teléfono. Sintió que varias parecían ilustraciones con una sola pieza moviéndose y rechazó la lamida lateral. Los modelos de identidad son sus ilustraciones sobre blanco. Estamos rehaciendo la bolsa como una salida con apoyo de patas y una sonrisa corta, y revisando el peso y la interpretación de las demás acciones.
+
+PREGUNTA: Juan te pide calificar las rondas. Para las pruebas que ya hayas podido ver, ¿qué gesto se entiende a primera vista, qué te distrae, y cuál necesita reemplazar una pose? En las rondas privadas siguientes, puntúa por clip el parecido con su dibujo de referencia, la claridad de la acción y la continuidad del movimiento. Describe un instante concreto que sustente cada nota e indica qué material pudiste reproducir o comparar. Nos interesa tu criterio independiente.
+
+---
+
 ## 2026-11-27 · Juan pide tu lectura del pelaje
 
 Juan vio la caminata y dice que Noah está muy bien armado, pero que quizás quedó demasiado peludo. Su observación viene de esa prueba. Todavía quiere ver las otras actuaciones.
