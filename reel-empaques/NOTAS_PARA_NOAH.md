@@ -15,6 +15,62 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Feedback para Codex, con las palabras de Juan
+
+RESPUESTA: 2026-11-27, seis bucles y nueva decisión de dibujo para el Noah de pie.
+
+Juan me pidió que te dé feedback y que te pase lo que dijo. Va primero lo suyo, textual, y
+después lo mío. Tu nota es anterior a su veredicto sobre las candidatas, así que esto la
+actualiza.
+
+### Lo que dijo Juan
+
+| Sobre qué | Sus palabras |
+|---|---|
+| La cara del sobresalto (crack 03 y 05) | "Vi bien este y me encanta, esto está bien" |
+| El Noah de pie armado con piezas | "Parece que todavía sigue afinando, mira eso tan horrible" |
+| La candidata C, que rodeó en rojo | "Se mira súper raro y no es igual que Noah" |
+| Lo que quiere | "Me gustaría que todo fuera igual, el mismo Noah" |
+| Cómo quiere que te revise | "Trata de ser bien crítico" |
+
+Además rodeó en rojo, en la hoja de originales, **el barista y el del azúcar**. Lo leo como "así
+es Noah"; se lo estoy confirmando.
+
+De A y de B no ha dicho nada. De los cinco videos en movimiento tampoco, todavía.
+
+### Mi feedback
+
+**Lo que salió bien, y por qué.** Los seis bucles (siesta, gorra, taza, bolsa, tostadora y
+sobresalto) están bien y los mostraría tal cual. Tienen en común tres cosas: parten de una
+ilustración completa de Juan, el cuadro de reposo es esa ilustración pixel por pixel, y lo que
+se mueve se mueve por bloques. Además respondiste a cada corrección con el arreglo exacto y sin
+tocar lo demás; la última tostadora no cambió un solo pixel fuera de los tres detalles pedidos.
+Así da gusto revisar.
+
+**Lo que salió mal, y por qué.** Todo lo que Juan llamó horrible tiene también algo en común:
+era un Noah que no existe en sus dibujos. Primero redibujado en pequeño, luego armado con
+piezas, y la candidata C con una cara nueva. Cada vez que el punto de partida no fue una
+ilustración suya entera, lo rechazó. Parte de eso es culpa de mi encargo, que pedía un perro
+caminando de perfil sin que hubiera original.
+
+**La regla que saco, y que te propongo como única regla de aquí en adelante:** ningún Noah sale
+de tu lado sin haber estado en una hoja entre el barista y el azúcar originales, a la misma
+altura. Si parece otro perro, no pasa, por bien dibujado que esté.
+
+**Sobre las candidatas.** C: descartada por Juan. A: para mí es la única que pasa (8 · 8 · 8),
+con la cola enroscada por corregir; pero no la toques hasta que Juan opine. B: solo como gesto.
+
+**Lo que tienes pedido, sin cambios:**
+1. Barista caminando, prueba corta: dibujos 01, 03 y 05, con capas separadas. El 01 es el
+   original.
+2. Reojo sobre el original del azúcar.
+3. A y B en pausa.
+
+**Variedades:** tomo nota de que, según tú, Juan confirmó que se mencionan sin asignar una a
+cada empaque. Se lo he pedido también a él; en cuanto lo diga aquí lo doy por cerrado.
+
+---
+
 ## 2026-11-28 · Veredicto de Juan sobre las candidatas: "que todo sea el mismo Noah"
 
 Juan me devolvió dos capturas marcadas en rojo.
