@@ -15,6 +15,89 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Ronda 1 privada: calificación de las seis actuaciones
+
+RESPUESTA: 2026-11-27, ronda 1 privada disponible para calificar.
+
+**Qué pude ver.** Abrí los dos paquetes con el procedimiento que indicaste; los dos hashes
+coinciden y los dibujos quedaron solo en mi copia privada. Vi las seis: llegada, bolsa, siesta,
+tostadora, gorra y taza. Las examiné **por poses, no en reproducción**: las seis hojas con su
+original, todos los PNG ampliados lado a lado, los tiempos, y medí cuánto cambia la figura entre
+dibujos. No puedo ver el GIF en movimiento, así que mi nota de continuidad sale de los saltos
+entre dibujos y de los tiempos, no del ritmo visto.
+
+**Lo general.** Es un salto grande respecto a la ronda anterior: vuelve a ser pixel art limpio
+(entre 5 y 41 colores, sin pixeles a medias) y se parece a las ilustraciones de Juan. El pelaje
+interior que hacía ver a Noah "demasiado peludo" ya no está.
+
+| Actuación | Parecido | Actuación | Continuidad | El cuadro que más ajustaría |
+|---|---|---|---|---|
+| siesta | 9 | 8 | 7 | **09** |
+| tostadora | 9 | 7 | 6 | **05** |
+| taza | 8 | 6 | 8 | **09** |
+| bolsa | 8 | 6 | 7 | **09** |
+| gorra | 9 | 4 | 5 | **08** |
+| llegada | 6 | 5 | 7 | **16** |
+
+**siesta.** La mejor. Se mueve todo el cuerpo (cambia el 64 % de la figura): respira, entreabre
+un ojo en 07 a 09 y se vuelve a acomodar; cierra el bucle exacto. Ajustaría 09: la cabeza sube
+11 pixeles en cuatro dibujos de 100 ms, que es más un respingo que una respiración, y bajo el
+mentón aparece una sombra gris que parece una pieza aparte. Falta la voluta del original; puedo
+ponerla yo en capa aparte.
+
+**tostadora.** La más parecida a su original, y ya no es una sola pieza: la oreja salta, la pata
+sube y la manivela y los granos se mueven (cambia el 28 %; antes era 9 %). Ajustaría 05, y con
+él 06: la oreja aparece separada de la cabeza, como una mancha suelta unida por una línea. Es un
+solo dibujo de 100 ms, pero es justo donde va a mirar el ojo. Además la cara es idéntica en los
+16 dibujos; un parpadeo o que mire la máquina cuando levanta la pata la haría actuar.
+
+**taza.** Pasos parejos (10 a 15 % entre dibujos), bucle exacto. El gesto es pequeño: la cabeza
+viaja 5 pixeles y la taza no se entera. Ajustaría 09, la pausa de 1050 ms: es más de un segundo
+con todo quieto. Un parpadeo ahí, o que la taza se incline un pixel con el abrazo.
+
+**bolsa.** La salida se entiende: la cabeza avanza 9 pixeles y las patas se apoyan. La bolsa no
+cambia en ningún dibujo, así que Noah parece deslizarse por delante de un cartón rígido. Ajustaría
+09, también de 1050 ms sin nada moviéndose; y en 04 a 06 la boca de la bolsa debería ceder o
+arrugarse cuando él empuja.
+
+**gorra.** Muy parecida al original, pero no entiendo la acción. De 01 a 05 no cambia casi nada
+(0,1 a 0,3 %); de 06 a 10 toda la figura se corre 10 pixeles a la izquierda y se queda ahí, sin
+volver. Se lee como un recorte que se desliza. Y la boca está abierta e idéntica en los 12
+dibujos: si habla o ladra, tiene que cerrarse. Ajustaría 08: boca cerrada ahí y que el
+desplazamiento sea un ladeo de cabeza con el cuerpo en su sitio.
+
+**llegada.** La caminata funciona: el bucle de ocho cierra, la cabeza rebota 2 pixeles y la
+frenada adelanta el cuerpo 4 pixeles en 12. Tres cosas le bajan la nota:
+
+1. *Parecido.* El hocico es un óvalo liso; en las ilustraciones tiene barba y mechones. Y la
+   boca hacia abajo con las cejas inclinadas lo hace ver serio o molesto mientras camina. El
+   encargo pide expresión amable.
+2. *Actuación.* Del 14 al 18 (1,24 s) cambia el 0,3 % de la figura: solo ojos y boca, en un Noah
+   de cuerpo entero. Es otra vez la pieza suelta que Juan notó.
+3. *El cuadro.* Ajustaría 16, el de 600 ms con la sonrisa: es el momento de la llegada y la
+   sonrisa mide tres o cuatro pixeles. Ahí pondría cola arriba, lengua y un rebote corto.
+
+La hoja de llegada trae como original la ilustración de la tostadora; para el Noah de pie no hay
+original de Juan, por eso es la que más se aleja.
+
+**El cambio que más me importa, en una línea por acción:** siesta, suavizar el respingo;
+tostadora, la oreja pegada a la cabeza; taza y bolsa, vida en la pausa larga; gorra, definir qué
+hace; llegada, cara amable y una llegada que mueva el cuerpo.
+
+**Dos cosas de montaje**
+
+- Los dibujos miden unos 150 pixeles de alto. Para llegar al alto del guion van a 4×, y mis
+  fondos están a 6×: el pixel de Noah sería más pequeño que el del fondo. Puedo rehacer mis
+  fondos en una retícula de 270 × 480 a 4× para que midan lo mismo. Lo hago cuando Juan apruebe
+  este Noah; no hace falta que cambies tu tamaño.
+- PREGUNTA: estas seis acciones ya no son las del encargo (contento, oreja, serio, reojo). ¿Cuál
+  va con cada empaque? Mi propuesta para que Juan decida: bolsa, taza, gorra y siesta para las
+  cuatro llegadas, y tostadora para el final. Pasar del Noah que camina a un Noah dentro de una
+  bolsa necesita un corte; lo puedo tapar con el momento en que el piso se aplana y la cámara se
+  acerca.
+
+---
+
 ## 2026-11-28 · Mi calificación de las actuaciones
 
 RESPUESTA: 2026-11-27, calificar las rondas.
