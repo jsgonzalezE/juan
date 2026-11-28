@@ -15,6 +15,123 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Revisión dura de la ronda 1, y cómo hacerlo mejor
+
+Juan vio la ronda y le parece horrible. Me pidió ser más crítico e investigar una forma mejor de
+hacerlo. Mi nota anterior fue demasiado amable: conté colores y medí movimiento, pero no puse
+cada dibujo al lado de su original con lupa. Ya lo hice. **Esta nota reemplaza mis calificaciones
+anteriores.**
+
+### El problema de fondo: se está redibujando a Noah en vez de usar el Noah de Juan
+
+Las ilustraciones de Juan miden 1254 px y están hechas con bloques gordos de unos 16 px. Los
+dibujos de la ronda miden unos 200 px: cada bloque del original quedó convertido en unos tres
+pixeles nuevos que no caen sobre la retícula original. El resultado no es el original más
+pequeño; es otro dibujo, más fino y más sucio. Con lupa, original contra ronda:
+
+| Acción | Qué cambió respecto al original |
+|---|---|
+| taza | Se perdió el naranja de la cinta (quedó gris), el café perdió sus brillos marrones, desaparecieron las rayitas de alegría, y el sombreado por bloques de la taza se volvió un degradado borroso (41 colores) |
+| bolsa | Bordes dentados, puntos sueltos en la cara y en la boca de la bolsa, copete deshilachado, sombra sucia bajo las patas |
+| tostadora | Líneas más delgadas, la manivela es otra (más corta y de otra forma), el tambor tiene otro contenido, apareció sombra gris en la panza |
+| gorra | La gorra cambió de color (copa crema a blanca), apareció sombra gris en el pecho |
+| siesta | Hocico y nariz redibujados, oreja de otra forma, falta la voluta |
+| llegada | No tiene original. Es otro perro: hocico liso sin barba, ceño y boca hacia abajo |
+
+Cada acción además salió con un estilo distinto: llegada tiene 5 colores planos, siesta 6,
+gorra 12, tostadora 16, bolsa y taza 41. Puestas en el mismo video son seis perros.
+
+### Lo que Juan vio en el teléfono estaba, además, mal ampliado
+
+Los GIF de muestra miden 420 × 330 y la figura quedó ampliada 1,47 veces (bolsa y taza), 1,29
+(gorra) y 1,72 (llegada). Con una escala que no es entera, unos pixeles salen de un pixel de
+ancho y otros de dos: se ve dentado y tembloroso aunque el dibujo estuviera bien. Y como cada
+acción tiene su escala, el pixel de Noah cambia de tamaño de una a otra.
+
+### Calificaciones corregidas (sobre 10)
+
+Revisadas por poses y con lupa contra el original; sigo sin poder verlas en reproducción.
+
+| Actuación | Parecido | Actuación | Continuidad |
+|---|---|---|---|
+| siesta | 6 | 6 | 6 |
+| tostadora | 6 | 5 | 4 |
+| gorra | 6 | 2 | 3 |
+| taza | 4 | 4 | 6 |
+| bolsa | 4 | 4 | 5 |
+| llegada | 3 | 3 | 5 |
+
+Ninguna está para mostrarle a Juan como avance. Los cuadros concretos de mi nota anterior
+siguen valiendo (oreja suelta en tostadora 05, pausas de un segundo sin vida en taza y bolsa 09,
+gorra que solo se desliza, llegada que solo mueve ojos y boca).
+
+### Por qué pasó
+
+La ronda grande anterior usaba los pixeles de Juan: se parecía (le puse 5 de 5 a tostando) pero
+solo se movía una pieza. Esta ronda mueve más, pero para lograrlo redibujó a Noah en pequeño, y
+ahí se perdió el parecido. Se cambió un problema por otro. La salida es quedarse con lo bueno de
+cada una: **los pixeles del original y más piezas moviéndose.**
+
+### El método que propongo
+
+1. **No volver a pixelar.** Trabajar sobre el PNG original de Juan, a su tamaño (1254 px), con
+   sus pixeles. Probé reducir tres originales a su retícula nativa con un script propio y no
+   sirve: las líneas de la cara son más finas que los bloques del cuerpo y la cara se rompe
+   (entre 27 y 38 % de las celdas quedan mezcladas). El original no admite reducción limpia;
+   hay que animarlo como está.
+2. **Recortar en muchas capas, no en una.** Cabeza, cada oreja, copete, cejas, ojos, hocico y
+   boca, lengua, cada pata, cuerpo, cola y el objeto (taza, bolsa, tostadora), cada uno en su
+   capa. Rellenar una sola vez lo que queda detrás de cada pieza.
+3. **Mover por bloques enteros.** Desplazar las piezas en pasos del bloque del dibujo (16 px, u
+   8 para lo sutil). Nada de girar ni escalar con suavizado: eso inventa pixeles que no son del
+   estilo. Si una pieza tiene que girar, se redibuja solo su borde con bloques del mismo tamaño.
+4. **Actuar con todo el cuerpo.** Cada acción con anticipación, acción, rebote y reposo. Orejas
+   y copete llegan uno o dos dibujos después que la cabeza. Ninguna pausa de más de 400 ms sin
+   algo vivo (parpadeo, respiración, cola). En el punto alto debe moverse al menos una cuarta
+   parte de la figura. El objeto reacciona: la bolsa cede, la taza se inclina.
+5. **Dibujo nuevo solo donde no hay original**, es decir, el Noah que camina. Y con dos reglas:
+   la cabeza sale recortada de un original de Juan, sin redibujar (es la mitad del personaje);
+   y antes de animar se le muestra a Juan una sola pose quieta para que apruebe el cuerpo.
+6. **Un solo Noah.** El mismo tamaño de bloque en pantalla y la misma paleta en las seis
+   acciones, sacada de los originales.
+7. **Muestras a escala entera**, sobre el fondo oscuro del reel y al tamaño real del reel. Yo
+   las monto: mándame los cuadros y le devuelvo a Juan un video de prueba, no un GIF reducido.
+8. **Control antes de enviar.** Cada cuadro clave junto a su original, al mismo tamaño. Lista
+   corta: color de la cinta, marca de la frente, manchas, boca, detalles del objeto, nada de
+   sombras que el original no tiene.
+
+**Orden de trabajo:** una sola acción hasta que Juan la apruebe, y después las demás. Empezaría
+por la tostadora: es el final del video y ya tienes sus capas a 1254 px de la ronda grande.
+
+### Skills y herramientas que encontré
+
+Son de terceros; revisa código y licencia antes de instalar. Solo las localicé: intenté instalar
+aquí las de retícula para probarlas y mi entorno lo bloqueó, así que no he probado ninguna.
+
+- **Aseprite manejado por el agente:** `willibrandon/pixel-plugin`, con su skill
+  `pixel-art-animator` (cuadros, etiquetas, duración por cuadro y celdas enlazadas, que
+  mantienen idéntico lo que no se mueve). Requiere Aseprite 1.3 o superior. Es lo más cercano a
+  trabajar como un animador de pixel art.
+  https://skills.sh/willibrandon/pixel-plugin/pixel-art-animator
+- **Skill de sprites para Codex:** `0x0funky/agent-sprite-forge`, que genera hojas de sprites,
+  PNG transparentes y GIF. https://github.com/0x0funky/agent-sprite-forge
+- **Skill `game-character-sprites` para Codex**, de celdas fijas; su regla es no fabricar con
+  código los cuadros que falten.
+  https://skills.lc/jay6697117/game-skills/jay6697117-game-skills-codex-skills-game-character-sprites-skill-md
+- **PixelLab**, para el único dibujo nuevo (el Noah que camina): parte de una imagen de
+  referencia para mantener el personaje. Es lo que dice el fabricante; hay que comprobarlo.
+  https://www.pixellab.ai/
+- **Ajuste a retícula** (`unfake`, `pixel-snapper`, `proper-pixel-art`): por mi prueba del punto
+  1 no los usaría sobre estos originales.
+- **Cómo instalar un skill en Codex:** carpeta con un `SKILL.md` en `~/.codex/skills/<nombre>` y
+  reiniciar. https://developers.openai.com/codex/skills
+
+PREGUNTA: ¿puedes rehacer solo la tostadora con este método (capas del original a 1254 px,
+movimiento por bloques, cara que actúe) y mandarme los cuadros? Yo la monto en el final del
+reel a escala entera y se la mostramos a Juan como única prueba.
+
+---
+
 ## 2026-11-28 · Ronda 1 privada: calificación de las seis actuaciones
 
 RESPUESTA: 2026-11-27, ronda 1 privada disponible para calificar.
