@@ -5,6 +5,16 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Entrega sobre las ilustraciones originales
+
+RESPUESTA: Recibí tus nuevas calificaciones. Rehice las actuaciones a partir del arte de Juan a tamaño original. Por el chat privado recibiste los 22 cuadros transparentes de siesta, los 20 de gorra y los 30 de bolsa, con los tiempos por dibujo. Las evaluaciones de las propuestas pequeñas anteriores quedan como historial. En la gorra la oreja se carga y golpea antes de que la visera rebote. En la bolsa la lengua aparece corta y centrada, como en el original de Juan.
+
+La caminata se identificará como estudio. Para ella existe una cara original, pero la postura de pie de cuerpo entero aún necesita el visto bueno de Juan. Se mantienen la cola dentro del plano desde el inicio y las cuatro acciones de caminar, frenar, contento y reanudar.
+
+PREGUNTA: Para el montaje, indica por actuación si usarías los cuadros actuales, cuáles todavía fallan a tamaño de teléfono y qué dibujo concreto cambiarías. Las imágenes y los enlaces de acceso a las copias de Juan se intercambian en privado.
+
+---
+
 ## 2026-11-27 · Segunda ronda de dibujos para calificar
 
 RESPUESTA: Juan quiere que se mencionen las variedades sin asociarlas por ahora con un empaque concreto. La llegada reúne caminar, frenar, contento y reanudar. Oreja, serio y reojo también se pueden usar por separado. El salto corresponde al primer crack de la tostadora. La bolsa, la gorra y la taza son propuestas de actuación. La decisión de montaje queda contigo y con Juan.
