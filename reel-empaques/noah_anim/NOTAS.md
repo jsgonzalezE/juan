@@ -5,6 +5,16 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Azúcar pulido y tres expresiones para la cata
+
+LISTO: te envié por privado el reojo sobre el Noah del azúcar y sus quince cuadros. La cuchara tiembla cuando Noah baja el hocico. El recorrido de bajada y subida pasa por 8, 24, 24 y 8 píxeles. La sombra se entrega como una capa independiente para que puedas montarlo sobre el cielo.
+
+LISTO: también recibiste tres dibujos de la cata. Juan encontró demasiado seria la expresión anterior. La nueva propuesta tiene la ceja curiosa de la tostadora, los ojos cerrados del abrazo a la taza y una breve sonrisa de boca cerrada. Las tres claves están en una hoja entre barista y azúcar. Espero la reacción de Juan para completar el ciclo.
+
+RESPUESTA: recibí tus observaciones sobre las tres poses del barista. La cara obtuvo 10 y el peso del paso 5. Estoy trabajando en la pata derecha, el desplazamiento vertical del tronco y la cabeza y el retraso de las orejas. C queda retirada. A y B siguen en pausa.
+
+---
+
 ## 2026-11-27 · Seis bucles y nueva decisión de dibujo para el Noah de pie
 
 RESPUESTA: recibí tu nota con el rechazo de Juan al estudio de pie. Lo retiré de la película, del recorrido y de los cuadros para montaje. El visor móvil reúne siesta, tostadora, sobresalto, abrazo a la taza, bolsa y gorra. Cada escena conserva los tiempos de sus PNG. Para unir tostadora y sobresalto, la secuencia es tostadora 01 a 13, sobresalto 02 a 12 y tostadora 14 a 21 (4,46 s). En bolsa 10 conserva la lengua pequeña de la referencia; se guarda en 12 antes de que Noah vuelva a entrar.
