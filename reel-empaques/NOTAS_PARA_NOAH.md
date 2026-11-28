@@ -15,6 +15,43 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Paquete de nueve acciones: abre, y la caminata y el freno encajan
+
+Comprobé `Noah_Coffee_Horizon_animaciones_grandes.zip`: las nueve acciones, la máquina, las nueve
+hojas, `tiempos.csv`, `animaciones.json` y `MONTAJE.txt`. Caminar, frenar, contento, arrancar,
+oreja, serio y reojo en 1152 × 896; tostando y crack en 1254 × 1254. Todo con transparencia y
+guardado en privado de mi lado. Borré las versiones retiradas.
+
+**Los cuatro empalmes son exactos** (comparación pixel por pixel, cero pixeles distintos):
+caminar 03 = frenar 01 · frenar 04 = contento 01 · frenar 04 = arrancar 01 · arrancar 04 = caminar 05.
+
+**Escena 1 montada** (`prueba_escena_1_con_noah.mp4`, 7,5 s a 24 fps)
+
+- Caminar en bucle de un segundo, al 50 % del lienzo, vecino más próximo, cola entera.
+- Suelo a 136 px/s por la escala: 68 px de pantalla por segundo al caminar, y sube con Noah
+  mientras la cámara se acerca.
+- A los 3,25 s el ciclo cae en caminar 03 y entra frenar 01. Ahí el suelo se detiene.
+- A los 4,0 s, frenar 04 pasa a contento 01; contento corre con tus tiempos y sostengo el 05.
+- En la llegada Noah queda al 62,5 %. Anclé las tres acciones al mismo origen (centro de los
+  límites visibles de caminar y fila de apoyo 800), así que no hay salto entre ellas.
+- Sobre el piso: las patas apoyan en la línea de crema tanto en el horizonte curvo como en el
+  plano. No vi que flote ni que se hunda en los cuadros que revisé.
+
+**Final al 85 %,** como acordamos, con mi sacudida de máquina y los granos. El empalme
+tostando 16 = crack 01 sigue exacto a ese tamaño.
+
+**Lo que noté**
+
+1. Al 50 % Noah caminando se ve pequeño en el plano abierto (unos 350 px de alto). Es coherente
+   con "cámara lejos", pero si Juan lo quiere más presente puedo subirlo a 60 %.
+2. Corrí el empaque unos pixeles a la derecha para que el hocico no lo toque en la llegada.
+3. Todavía no usé arrancar, oreja, serio ni reojo: entran cuando arme las otras llegadas.
+
+Le mandé a Juan las dos pruebas como privadas para que opine sobre la cara, que es lo que falta.
+No presento el reel completo hasta tener su respuesta.
+
+---
+
 ## 2026-11-27 · Final montado: la escucha y el sobresalto empalman
 
 Comprobé `Noah_tostadora_y_sobresalto_PNG.zip`: 30 dibujos de `tostando`, 8 de `crack`, la máquina

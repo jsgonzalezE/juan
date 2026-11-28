@@ -1,33 +1,63 @@
-"""Prueba de movimiento del fondo: escena 1 (camina, horizonte curvo) -> llegada a Java (plano, de cerca).
+"""Prueba de movimiento de la escena 1: Noah camina (horizonte curvo) -> llega a Java (plano, de cerca).
 
-Solo se anima el fondo: horizonte, cielo, empaque, brillo, ambiente y texto. Noah es un marcador
-(ilustracion fija) hasta que lleguen sus animaciones.
-Uso: python3 src/anim_test.py -> storyboards/prueba_movimiento_fondo.mp4
+Si existen los cuadros privados de Noah (storyboards/noah_anim_privado, con tiempos.csv y
+animaciones.json), los usa con sus tiempos y empalmes:
+    caminar en bucle -> caminar 03 = frenar 01 -> frenar 04 = contento 01 -> se sostiene contento.
+Si no existen, pone la ilustracion fija como marcador.
+Uso: python3 src/anim_test.py -> storyboards/prueba_escena_1_con_noah.mp4 (o prueba_movimiento_fondo.mp4)
 """
-import os, sys, subprocess, shutil
+import os, sys, csv, json, subprocess, shutil
 import numpy as np
 from PIL import Image, ImageDraw
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pixelkit import *
-import noah_anim
 
-LW, LH, P, FPS, DUR = 180, 320, 6, 24, 7.5     # 24 fps: cada dibujo de Noah (8 fps) dura 3 fotogramas
+LW, LH, P, FPS, DUR = 180, 320, 6, 24, 7.5
 GLOW = (246, 228, 196)
 DIM = [(22, 20, 19), (40, 36, 32), (86, 76, 64)]
 GREEN = [(40, 84, 40), (132, 170, 60), GLOW]
 yy, xx = np.mgrid[0:LH, 0:LW]
 BAY = B8[yy % 8, xx % 8]
 XC = (LW - 1) / 2
+PRIV = os.path.join(SB, 'noah_anim_privado')
 TMP = os.path.join(SB, '_anim'); shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP)
+
+# ---------- Noah: cuadros privados con sus tiempos ----------
+BIG = os.path.exists(os.path.join(PRIV, 'tiempos.csv')) and os.path.isdir(os.path.join(PRIV, 'frenar'))
+if BIG:
+    rows = list(csv.DictReader(open(os.path.join(PRIV, 'tiempos.csv'), encoding='utf-8-sig')))
+    man = json.load(open(os.path.join(PRIV, 'animaciones.json'), encoding='utf-8'))['acciones']
+    SEQ = {a: [(Image.open(os.path.join(PRIV, r['archivo'])).convert('RGBA'), int(r['duracion_ms']) / 1000.0)
+               for r in rows if r['accion'] == a] for a in ('caminar', 'frenar', 'contento')}
+    APOYO = man['caminar']['apoyo_y'] + 1                      # fila siguiente a la de apoyo
+    x1, _, x2, _ = man['caminar']['limites_visibles_conjuntos_xyxy']
+    ANCLA_X = (x1 + x2) / 2                                    # mismo origen para caminar, frenar y contento
+    V_SUELO = man['caminar']['velocidad_suelo_px_s_en_lienzo_fuente']   # px/s en el lienzo de Noah
+    S_WALK, S_ARR = 0.5, 0.625                                 # tamano de Noah: caminando y en la llegada
+    CYCLE = sum(d for _, d in SEQ['caminar'])
+    T_ARR = 3 * CYCLE + SEQ['caminar'][0][1] + SEQ['caminar'][1][1]     # 3,25 s: el ciclo esta en caminar 03 = frenar 01
+    T_HAPPY = T_ARR + sum(d for _, d in SEQ['frenar'])                  # frenar 04 = contento 01
+else:
+    T_ARR = 3.4
+NOAH = Image.open(os.path.join(A, 'sprites', 'noah_host.png')).convert('RGBA')
 
 
 def lerp(a, b, k): return a + (b - a) * k
 def smooth(k): k = min(max(k, 0.0), 1.0); return k * k * (3 - 2 * k)
 def ease_out(k): k = min(max(k, 0.0), 1.0); return 1 - (1 - k) ** 3
 def mix3(a, b, k): return tuple(int(round(lerp(a[i], b[i], k))) for i in range(3))
-
-
 def ground(x, h0, curv): return h0 + curv * (np.asarray(x, float) - XC) ** 2 / 2
+
+
+def pick(seq, t, loop=False):
+    total = sum(d for _, d in seq)
+    t = t % total if loop else t
+    acc = 0.0
+    for f, d in seq:
+        acc += d
+        if t < acc:
+            return f
+    return seq[-1][0]
 
 
 def sky(c1, c2, glow, h0, mist, drift):
@@ -50,8 +80,8 @@ def coffee(c1, c2, h0, curv, lit, scroll):
     out = np.zeros((LH, LW, 4), np.uint8)
     k = np.clip(depth / (LH - h0), 0, 1)
     out[..., :3] = np.where((k * 1.1 > BAY)[..., None], dark, base)
-    sx = (xx + int(scroll)) % 8                               # las vetas se corren: el mundo gira
-    streak = (depth >= 5) & (depth < 22) & (B8[yy % 8, (sx + yy // 3) % 8] < 0.09) & ((yy // 2) % 3 == 0)
+    sx = (xx + int(round(scroll))) % 24                       # las vetas se corren con el suelo: el mundo gira
+    streak = (depth >= 5) & (depth < 22) & (B8[yy % 8, (sx // 3 + yy // 3) % 8] < 0.09) & ((yy // 2) % 3 == 0)
     out[streak, :3] = mix3((44, 36, 30), (96, 58, 30), lit)
     sheen = (depth >= 3) & (depth < 18) & (yy % 2 == 0) & ((1 - (depth - 3) / 15.0) * 0.5 * lit > BAY)
     out[sheen, :3] = mixc(c2, base, 0.62)
@@ -72,22 +102,29 @@ def halo(img, c1, c2, glow, cx, cy, r, power):
 
 
 BAGS = {w: bag_obj('cerezas', w) for w in range(62, 73)}
-MOT = [(motif(10, 76), -20, 106, -1), (motif(13, 26), 84, 98, 0), (motif(57, 9), 160, 96, 0), (motif(58, 8), 92, 150, 0)]
-NOAH = Image.open(os.path.join(A, 'sprites', 'noah_host.png')).convert('RGBA')
+MOT = [(motif(10, 76), -20, 106, -1), (motif(13, 26), 84, 98, 0), (motif(57, 9), 166, 96, 0), (motif(58, 8), 92, 150, 0)]
 F_TITLE = fit_title('JAVA', 156, 30)
 F_NOTE = font('montserrat', 'montserrat-latin-500-normal.woff', 22)
-WALK, HAPPY, STOP = (noah_anim.load(n) for n in ('caminar', 'contento', 'frenar'))   # None si aun no llegan
+T0 = T_ARR - 1.0                                              # empieza a aplanarse un segundo antes de llegar
+BX_END = 142 if BIG else 136                                  # con Noah de cuerpo entero el empaque va un poco mas a la derecha
+
+
+def scroll_at(t, n=40):
+    """Cuanto se ha corrido el suelo (px de arte): velocidad de la caminata por la escala de Noah, hasta que frena."""
+    if not BIG:
+        return t * 16 if t < T0 else T0 * 16 + (t - T0) * 16 * (1 - smooth((t - T0) / 1.0)) * 0.5
+    ts = np.linspace(0, min(t, T_ARR), n)
+    sc = np.array([lerp(S_WALK, S_ARR, smooth((u - T0) / 1.0)) for u in ts])
+    return float(np.trapezoid(V_SUELO * sc / P, ts))
 
 
 def frame(t):
-    walk = smooth(t / 2.4)                                    # 0..1 durante la caminata
-    q = smooth((t - 2.4) / 1.0)                               # 0..1: se aplana y la camara se acerca
-    arr = t - 3.4                                             # segundos desde la llegada
-    lit = lerp(0.0, 0.6, walk ** 1.5) if t < 2.4 else lerp(0.6, 1.0, q)
+    walk = smooth(t / T0)
+    q = smooth((t - T0) / 1.0)                                # 0..1: se aplana y la camara se acerca
+    arr = t - T_ARR                                           # segundos desde la llegada
+    lit = lerp(0.0, 0.6, walk ** 1.5) if t < T0 else lerp(0.6, 1.0, q)
     c1, c2, glow = (mix3(DIM[i], GREEN[i], lit) for i in range(3))
     h0, curv = lerp(212, 234, q), lerp(1 / 300.0, 0.0, q)
-    v = 20                                                   # 120 px de pantalla por segundo: acompana los apoyos de la caminata
-    scroll = t * v if t < 2.4 else 2.4 * v + (t - 2.4) * v * (1 - q) * 0.5
 
     img = sky(c1, c2, glow, h0, mist=q, drift=t * 5)
     if arr > 0:                                               # el ambiente entra por los bordes y luego flota
@@ -98,16 +135,14 @@ def frame(t):
             dx = (1 - k) * (-70 if side < 0 else 0)
             dy = (1 - k) * (0 if side < 0 else -26) + 1.6 * np.sin(t * 1.3 + i * 1.7)
             img.alpha_composite(m, (int(round(mx + dx)), int(round(my + dy))))
-    # el empaque sube por detras del horizonte y al llegar queda completo
-    bw = int(round(lerp(62, 72, q)))
+    bw = int(round(lerp(62, 72, q)))                          # el empaque sube por detras del horizonte
     b = BAGS[bw]
-    bx = lerp(lerp(170, 150, walk), 136, q)
+    bx = lerp(lerp(170, 152, walk), BX_END, q)
     sunk = lerp(lerp(120, 62, walk), 2, q)
     top = ground(bx, h0, curv) + sunk - b.height
     halo(img, c1, c2, glow, bx, top + lerp(18, 34, q), lerp(74, 88, q), lerp(0.35 + 0.35 * walk, 1.0, q))
     img.alpha_composite(b, (int(round(bx - b.width / 2)), int(round(top))))
-    # textos
-    if 0.4 < t < 2.5:
+    if 0.4 < t < T0 + 0.1:
         text(img, (90, 78), 'FOUR NEW VARIETIES'[:int((t - 0.4) * 30)], F_M, CREAM, 'ma')
         if t > 1.2:
             text(img, (90, 100), '(follow Noah.)', F_S, SOFT, 'ma')
@@ -116,28 +151,25 @@ def frame(t):
         text(img, (12, 40), 'JAVA'[:int((arr - 0.1) * 10) + 1], F_TITLE, CREAM)
     if arr > 0.9:
         text(img, (13, 80), '(the new kid.)'[:int((arr - 0.9) * 26)], F_M, CREAM)
-    img.alpha_composite(coffee(c1, c2, h0, curv, lit, scroll))
+    img.alpha_composite(coffee(c1, c2, h0, curv, lit, scroll_at(t)))
     c = up(img, P)
-    nx = lerp(310 / P, 300 / P, q) if WALK else lerp(44, 45, q)   # con Noah animado: centro en x=310 y 300
-    feet = ground(nx, h0, curv) * P + (2 if WALK else 8)
-    cx = nx * P
-    sc = lerp(5, 6, q)                                        # x5 al caminar, x6 en la llegada
-    if WALK and arr <= 0:                                     # camina en el sitio a 8 cuadros por segundo
-        noah_anim.place_exact(c, WALK, int(t * 8), cx, feet, sc)
-    elif HAPPY and arr > 0:                                   # corte al gesto: se reproduce una vez y sostiene el ultimo
-        k = int(arr * 8)
-        if STOP and k < len(STOP['frames']):
-            noah_anim.place_exact(c, STOP, k, cx, feet, sc)
-        else:
-            k -= len(STOP['frames']) if STOP else 0
-            noah_anim.place_exact(c, HAPPY, min(k, len(HAPPY['frames']) - 1), cx, feet, sc)
+
+    if BIG:
+        sc = lerp(S_WALK, S_ARR, q)
+        nx = lerp(300, 305, q)
+        feet = ground(nx / P, h0, curv) * P + 3
+        f = pick(SEQ['caminar'], t, loop=True) if arr < 0 else pick(SEQ['frenar'], arr) if t < T_HAPPY else pick(SEQ['contento'], t - T_HAPPY)
+        f = f.resize((round(f.width * sc), round(f.height * sc)), Image.NEAREST)
+        c.alpha_composite(f, (int(round(nx - ANCLA_X * sc)), int(round(feet - APOYO * sc))))
+        note = 'PRUEBA PRIVADA DE MOVIMIENTO'
     else:                                                     # marcador fijo: sube y baja al caminar, saltito al llegar
         s = lerp(0.46, 0.58, q)
+        nx = lerp(44, 45, q)
         n = NOAH.resize((round(NOAH.width * s), round(NOAH.height * s)), Image.LANCZOS)
-        bob = (6 if int(t * 4) % 2 else 0) if t < 2.9 else 0
+        bob = (6 if int(t * 4) % 2 else 0) if arr < -0.5 else 0
         hop = int(40 * max(0.0, np.sin(np.pi * arr / 0.35))) if 0 < arr < 0.35 else 0
-        c.alpha_composite(n, (int(round(cx - n.width / 2)), int(round(feet - n.height - bob - hop))))
-    note = 'PRUEBA DE MOVIMIENTO' if (WALK or HAPPY) else 'PRUEBA DE FONDO  ·  NOAH ES UN MARCADOR'
+        c.alpha_composite(n, (int(round(nx * P - n.width / 2)), int(round(ground(nx, h0, curv) * P + 8 - n.height - bob - hop))))
+        note = 'PRUEBA DE FONDO  ·  NOAH ES UN MARCADOR'
     ImageDraw.Draw(c).text((540, 1836), note, font=F_NOTE, fill=(120, 112, 102), anchor='ma')
     return c
 
@@ -145,14 +177,21 @@ def frame(t):
 n = int(DUR * FPS)
 for i in range(n):
     frame(i / FPS).convert('RGB').save(os.path.join(TMP, f'{i:04d}.png'))
-out = os.path.join(SB, 'prueba_escena_1_con_noah.mp4' if WALK else 'prueba_movimiento_fondo.mp4')
+out = os.path.join(SB, 'prueba_escena_1_con_noah.mp4' if BIG else 'prueba_movimiento_fondo.mp4')
 subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-framerate', str(FPS), '-i', os.path.join(TMP, '%04d.png'),
                 '-vf', 'fps=30', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '14', '-preset', 'slow', '-movflags', '+faststart', out], check=True)
-# hoja de control: 8 momentos
-picks = [0.2, 1.0, 1.4, 2.3, 2.9, 3.3, 3.5, 3.8, 4.6, 7.0]
+picks = [0.2, 1.3, T0, T_ARR - 0.3, T_ARR + 0.02, T_ARR + 0.3, T_ARR + 0.8, T_ARR + 1.3, T_ARR + 2.0, DUR - 0.1]
 sheet = Image.new('RGB', (len(picks) * 276 - 6, 480), (60, 60, 60))
 for k, t in enumerate(picks):
-    sheet.paste(Image.open(os.path.join(TMP, f'{int(t * FPS):04d}.png')).resize((270, 480), Image.BOX), (k * 276, 0))
+    sheet.paste(Image.open(os.path.join(TMP, f'{min(int(t * FPS), n - 1):04d}.png')).resize((270, 480), Image.LANCZOS), (k * 276, 0))
 sheet.save(os.path.join(SB, '_anim_check.png'))
+if BIG:                                                       # empalmes declarados por quien anima a Noah
+    arr_seq = [Image.open(os.path.join(PRIV, r['archivo'])).convert('RGBA') for r in rows if r['accion'] == 'arrancar']
+    def same(a, b): return int((np.abs(np.asarray(a).astype(int) - np.asarray(b).astype(int)).sum(2) > 40).sum())
+    print('empalmes (pixeles distintos): caminar03=frenar01', same(SEQ['caminar'][2][0], SEQ['frenar'][0][0]),
+          '| frenar04=contento01', same(SEQ['frenar'][3][0], SEQ['contento'][0][0]),
+          '| frenar04=arrancar01', same(SEQ['frenar'][3][0], arr_seq[0]),
+          '| arrancar04=caminar05', same(arr_seq[3], SEQ['caminar'][4][0]))
+    print('llegada en', T_ARR, 's; contento desde', T_HAPPY, 's; suelo', V_SUELO * S_WALK, 'px/s de pantalla al caminar')
 shutil.rmtree(TMP)
 print('ok', n, 'cuadros', round(os.path.getsize(out) / 1e6, 2), 'MB')

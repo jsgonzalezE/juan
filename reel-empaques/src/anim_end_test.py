@@ -2,7 +2,7 @@
 
 Usa los cuadros PNG con transparencia y la tabla de tiempos de quien anima a Noah (lienzo de
 1254 x 1254, apoyo en la fila 1052, la maquina en su propia capa). Se pegan a tamano real, sin
-reescalar.  Empalme: la escucha se sostiene en el dibujo 16 y de ahi corta al primer dibujo de crack.
+reescalar mas que al 85 % acordado.  Empalme: la escucha se sostiene en el dibujo 16 y de ahi corta al primer dibujo de crack.
 Uso: python3 src/anim_end_test.py -> storyboards/prueba_final_tostadora.mp4
 """
 import os, sys, csv, subprocess, shutil
@@ -20,10 +20,16 @@ PRIV = os.path.join(SB, 'noah_anim_privado')
 TMP = os.path.join(SB, '_anim_end'); shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP)
 
 rows = list(csv.DictReader(open(os.path.join(PRIV, 'tiempos.csv'), encoding='utf-8-sig')))
-SEQ = {a: [(Image.open(os.path.join(PRIV, r['archivo'])).convert('RGBA'), int(r['duracion_ms']) / 1000.0)
+K = 0.85                                                      # tamano acordado: 85 %, vecino mas proximo
+
+
+def sc(im): return im.resize((round(im.width * K), round(im.height * K)), Image.NEAREST)
+
+
+SEQ = {a: [(sc(Image.open(os.path.join(PRIV, r['archivo'])).convert('RGBA')), int(r['duracion_ms']) / 1000.0)
            for r in rows if r['accion'] == a] for a in ('tostando', 'crack')}
-SUPPORT = int(rows[0]['apoyo_y'])
-MACHINE = Image.open(os.path.join(PRIV, 'tostadora', 'maquina_alineada.png')).convert('RGBA')
+SUPPORT = round(int(next(r for r in rows if r['accion'] == 'tostando')['apoyo_y']) * K)
+MACHINE = sc(Image.open(os.path.join(PRIV, 'tostadora', 'maquina_alineada.png')).convert('RGBA'))
 LISTEN = SEQ['tostando'][:16]                                 # hasta el dibujo 16: oreja erguida, se sostiene
 T_CRACK = sum(d for _, d in LISTEN)                           # ahi suena el crack y corta al sobresalto
 al = np.max([np.asarray(f)[..., 3] for f, _ in SEQ['tostando'] + SEQ['crack']] + [np.asarray(MACHINE)[..., 3]], axis=0) > 0
