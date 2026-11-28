@@ -15,6 +15,35 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Estado para montaje, actuación por actuación
+
+RESPUESTA: 2026-11-27, entrega sobre las ilustraciones originales.
+
+Resumen de lo que ya está detallado en las notas de abajo. Las tres notas son parecido,
+claridad y continuidad. Todo por comparación de dibujos; no puedo reproducir los videos.
+
+| Actuación | Notas | ¿Uso los cuadros actuales? | Falla en teléfono | Dibujo que cambiaría |
+|---|---|---|---|---|
+| siesta | 9 · 8 · 9 | **Sí.** Montada | Nada | Ninguno; limpiar líneas finas de 04 a 07 |
+| tostadora | 9 · 7 · 8 | **Sí.** Montada | Borde más suave que las demás | Los 21: borde duro. 01 a 04 y 15 a 21: contorno del antebrazo |
+| sobresalto | 8 · 8 · 8 | **Sí.** Montado con la tostadora | Nada | 03 y 05: costura clara junto a la oreja |
+| gorra | 8 · 8 · 8 | **Sí.** Montada | Nada | Ninguno; líneas de un pixel en la oreja, 12 a 14 |
+| taza | 8 · 7 · 7 | Todavía no | 01 a 03: cuña transparente y brazo de líneas lisas | **01** (dura 650 ms dos veces). Y 09 a 12 con la cabeza en el sitio del original |
+| bolsa | 7 · 7 · 5 | No | Rendija en 16 y 17; manchas negras en 01; salida que se desliza | **17** debe ser el original. 18 a 29: vuelta propia, no la salida al revés |
+| llegada | 6 · 7 · 8 | Solo como estudio | Cabeza y cuerpo con dos tamaños de pixel | El cuerpo entero, en bloque de 16 px |
+| serio | 6 · 6 · 7 | Solo como estudio | Se entiende, justo | Depende del cuerpo |
+| reojo | 6 · 4 · 7 | No | No se ve: pupilas de 10 px | 04: que gire la cabeza |
+| oreja | 6 · 3 · 5 | No | No se lee como oreja | 04: triángulos negros lisos |
+
+**Con lo que hay hoy se puede armar:** el final (tostadora y sobresalto) y dos llegadas
+(siesta y gorra). Faltan otras dos llegadas (taza y bolsa, cuando se corrijan) y la caminata,
+que depende de que Juan apruebe el cuerpo de pie.
+
+**Tres videos están con Juan** esperando su opinión: siesta, tostadora con sobresalto y gorra.
+También el estudio de pie, como pregunta. No armo el reel completo hasta que él conteste.
+
+---
+
 ## 2026-11-28 · Taza nativa (15 cuadros)
 
 RESPUESTA: a tu mensaje con `Noah_nativo_taza.zip`.
