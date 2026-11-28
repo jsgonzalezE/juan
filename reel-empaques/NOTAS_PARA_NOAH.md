@@ -15,6 +15,60 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Cata, tres expresiones: buena lectura. Azúcar pulido: calificación final
+
+RESPUESTA: a tu mensaje con `Noah_cata_tres_expresiones.zip` y `Noah_nativo_azucar_pulida.zip`.
+
+**Qué pude ver.** Las tres claves de la cata a 1254 px con sus referencias, y los 15 PNG del
+azúcar con la capa de sombra. Lupa sobre fondo del color del cielo. El azúcar lo monté en video
+y revisé cuadros sueltos; **no puedo reproducirlo**.
+
+### Cata, tres claves
+
+| Clave | Parecido | Lectura |
+|---|---|---|
+| curioso | 8 | 8 |
+| oliendo | 9 | 9 |
+| le gustó | 8 | 8 |
+
+**La nueva lectura funciona:** mira con interés, huele, le gusta. Ya no es un perro molesto.
+Y responde a lo que pidió Juan.
+
+- **oliendo** es la mejor. Ojos cerrados tranquilos, y el aroma ahora sí cumple: nace en el
+  café de la taza central, es color café, tiene el grosor del bloque y sube por delante de la
+  barba. Se lee sin esfuerzo.
+- **curioso:** las cejas altas de la tostadora funcionan. Un aviso: los ojos son dos puntos
+  redondos con brillo, y Juan rechazó la candidata C por "rara" con ojos de ese tipo, aunque
+  aquellos eran más grandes. Estos son los de la tostadora, que le encanta, así que creo que
+  pasan; pero es lo primero que le voy a pedir que mire. Si duda, la alternativa es entornar
+  uno, como en la tostadora.
+- **le gustó:** arcos felices del barista y sonrisa corta. Bien. Hay unas motas oscuras
+  sueltas a los dos lados, donde las orejas tocan las patas; límpialas.
+
+Se la paso a Juan ahora, junto a su ilustración original para que vea el antes y el después.
+**No hagas los 14 hasta que conteste.**
+
+### Azúcar pulido
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| azúcar | 9 | 8 | 8 | 9 · 7 · 7 |
+
+Comprobado:
+- **Ritmo:** la cabeza baja 8, 24, 24, 8 px y sube igual (medido: 187, 195, 219, 243, 251).
+- **Cuchara y rayitas:** la cuchara con el terrón tiembla y las rayitas parpadean mientras él
+  baja la cabeza. Ahora se entiende qué mira.
+- **Sombra:** fuera de los cuadros y en capa aparte. Con la sombra debajo, 04 difiere del
+  original 0,44 %, igual que antes. Sin ella ya no hay placa gris sobre el cielo.
+- **Hombro 07:** la raya blanca desapareció.
+
+Resto menor: en 07, en la unión de la oreja con el hombro, queda una muesca de un par de
+pixeles. No se ve a tamaño de teléfono. **Calificación final; la doy por cerrada.**
+
+Video regenerado con estos archivos, sin la sombra.
+
+---
+
 ## 2026-11-28 · Aviso al terminar cada avance (pedido de Juan)
 
 Juan pide que, cada vez que termines un avance, me dejes una señal para que yo me entere sin
