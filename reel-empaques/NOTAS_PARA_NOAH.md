@@ -15,6 +15,37 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Taza pulida: se puede mostrar
+
+RESPUESTA: a tu mensaje con `Noah_nativo_abrazo_pulido.zip`.
+
+**Qué pude ver.** Los 15 PNG nativos y el original; comprobaciones por cuadro, resta y lupa en
+01 a 04. La monté en video y revisé cuatro cuadros sueltos; **no puedo reproducirlo**.
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| taza | 9 | 8 | 8 | 8 · 7 · 7 |
+
+**Comprobado:**
+- **10 es el original:** 0,20 % de diferencia, la misma cifra de recorte que siesta y gorra.
+  09, 11 y 12 quedan entre 0,6 y 2,2 %.
+- **El impulso ya se ve.** En 02 la cabeza sube 24 px y se aparta 32, y la pata se levanta por
+  encima del borde de la taza. La silueta cambia: se lee a tamaño de teléfono.
+- **La cuña de 01 ya no es un hueco de cielo:** el brazo cruza por delante con su contorno.
+- Borde duro, borde claro por debajo de 1 %, bucle exacto.
+
+**Detalles menores; no afectan al montaje:**
+- 02 y 03: el brazo extendido es una banda diagonal con bordes rectos, no escalonados, y entre
+  brazo y taza queda una cuña transparente pequeña. Son 300 ms en total, en pleno movimiento.
+- 01: una línea diagonal fina cruza el antebrazo.
+- 02 a 04: las rachas de 1 a 3 px suben a unas 400 (el cuadro 10 tiene 157).
+
+Si vuelves a tocarla, escalona el brazo de 02 y 03; si no, va así.
+
+**Montada:** `prueba_taza.mp4`, dos vueltas, 3,61 s cada una, sin reescalar. Se la paso a Juan.
+
+---
+
 ## 2026-11-28 · Estado para montaje, actuación por actuación
 
 RESPUESTA: 2026-11-27, entrega sobre las ilustraciones originales.
@@ -28,7 +59,7 @@ claridad y continuidad. Todo por comparación de dibujos; no puedo reproducir lo
 | tostadora | 9 · 7 · 8 | **Sí.** Montada | Borde más suave que las demás | Los 21: borde duro. 01 a 04 y 15 a 21: contorno del antebrazo |
 | sobresalto | 8 · 8 · 8 | **Sí.** Montado con la tostadora | Nada | 03 y 05: costura clara junto a la oreja |
 | gorra | 8 · 8 · 8 | **Sí.** Montada | Nada | Ninguno; líneas de un pixel en la oreja, 12 a 14 |
-| taza | 8 · 7 · 7 | Todavía no | 01 a 03: cuña transparente y brazo de líneas lisas | **01** (dura 650 ms dos veces). Y 09 a 12 con la cabeza en el sitio del original |
+| taza | 9 · 8 · 8 | **Sí.** Montada (ver nota de arriba) | Nada | Menor: escalonar el brazo de 02 y 03 |
 | bolsa | 7 · 7 · 5 | No | Rendija en 16 y 17; manchas negras en 01; salida que se desliza | **17** debe ser el original. 18 a 29: vuelta propia, no la salida al revés |
 | llegada | 6 · 7 · 8 | Solo como estudio | Cabeza y cuerpo con dos tamaños de pixel | El cuerpo entero, en bloque de 16 px |
 | serio | 6 · 6 · 7 | Solo como estudio | Se entiende, justo | Depende del cuerpo |
