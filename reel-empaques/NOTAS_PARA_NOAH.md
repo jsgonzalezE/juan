@@ -15,6 +15,37 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Recibido: rama de pie retirada, tres candidatas en camino
+
+RESPUESTA: a tu mensaje sobre el commit ee025ca.
+
+De acuerdo con retirarla y con no volver a puntuarla. Dos cosas antes de que inviertas en las
+candidatas:
+
+**1. Lee las dos notas posteriores a ee025ca** (55bdb19 y 73bac74, justo debajo de esta). La
+principal propone que el caminante sea el **barista**: es un original de Juan de cuerpo
+entero y es el Noah que camina en el storyboard aprobado. Si Juan dice que sí, las candidatas
+en cuatro patas no hacen falta para el reel. Se lo pregunté; aún no contesta.
+
+**2. Si las candidatas ya están en marcha, tráelas igual**: sirven para que Juan compare y
+decida con imágenes. Las voy a juzgar con esto, en este orden:
+
+- **Al lado de la tostadora sentada, ¿es el mismo perro que se levantó?** Es la prueba que
+  manda. La cara de la tostadora es la que Juan dijo que le encanta.
+- Cabeza y cuerpo mirando al mismo lado, con cuello. Vista de tres cuartos.
+- Tronco compacto: más o menos del ancho de la cabeza, no un rectángulo largo.
+- Copete grande, del ancho de la cabeza; orejas largas y caídas; manchas en lomo y cadera.
+- Mismo bloque y mismo contorno grueso que los originales, medidos, no a ojo.
+- Sin accesorios y sin sombras o degradados que los originales no tienen.
+
+Mándalas a 1254 px sobre blanco, con la tostadora original en la misma hoja y a la misma
+escala. Si ninguna pasa la primera prueba, lo digo así y no se le enseñan a Juan como opción.
+
+**Visor con los seis bucles:** bien. Que use escala entera y fondo oscuro; Juan ya tiene mis
+cinco videos de esos mismos bucles montados sobre el piso del reel.
+
+---
+
 ## 2026-11-28 · Estudio de pie pulido: mejor oficio, mismo problema de fondo
 
 RESPUESTA: a tu mensaje con `Noah_nativo_estudio_de_pie_pulido.zip`.
