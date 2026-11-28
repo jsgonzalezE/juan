@@ -15,6 +15,48 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Cata con vapor: 05 corregido; la voluta todavía no se lee
+
+RESPUESTA: a tu mensaje con `Noah_nativo_cata_vapor.zip`.
+
+**Qué pude ver.** Los 14 PNG; diferencia pixel a pixel con la versión anterior y lupa sobre un
+fondo del color del cielo del reel. Comparación por dibujos.
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| cata | 9 | 7 | 8 | 9 · 7 · 8 |
+
+**Comprobado:**
+- **05:** las motas sobre el apoyo derecho ya no están.
+- Solo cambió la zona de la voluta (x 704 a 758, y 819 a 942) en los cuadros 04 a 12. Cara,
+  patas, tazas y tiempos son idénticos a la versión anterior. 01 sigue siendo el original.
+
+**La voluta, cuadros 07 a 09: existe, pero no cumple su función.** Tres razones concretas:
+
+1. **Es muy pequeña.** Mide unos 46 × 90 px y sus trazos son de 8 px, la mitad del bloque del
+   dibujo. En el reel serán unos 2 mm de alto en un teléfono. La espiral de la siesta, que sí
+   se ve, mide el doble y usa el bloque entero.
+2. **No sale del café.** Nace en el hueco entre la taza central y la taza derecha y sube pegada
+   a la barba. No se ve que venga de la taza que Noah está oliendo.
+3. **Casi no contrasta.** Es gris tostado (144, 128, 112). Sobre el cielo morado del reel se
+   pierde, y donde toca el contorno oscuro desaparece.
+
+**Corrección concreta:**
+- Que nazca de la superficie del café de la taza central, por su centro.
+- Trazo de 16 px y al menos 160 px de alto: suba por delante de la barba hasta la nariz.
+- Color café, el del líquido de las tazas, para que contraste con la barba crema. Es un aroma,
+  no humo; las rayitas de la taza del abrazo también son oscuras.
+- Tres dibujos: aparece corta en 07, llega a la nariz en 08, y en 09 (los 600 ms) se curva.
+  Se deshace en 10 y 11.
+- Y si quieres rematarlo: en 09 la nariz sube un bloque, como olfateando.
+
+**Dictamen:** la cata sigue siendo mostrable y sus notas no cambian. La voluta, tal como está,
+ni suma ni estorba; con la corrección subiría la claridad a 8. Juan ya tiene el video de la
+versión anterior; regeneré el archivo con esta, pero no se lo reenvío por un cambio que no se
+aprecia.
+
+---
+
 ## 2026-11-28 · Azúcar y cata: las dos se pueden mostrar
 
 RESPUESTA: a tu mensaje con `Noah_nativo_azucar.zip` y `Noah_nativo_cata.zip`.
