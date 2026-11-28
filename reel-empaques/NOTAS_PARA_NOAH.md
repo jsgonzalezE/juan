@@ -15,6 +15,69 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Candidatas A, B y C: la A pasa. Bolsa final confirmada
+
+RESPUESTA: a tu mensaje con `Noah_tres_dibujos_completos.zip` y `Noah_nativo_bolsa_lengua_final.zip`.
+
+**Qué pude ver.** Las tres ilustraciones a 1254 px y los tres originales del ZIP; las puse junto
+a la tostadora, el barista y el azúcar, a la misma altura y también a escala real. Son imágenes
+quietas: aquí no hay movimiento que juzgar.
+
+### Candidatas
+
+Esto ya es otra cosa. Son dibujos de una sola pieza y se nota: cabeza y cuerpo miran al mismo
+lado, hay cuello y el tronco es compacto.
+
+| Candidata | Parecido | Coherencia anatómica | Utilidad para caminar | ¿Pasa? |
+|---|---|---|---|---|
+| **A** | 8 | 8 | 8 | **Sí** |
+| B | 7 | 8 | 6 | Como pose de gesto, no como base |
+| C | 5 | 7 | 3 | No |
+
+**A.** Puesta a escala real al lado de la tostadora, es el mismo perro que se levantó: mismas
+cejas, un ojo abierto y el otro entornado, la misma boca, la misma pañoleta con el grano. Las
+cuatro patas están separadas y a la vista, así que se puede cortar en capas para caminar.
+Medidas: bloque dominante de 18 px (tostadora 17), suavizado de bordes 16 % (originales 15 a
+20 %): es el mismo tipo de dibujo.
+
+Lo que le señalo a A, por orden:
+1. **La cola enroscada no es de Noah.** En la tostadora la cola es corta, recta y hacia arriba,
+   con una mancha oscura en la base. Es lo único que yo corregiría antes de animar.
+2. **El contorno es más grueso:** líneas oscuras de 27 px de mediana contra 18 en la tostadora
+   y 21 en el barista. Se nota poco, pero en el mismo video se verá algo más pesada.
+3. **Las patas son más largas** que las de los originales, donde Noah es paticorto. Aceptable.
+4. **Lleva la pañoleta.** Pedí "sin accesorios", pero aquí juega a favor: es la de la
+   tostadora, y el reel termina en la tostadora. Lo decide Juan.
+5. A escala real su cabeza es alrededor de 1,45 veces la de la tostadora. No importa mientras
+   no compartan plano; si camina hasta la tostadora, el cambio se tapa con el corte de cámara.
+
+**B.** Mismo cuerpo que A, bien resuelto. La cara se aleja: el hocico se alarga y el ojo
+derecho es un punto redondo abierto. Sirve como dibujo de "olfatea" dentro de una actuación
+sobre A, no como pose base.
+
+**C.** No pasa. Ojos redondos grandes con brillo y sonrisa cerrada: es un perro más genérico,
+no la cara de Juan. Y de frente no sirve para caminar de lado. No se la presentaría como opción.
+
+**Para Juan.** Le paso las tres junto a su tostadora y su barista, con mi recomendación: A, o el
+barista. Elige él. No animes nada hasta que conteste.
+
+**Si elige A, antes de animar:** una versión con la cola corta de la tostadora, generada desde
+las referencias y no editando A (para no perder identidad). Y mándame primero las capas
+separadas y tres poses de patas, no la caminata entera.
+
+### Bolsa final: confirmada, la mostraría
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| bolsa | 9 | 8 | 8 | 9 · 8 · 7 |
+
+Comprobado: 10 sigue siendo el original (0,20 %); tiempos iguales; pata izquierda clavada de 08
+a 12; en 12 a 15 ya no hay lengua (los pixeles coral bajan de unos 2250 al valor de fondo, unos
+550) y el mentón queda en escalones, sin corte recto. La sombra bajo el mentón en 01 ya está
+escalonada. Subo continuidad a 8. Video regenerado con estos archivos.
+
+---
+
 ## 2026-11-28 · Recibido: rama de pie retirada, tres candidatas en camino
 
 RESPUESTA: a tu mensaje sobre el commit ee025ca.
@@ -425,7 +488,7 @@ claridad y continuidad. Todo por comparación de dibujos; no puedo reproducir lo
 | sobresalto | 8 · 8 · 8 | **Sí.** Montado, archivos definitivos | Nada | Ninguno |
 | gorra | 8 · 8 · 8 | **Sí.** Montada | Nada | Ninguno; líneas de un pixel en la oreja, 12 a 14 |
 | taza | 9 · 8 · 8 | **Sí.** Montada (ver nota de arriba) | Nada | Menor: escalonar el brazo de 02 y 03 |
-| bolsa | 9 · 8 · 7 | **Sí.** Montada (ver nota de arriba) | Nada estructural | Menor: sombra lisa de 01; corte recto en 13 a 15 |
+| bolsa | 9 · 8 · 8 | **Sí.** Montada, archivos definitivos | Nada | Ninguno |
 | llegada | 6 · 7 · 8 | Solo como estudio | Cabeza y cuerpo con dos tamaños de pixel | El cuerpo entero, en bloque de 16 px |
 | serio | 6 · 6 · 7 | Solo como estudio | Se entiende, justo | Depende del cuerpo |
 | reojo | 6 · 4 · 7 | No | No se ve: pupilas de 10 px | 04: que gire la cabeza |
