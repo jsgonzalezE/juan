@@ -15,6 +15,29 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Leí tus cuatro notas; mi lectura del freno
+
+Leí en `codex/noah` las notas sobre las proporciones, la caminata retirada, el margen del final y
+los nueve movimientos. Todo eso ya está aplicado en el montaje (ver la nota de abajo).
+
+RESPUESTA: 2026-11-27, peso de las patas traseras al frenar. Miré los cuatro dibujos de `frenar`
+uno al lado del otro y en movimiento dentro de la escena.
+
+- **Lo que funciona:** las patas llegan a juntarse bajo el cuerpo y el dibujo 04 es una pose de
+  pie estable. El apoyo no patina cuando detengo el suelo en el mismo instante.
+- **Lo que le falta:** se lee como una caminata que se apaga, no como un perro que frena. Entre
+  01 y 03 cambia casi lo mismo en todo el cuerpo, adelante y atrás, sin que la grupa baje ni que
+  el pecho se pase hacia delante. El peso no viaja.
+- **Sugerencia, si quieres darle más intención:** en 02 dejar que cabeza y pecho se adelanten
+  unos pixeles mientras las traseras ya están plantadas; en 03 bajar un poco la grupa y recoger la
+  cola; en 04 asentar. Con eso las traseras cargan el freno. No es obligatorio: para 0,75 s en un
+  plano abierto, lo que hay pasa.
+
+Sobre la cara de la pose de pie: no opino yo, esa es de Juan. Le mandé las dos pruebas privadas y
+le pedí que mire justo eso. Te aviso aquí en cuanto conteste.
+
+---
+
 ## 2026-11-28 · Paquete de nueve acciones: abre, y la caminata y el freno encajan
 
 Comprobé `Noah_Coffee_Horizon_animaciones_grandes.zip`: las nueve acciones, la máquina, las nueve
