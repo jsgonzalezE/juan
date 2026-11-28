@@ -15,6 +15,133 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Cómo hacer bien al Noah que camina (investigado a fondo)
+
+Dos noticias de Juan primero:
+
+- **Vio de cerca la cara del sobresalto (crack 03 y 05) y dijo: "me encanta, esto está bien".**
+  Esa cara, que es la de su ilustración de la tostadora, queda como referencia de Noah.
+- El Noah de pie le sigue pareciendo horrible y me pidió investigar cómo hacerlo de verdad.
+
+Esta nota reemplaza el "paso 1" de mi nota anterior. Y corrijo algo que dije ahí: medí mejor y
+la cabeza del Noah de pie no es pequeña en alto (ocupa cerca del 40 % sin copete, como en los
+originales). Lo que falla es que el cuerpo de perfil estricto queda muy largo, que no hay
+cuello y que la cara mira a otro lado que el cuerpo.
+
+### 1. El hallazgo: no hace falta inventar ningún cuerpo
+
+Revisé otra vez las once ilustraciones de Juan. Tres de ellas ya son lo que estabas armando con
+piezas:
+
+| Lo que necesitas | Original que ya existe | Archivo |
+|---|---|---|
+| Noah de pie, cuerpo entero | El **barista**: de pie en dos patas, de frente, con delantal y taza | `noah_pixel_barista` |
+| Mirar de reojo | El del **azúcar**: echado, mirando de lado con desconfianza | `noah_pixel_sugar` |
+| Serio | El de la **cata**: ceño fruncido, patas sobre la mesa | `noah_pixel_cupping` |
+| Oreja levantada | La **tostadora**, que ya tienes animada | `noah_pixel_roaster` |
+
+Y lo decisivo: **en el storyboard que Juan aprobó, el Noah que camina sobre el horizonte es el
+barista** (cuadros 1 y 3, "follow Noah"). Yo lo puse ahí desde el principio y lo perdimos de
+vista cuando el encargo empezó a hablar de "caminar de perfil". El error de origen es mío: mi
+encargo pedía un perro de perfil en cuatro patas que no existe en ningún original.
+
+Propuesta: **el caminante es el barista**, animado con el mismo método que siesta, gorra, taza,
+bolsa y tostadora. Parecido garantizado desde el cuadro 01, porque el cuadro 01 es el original.
+
+### 2. Caminata del barista, paso a paso
+
+Es una caminata de frente, en el sitio: él marca el paso y el mundo gira debajo. Como va de
+frente, ningún pie tiene que avanzar ni retroceder; yo muevo el suelo.
+
+**Capas** (rellenando una sola vez lo que queda detrás de cada una):
+cabeza · oreja izquierda · oreja derecha · copete · lengua · torso con delantal · lazo del
+delantal · brazo con plato y taza · brazo en la cadera · pierna izquierda · pierna derecha ·
+rayitas junto a la taza.
+
+**Ocho dibujos, 100 a 125 ms cada uno, dos pasos por vuelta.** Todo en pasos de 8 o 16 px:
+
+| Dibujo | Pies | Cuerpo | Cabeza | Lo que llega tarde |
+|---|---|---|---|---|
+| 01 | Los dos en el suelo (es el original) | En su sitio | En su sitio | Todo en reposo |
+| 02 | Pie derecho sube 16 px | Baja 8 px y se carga 8 px hacia el pie izquierdo | Aún en su sitio | Plato quieto |
+| 03 | Pie derecho arriba, 24 px | Sube 8 px sobre su sitio | Baja 8 px (va un dibujo detrás del cuerpo) | Orejas y copete en su sitio |
+| 04 | Pie derecho baja a 8 px | Vuelve a su sitio | Sube 8 px | Orejas bajan un bloque; plato sube 8 px |
+| 05 | Los dos en el suelo | Baja 8 px (golpe del paso) | En su sitio | Copete se aplasta un bloque |
+| 06 a 08 | Lo mismo con el pie izquierdo | Carga hacia el pie derecho | Igual | Igual |
+
+Reglas:
+- **El plato con la taza va siempre un dibujo detrás del cuerpo** y nunca se inclina: eso es lo
+  que hace que parezca que lleva algo con cuidado. Las rayitas parpadean cada dos dibujos.
+- **La cabeza no se redibuja nunca.** Solo se desplaza. La lengua puede subir y bajar 8 px.
+- **Frenada:** del dibujo de paso se cae al 05 con 16 px de hundimiento, rebote al 01 y pausa.
+  El 01 es el original: 01 menos original debe dar el 0,2 % del recorte, como en las demás.
+- **Arranque:** anticipación de 8 px hacia abajo antes del primer paso.
+- Las cuatro comprobaciones de siempre: sin huecos, sin líneas finas, borde duro, borde claro
+  por debajo del 1 %.
+
+Riesgo que veo: de frente, la caminata se lee como "marchar en el sitio". Por eso importa el
+vaivén lateral de 8 px y que orejas, copete y plato lleguen tarde. Si el cuerpo solo sube y
+baja, parecerá un muñeco con resorte.
+
+### 3. Reojo y serio
+
+No los hagas sobre un cuerpo de pie. Con el método de capas:
+- **Reojo, sobre el del azúcar:** el original ya es la pose final. Empieza con los ojos al
+  frente (hay que pintar esas dos pupilas), gira la mirada hacia la taza, baja una ceja y la
+  oreja cercana da un tirón. La cuchara con el terrón puede temblar.
+- **Serio, sobre el de la cata:** el original ya tiene el ceño. Parte de cejas relajadas, baja
+  el ceño, y una pata da dos golpecitos en la mesa.
+
+### 4. Solo si Juan pide un Noah en cuatro patas
+
+Entonces sí hace falta una ilustración nueva, y la única forma que le veo futuro es generarla
+entera, no ensamblarla. Lo que encontré (documentación y guías de terceros; no lo probé):
+
+- **Generación de imagen dentro de Codex.** Varias guías dicen que Codex trae generación de
+  imagen integrada (`$imagegen`), con hasta 16 imágenes de referencia por llamada; con
+  `codex exec` se pasan con `-i`, repetido. Los detalles exactos cambian entre guías: mira la
+  ayuda de tu versión.
+  https://codex.danielvaughan.com/2026/06/04/codex-cli-visual-workflows-image-input-gpt-image-2-generation-asset-pipelines-v0137/
+- **Cómo pedirlo**, según la guía de OpenAI sobre imágenes con referencia: decir qué rasgos y
+  proporciones no pueden cambiar, repetir esas condiciones en cada pedido, y nombrar las
+  referencias por orden ("imagen 1").
+  https://developers.openai.com/api/docs/guides/image-prompting
+- **No encadenes ediciones.** Hay estudios que miden que el personaje pierde identidad edición
+  tras edición. Cada candidata se genera desde los originales, no desde la candidata anterior.
+- **Referencias:** tostadora (cuerpo en tres cuartos, cola, pañoleta), siesta y azúcar (manchas
+  del lomo y la cadera), barista (patas y pies).
+- **Pedido tipo:** "El mismo perro de las imágenes 1 a 4, de pie sobre sus cuatro patas, en
+  vista de tres cuartos mirando a la derecha, la misma vista de cabeza que la imagen 1. Mismo
+  pixel art de bloques grandes, mismo contorno oscuro grueso, mismos colores. Copete grande
+  atado con cinta clara, orejas negras largas y caídas, manchas negras en lomo y cadera, cola
+  corta levantada. Sin accesorios. Fondo blanco liso. No cambies la cara ni las proporciones
+  de la cabeza."
+- **Tres o cuatro candidatas, Juan elige una quieta**, y solo entonces se anima por capas.
+- La vista debe ser tres cuartos, como la tostadora, no perfil estricto: así cabeza y cuerpo
+  miran al mismo lado y el cuerpo no queda largo.
+
+**PixelLab** sirve aquí solo como guía de poses. Sus herramientas trabajan en tamaños pequeños:
+rotar y animar con esqueleto hasta 128 × 128, las de edición hasta 256, texto a imagen hasta
+400. Tiene plantilla de perro con caminatas de 4, 6 y 8 cuadros y un estimador de esqueleto de
+18 puntos. https://www.pixellab.ai/docs/tools/animate-with-skeleton ·
+https://api.pixellab.ai/mcp/docs
+
+**Caminata en cuatro patas, lo esencial:** cuatro poses por paso (contacto, abajo, paso,
+arriba); cuando una pata delantera está en contacto, la trasera va en paso; caderas y pecho
+suben y bajan como dos pelotas desfasadas; la cola sigue a la cadera con retraso.
+https://gamedeveloper.com/art/animating-four-legged-beasts ·
+https://www.slynyrd.com/blog/2020/1/23/pixelblog-25-motion-cycles
+
+### 5. Qué hacer ahora
+
+1. Espera a que Juan confirme que el caminante es el barista; se lo estoy preguntando.
+2. Si dice que sí: caminata del barista (sección 2), y mándame primero **solo los dibujos 01,
+   03 y 05** para revisar capas y rellenos antes de hacer los ocho.
+3. Reojo y serio sobre sus originales (sección 3), después.
+4. El estudio de cuatro patas queda archivado.
+
+---
+
 ## 2026-11-28 · Noah de pie: Juan lo rechazó. Hay que cambiar de camino, no seguir afinando
 
 Juan me mostró la hoja con las cuatro poses de pie (neutro / cuerpo 16, oreja intermedia, oreja
