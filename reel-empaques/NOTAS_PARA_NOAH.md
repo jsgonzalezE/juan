@@ -15,6 +15,70 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Siesta y gorra pulidas: segunda calificación
+
+RESPUESTA: a tu mensaje con `Noah_prueba_descanso_pulido.zip`.
+
+**Qué pude ver.** Por acción: cuatro claves nativas (siesta 01, 08, 12, 16; gorra 01, 07, 11,
+15) y todos los dibujos de consulta a mitad de tamaño sobre oscuro. **Comparación por dibujos;
+nada en reproducción.** Lo que afirmo "con lupa" sale de las claves nativas; los recorridos los
+medí en las consultas.
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| siesta | 9 | 8 | 8 | 9 · 7 · 7 |
+| gorra | 8 | 8 | 6 | 8 · 6 · 5 |
+
+### siesta: casi lista
+
+Corregido y comprobado:
+- **Mentón (clave 08):** la mancha blanca lisa ya no está; quedó cerrado con contorno.
+- **Ojo:** la ceja y la pupila ya tienen el grosor del original.
+- **Subida:** pareja, 8 px por paso (490, 482, 474, 466, 458), y baja con un pequeño rebote.
+- **Pata:** ahora alcanza 64 px (cuatro bloques); se va a ver en teléfono.
+- Borde claro 0 %; transparencia parcial solo en la espiral.
+
+Lo que queda:
+- **Clave 12 (120 ms):** la pata alargada es un cuadrilátero liso con un borde recto inclinado y
+  una línea diagonal fina encima. Es el mismo defecto del mentón, ahora en la pata. Rehacerla
+  con bloques y su contorno.
+- Las líneas de 1 a 3 px se multiplicaron: 43 en la clave 01, entre 147 y 215 en las claves 08,
+  12 y 16. Están bajo el mentón y junto a las patas. Límpialas.
+- El cuadro 09, que era el fallo principal, no viene entre las claves nativas. En la consulta a
+  mitad de tamaño se ve limpio, pero no lo pude confirmar con lupa.
+
+**Para montarla necesito los 22 PNG nativos transparentes**, como en el paquete anterior. Con la
+pata de 12 a 14 corregida, es la primera que le muestro a Juan en video.
+
+### gorra: ahora sí se entiende
+
+Corregido y comprobado en las consultas:
+- **La caída acelera:** la gorra baja 8, 16, 24, 32, 32, 32 y 8 px por dibujo. Tiene peso.
+- **La boca reacciona:** "o" pequeña en 03 y 04, cerrada de 05 a 17, vuelve a abrir en 18 a 20.
+- **El orejazo va primero:** la oreja derecha sale 114 px en 12, un dibujo antes de que la gorra
+  suba (13 y 14). La gorra se pasa 40 px por encima de su sitio en 15 y rebota hasta asentarse.
+  Causa y efecto se leen.
+- El hueco bajo la visera izquierda está cerrado.
+
+Lo que queda, todo en la oreja derecha de 12 a 15:
+- **Está dibujada con un pixel más pequeño que el resto**, más o menos la mitad del bloque, con
+  motas sueltas y líneas de un pixel. En el original esa oreja son bloques limpios con una
+  franja de brillo. Al lado de la gorra, que sí conserva su bloque, se nota el cambio de estilo.
+- **Clave 15:** sigue habiendo una cuña transparente entre el cuello y la oreja. En el original
+  la oreja queda pegada al cuello.
+- **Cuadro que señalo para teléfono: 13 (85 ms).** La oreja extendida se ve como un borrón.
+
+Corrección: no girar ni deformar la oreja. Tres dibujos hechos con el bloque de 16 px: cargada
+(pegada a la cabeza, un bloque más abajo), extendida (la misma oreja desplazada hacia afuera y
+arriba, con su franja de brillo) y de vuelta. Si quieres estela de movimiento, que sean dos o
+tres bloques sueltos detrás, no pelos de un pixel.
+
+**Sobre el borde claro de la gorra:** en mi nota anterior lo conté como resto del fondo. Lo
+revisé: la clave 01, que es el original, ya tiene 6,4 %, así que en la gorra es parte del dibujo
+(la copa crema llega al borde). Retiro esa observación para la gorra.
+
+---
+
 ## 2026-11-28 · Siesta y gorra sobre los originales
 
 RESPUESTA: a tu mensaje con `Noah_originales_siesta.zip` y `Noah_prueba_gorra.zip`.
