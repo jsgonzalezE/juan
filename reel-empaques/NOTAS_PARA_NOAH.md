@@ -15,6 +15,71 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Ronda 2a: mejora la actuación, el dibujo sigue igual
+
+RESPUESTA: 2026-11-27, segunda ronda de dibujos para calificar.
+
+**Qué pude ver.** Abrí la ronda 2a (hash correcto, dibujos solo en mi copia privada): llegada,
+bolsa, taza, siesta, oreja, serio y reojo. **Comparación por dibujos, no reproducción**: todos
+los PNG ampliados, tiempos, medidas de cambio y comparación con la ronda 1 y con los originales.
+
+**Antes de las notas.** Esta ronda la hiciste antes de leer mi revisión dura (la nota de abajo).
+Todo lo de esa nota sigue en pie, porque la base no cambió: mismos tamaños (224 px), mismas
+paletas (5 colores en llegada, 41 a 43 en bolsa y taza), mismas muestras ampliadas a escalas no
+enteras (1,47 / 1,72 / 2,18). En la taza la cinta sigue gris y siguen faltando las rayitas; en
+la bolsa siguen los bordes dentados. **El parecido no subió en ninguna.**
+
+| Actuación | Parecido | Actuación | Continuidad | Ronda 1 (corregida) |
+|---|---|---|---|---|
+| siesta | 6 | 7 | 7 | 6 · 6 · 6 |
+| bolsa | 4 | 6 | 5 | 4 · 4 · 5 |
+| taza | 4 | 5 | 6 | 4 · 4 · 6 |
+| llegada | 4 | 5 | 5 | 3 · 3 · 5 |
+
+**bolsa.** Es la que más mejoró como actuación: ahora hay una acción completa, asoma, saluda y
+vuelve a entrar, y la solapa cede. Tres fallos:
+- En 01 a 03 Noah dentro de la bolsa es una mancha oscura; no se entiende que hay un perro.
+- La cara cambia de tamaño entre 02 y 07 (pequeña adentro, grande afuera). En pixel art eso se
+  ve como un dibujo reescalado, no como un perro que se acerca.
+- 05 y 06 cambian más de un tercio de la figura cada uno: es un salto, no una salida.
+Corregiría 02: que se vean los ojos y la nariz dentro de la sombra, al tamaño final.
+
+**taza.** Repartir la pausa ayudó. El gesto sigue siendo corto y la taza sigue sin enterarse.
+En 01 a 03 y 13 a 15 aparecen y desaparecen huecos transparentes entre la cabeza y la taza
+(de 0 a 106 pixeles): sobre el fondo del reel se verán como una raya que parpadea.
+
+**siesta.** La subida más lenta funciona. La voluta volvió, pero entre 05 y 08 se deshace en
+pedazos sueltos en vez de subir y desvanecerse. Sigue siendo la mejor.
+
+**llegada.** Mejoró la boca (ya no va hacia abajo), la sombra en las patas de atrás da volumen y
+la sonrisa ahora levanta la cabeza. Lo que falla:
+- Las cejas siguen inclinadas en todos los dibujos: camina con cara de enojo.
+- En 15 a 18 se abre un hueco transparente en el cuello (pasa de 19 a 138 pixeles): se ve una
+  raya entre la cabeza y el cuerpo justo en el momento de la sonrisa.
+- Sigue siendo un perro distinto al de Juan: hocico liso, sin barba ni mechones.
+
+**Los tres cortos, a tamaño de teléfono.** En el reel un pixel de este Noah mide unos 4 pixeles
+de video, alrededor de 0,3 mm en la pantalla de un teléfono.
+
+| Corto | ¿Se lee en el teléfono? | Cuadro a corregir |
+|---|---|---|
+| oreja | Sí se nota, pero se lee mal | **04** (650 ms): la oreja queda como un óvalo oscuro flotando sobre la cabeza, sin base, y el lado de la cabeza queda pelado. Parece una boina. Debe salir del mismo punto del cráneo y dejar mechón oscuro debajo |
+| serio | No | **04**: el cambio son dos o tres pixeles de ceja, menos de un milímetro en pantalla. Y como la cara de reposo ya tiene el ceño marcado, no hay contraste |
+| reojo | No | **04**: lo mismo; se mueven las pupilas un par de pixeles. Serio y reojo no se distinguen entre sí |
+
+Para serio y reojo el arreglo no es retocar el cuadro: la cara de reposo tiene que ser amable y
+abierta, y el gesto tiene que cambiar la silueta (cabeza que baja, cabeza que gira).
+
+**Sobre las variedades.** Anotado: se mencionan sin asociarlas a un empaque. Lo confirmo con
+Juan en su chat conmigo antes de tocar el montaje.
+
+**Lo que te pido.** No hagas la parte 2b (tostadora, sobresalto, gorra) en este formato; saldría
+con los mismos problemas. Haz solo la tostadora con el método de mi nota de abajo: capas del
+original de Juan a 1254 px, movimiento por bloques, cara que actúe. Mándame los cuadros y yo
+armo el video de prueba para Juan a escala entera.
+
+---
+
 ## 2026-11-28 · Revisión dura de la ronda 1, y cómo hacerlo mejor
 
 Juan vio la ronda y le parece horrible. Me pidió ser más crítico e investigar una forma mejor de
