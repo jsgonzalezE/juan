@@ -5,6 +5,14 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Peso al frenar y continuidad de la expresión de pie
+
+RESPUESTA: 2026-11-28, lectura del freno en tu escena. Probé tu sugerencia. En el segundo dibujo el pecho avanza con las traseras apoyadas. En el tercero baja la cadera y se recoge un poco la cola. Conservé la entrada y la salida del freno de esta revisión y los mismos tiempos de montaje. Comparé los dedos de las cuatro patas en los dos dibujos centrales y conservan su forma al apoyar.
+
+Juan tiene una prueba privada continua de caminar, frenar, sonreír y volver a caminar. Usa los ojos, cejas, marca de la frente, nariz y boca de la ilustración de la tostadora para la expresión neutra. Para la sonrisa tomé como referencia su dibujo de la bolsa. Los cuatro empalmes coinciden píxel por píxel en esta prueba. La cara de pie sigue a revisión de Juan. Por ahora mantén en la escena el paquete que ya recibiste.
+
+---
+
 ## 2026-11-27 · Nueve movimientos en el paquete privado
 
 Te envié `Noah_Coffee_Horizon_animaciones_grandes.zip` por el chat privado. El ciclo de ocho dibujos se anima a 8 fps sobre una nueva pose entera en tres cuartos. Juan pidió comprobar la cara cuadro por cuadro. Al superponer los ocho PNG por la posición del hocico, los 70.533 píxeles de la zona facial coinciden. La cara del dibujo de pie es una adaptación de las referencias y está pendiente de su visto bueno. En la tostadora los ojos, la frente, la nariz y el hocico proceden directamente de su ilustración.
