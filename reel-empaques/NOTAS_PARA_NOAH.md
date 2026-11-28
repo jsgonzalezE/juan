@@ -15,6 +15,40 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Tostadora y sobresalto definitivos: mantengo 9 · 7 · 8 y 8 · 8 · 8
+
+RESPUESTA: a tu mensaje con los dos ZIP de contorno.
+
+**Qué pude ver.** Los 33 PNG; comprobaciones por cuadro, comparación pixel a pixel con la
+versión anterior y lupa en los tres detalles. Comparación por dibujos.
+
+**Los tres detalles, comprobados:**
+
+| Detalle | Antes | Ahora |
+|---|---|---|
+| Alfa todo o nada | 6400 a 8800 pixeles semitransparentes por cuadro | 0 en los 33 |
+| Contorno del antebrazo (borde casi blanco en 01 a 04 y 15 a 21) | 2,2 a 2,7 % | 0,2 a 0,8 % |
+| Costura clara junto a la oreja en sobresalto 03 y 05 | visible | cerrada |
+
+**Lo demás no cambió, como dices:** donde los dos archivos son opacos no hay ni un pixel de
+color distinto; solo cambió el borde. Tiempos iguales, tostadora 13 idéntico a sobresalto 01, y
+los dos bucles cierran.
+
+Una aclaración para que no te extrañe: 13 contra el original pasa de 0,18 % a 0,73 %. Los
+11 499 pixeles distintos están todos a menos de 3 px del exterior; es el borde duro, no el
+dibujo.
+
+**Notas: las mantengo.** Tostadora 9 · 7 · 8, sobresalto 8 · 8 · 8. Las reservas de montaje
+quedan resueltas. La actuación de la tostadora sigue en 7 por lo mismo de antes: la cara cambia
+poco. No lo considero pendiente.
+
+Único resto, menor: en 05 a 07 el borde casi blanco es 1,3 a 1,7 % (el brazo a media subida).
+
+**Montaje regenerado** con estos archivos: tostadora 01 a 13, salto 02 a 12, tostadora 14 a 21;
+4,46 s por vuelta. Son los que usaré en el reel.
+
+---
+
 ## 2026-11-28 · Bolsa pulida: sí la mostraría. Notas finales de bolsa y taza
 
 RESPUESTA: a tu mensaje con `Noah_nativo_bolsa_pulida.zip`.
@@ -101,8 +135,8 @@ claridad y continuidad. Todo por comparación de dibujos; no puedo reproducir lo
 | Actuación | Notas | ¿Uso los cuadros actuales? | Falla en teléfono | Dibujo que cambiaría |
 |---|---|---|---|---|
 | siesta | 9 · 8 · 9 | **Sí.** Montada | Nada | Ninguno; limpiar líneas finas de 04 a 07 |
-| tostadora | 9 · 7 · 8 | **Sí.** Montada | Borde más suave que las demás | Los 21: borde duro. 01 a 04 y 15 a 21: contorno del antebrazo |
-| sobresalto | 8 · 8 · 8 | **Sí.** Montado con la tostadora | Nada | 03 y 05: costura clara junto a la oreja |
+| tostadora | 9 · 7 · 8 | **Sí.** Montada, archivos definitivos | Nada | Ninguno |
+| sobresalto | 8 · 8 · 8 | **Sí.** Montado, archivos definitivos | Nada | Ninguno |
 | gorra | 8 · 8 · 8 | **Sí.** Montada | Nada | Ninguno; líneas de un pixel en la oreja, 12 a 14 |
 | taza | 9 · 8 · 8 | **Sí.** Montada (ver nota de arriba) | Nada | Menor: escalonar el brazo de 02 y 03 |
 | bolsa | 9 · 8 · 7 | **Sí.** Montada (ver nota de arriba) | Nada estructural | Menor: sombra lisa de 01; corte recto en 13 a 15 |
