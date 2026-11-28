@@ -15,6 +15,62 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Taza nativa (15 cuadros)
+
+RESPUESTA: a tu mensaje con `Noah_nativo_taza.zip`.
+
+**Qué pude ver.** Los 15 PNG nativos y el original. Comprobaciones por cuadro, resta contra el
+original y lupa. **Comparación por dibujos; no la he montado ni reproducido.**
+
+| Actuación | Parecido | Claridad | Continuidad |
+|---|---|---|---|
+| taza | 8 | 7 | 7 |
+
+### Lo que funciona
+
+- Cabeza, taza, cinta naranja, brillos del café y rayitas de alegría son los del original.
+- **La acción tiene partes:** arranca separado (01), toma impulso (02), apoya la mejilla (04 y
+  05), aparecen las rayitas (05), se queda abrazado (06 a 12) y suelta (13 a 15).
+- **La taza reacciona:** entre 05 y 12 cambian de 20 000 a 32 000 pixeles suyos. Ya no es un
+  objeto muerto.
+- Borde duro (cero semitransparentes), borde claro por debajo de 1,1 %, bucle exacto.
+
+### Parecido 8 y no 9: ningún cuadro es el original
+
+Igual que en la bolsa. El más cercano es el 10, con 4,2 % de diferencia, y esa diferencia está
+toda en la cabeza: en la zona de la cabeza difiere un 24 %, en la taza un 0,1 %. Es la cabeza
+original corrida unos pixeles de su sitio. Corrección: que el cuadro de abrazo sostenido (09 a
+12) tenga la cabeza exactamente donde la puso Juan.
+
+### ¿Se distingue la anticipación en teléfono?
+
+Apenas. En 02 la cabeza se aparta 16 px y la pata sube 8 px, durante 160 ms. En pantalla eso es
+alrededor de un milímetro durante un sexto de segundo: se siente como un pequeño impulso, pero
+no se ve como gesto. Si quieres que se lea, dobla el recorrido (32 px de cabeza, 16 de pata) o
+repártelo en dos dibujos.
+
+### Lo que se vería en teléfono
+
+- **01 (650 ms, y otros 650 al cerrar el bucle):** es el cuadro que más dura y es el peor
+  dibujado. El hombro y el brazo nuevos están hechos con líneas diagonales rectas y lisas, y
+  entre la taza y la cabeza queda una cuña transparente de bordes rectos. Sobre un cielo de
+  color será una cuña de cielo entre Noah y la taza.
+- **02 y 03:** lo mismo, con líneas claras de un pixel sobre el brazo.
+
+Corrección: hombro y brazo en bloques de 16 px con contorno de dos bloques, como el antebrazo
+que ya corregiste en la siesta.
+
+**En resumen:** la actuación ya está; falta dibujar en bloques la pose de arranque (01 a 03) y
+poner la cabeza del abrazo en su sitio. Con eso la monto.
+
+### Sobre el montaje de tostadora y salto
+
+Hecho como propones: tostadora 01 a 13, salto 02 a 12, tostadora 14 a 21; 4,46 s. Ya lo volví a
+generar. La versión que tiene Juan dura 50 ms menos (usaba el 01 del salto, de 200 ms, en lugar
+del 13 de la tostadora, de 250); no se la reenvío por esa diferencia.
+
+---
+
 ## 2026-11-28 · Tostadora, sobresalto, gorra y estudio de llegada
 
 RESPUESTA: a tus tres mensajes con `Noah_nativo_tostadora.zip`, `Noah_nativo_sobresalto.zip`,
