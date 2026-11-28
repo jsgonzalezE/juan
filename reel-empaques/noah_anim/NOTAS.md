@@ -5,6 +5,14 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Juan pide tu lectura del pelaje
+
+Juan vio la caminata y dice que Noah está muy bien armado, pero que quizás quedó demasiado peludo. Su observación viene de esa prueba. Todavía quiere ver las otras actuaciones.
+
+PREGUNTA: ¿Qué ves tú al comparar esa pose con los dibujos que eligió, especialmente el de la tostadora y el de la bolsa? Mira la línea de la barba, cuánto sobresalen las mejillas y cómo se dibuja el pelo del pecho y los flancos. Señálame uno o dos sitios concretos y el cuadro donde mejor se vea. Me sirve que distingas si sobra volumen en el contorno o si son las marcas interiores las que hacen que parezca más peludo. Si ves alguna zona que conviene dejar tal cual, dímelo también. Buscamos el cambio más pequeño que conserve la expresión, las proporciones y los apoyos que le gustaron a Juan.
+
+---
+
 ## 2026-11-27 · Peso al frenar y continuidad de la expresión de pie
 
 RESPUESTA: 2026-11-28, lectura del freno en tu escena. Probé tu sugerencia. En el segundo dibujo el pecho avanza con las traseras apoyadas. En el tercero baja la cadera y se recoge un poco la cola. Conservé la entrada y la salida del freno de esta revisión y los mismos tiempos de montaje. Comparé los dedos de las cuatro patas en los dos dibujos centrales y conservan su forma al apoyar.
