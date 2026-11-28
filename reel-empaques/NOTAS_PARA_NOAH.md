@@ -15,6 +15,87 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Siesta y gorra sobre los originales
+
+RESPUESTA: a tu mensaje con `Noah_originales_siesta.zip` y `Noah_prueba_gorra.zip`.
+
+**Qué pude ver.** Siesta: los 22 cuadros nativos, reconstruidos con claves y parches (los 22
+hashes coinciden; usé mi propia copia de tu procedimiento, no ejecuté el script del ZIP). Gorra:
+las cuatro claves nativas y los 20 dibujos de consulta a mitad de tamaño. **Comparación por
+dibujos y resta contra el original; nada en reproducción.**
+
+| Actuación | Parecido | Claridad | Continuidad | Fallo visible en teléfono |
+|---|---|---|---|---|
+| siesta | 9 | 7 | 7 | **09** |
+| gorra | 8 | 6 | 5 | **15**, y el tramo **11 a 12** |
+
+### siesta
+
+**Parecido 9.** El cuadro 01 difiere del original en 0,25 %, todo en el borde del recorte. Es
+la siesta de Juan. El bucle cierra exacto y la cabeza sube en pasos de 8 px.
+
+**Lo que funciona:** la espiral sube entera y se desvanece; el ojo que se abre en 08 a 10 se
+entiende; se mueve el 59 % de la figura sin que nada parezca pegado.
+
+**Cuadro 09 (290 ms, la pausa más larga del gesto).** Al levantar la cabeza quedó debajo del
+mentón y de la pata izquierda un relleno blanco liso, con borde recto inclinado y sin contorno
+oscuro: el blanco toca el fondo directamente. Sobre el cielo oscuro del reel será una mancha
+clara que aparece casi un tercio de segundo. Arriba a la derecha, entre cabeza y lomo, hay otra
+cuña lisa. Corrección: pintar lo que queda detrás de la cabeza levantada en bloques de 16 px y
+cerrarlo con el contorno de dos bloques.
+
+**Menores:**
+- 13 y 15: astillas oscuras de un pixel de grosor junto a las patas y fragmentos sueltos a la
+  derecha de la cabeza.
+- La línea del ojo abierto es más delgada que las del original (unos 6 px contra 10 o 12).
+- 08 sube 16 px de golpe cuando los demás suben 8: se notará un tirón justo antes de abrir el
+  ojo.
+- La pata que se alarga en 13 a 15 se mueve muy poco; en teléfono puede no verse. Un bloque más.
+
+### gorra
+
+**El gag nuevo es mejor que los dos anteriores.** Que la visera le tape los ojos se entiende a
+cualquier tamaño, porque cambia la silueta y desaparecen los ojos. La clave 01 es el original
+(0,15 % de diferencia).
+
+**Lo que no se entiende es el regreso.** La gorra vuelve a subir, pero no se ve el orejazo: las
+orejas casi no cambian entre 11 y 13. Se lee "se le cae y se acomoda sola". El orejazo necesita
+su anticipación (la oreja baja y se carga en 11), el golpe en un solo dibujo con la oreja
+claramente arriba y fuera de la silueta (12), y la gorra saliendo un dibujo después, no a la vez.
+
+**La cara no reacciona.** En los 20 dibujos la boca queda abierta con la misma forma. Si le cae
+la gorra en los ojos, la boca tiene que cerrarse o cambiar. Es lo único que sigue pareciendo
+una pieza pegada.
+
+**Cuadro 15 (110 ms), el fallo más visible.** Con lupa a tamaño real:
+- Hay un hueco transparente entre la visera y la cabeza, a la izquierda, y otro en el cuello a
+  la derecha. Se verá el color del cielo a través de Noah.
+- La visera y la oreja derecha tienen tiras horizontales desplazadas, como un peine, y líneas
+  de un pixel de grosor. No son bloques.
+
+**Cuadro 11 (90 ms):** las mismas líneas de un pixel en el borde de la oreja derecha.
+
+**Borde claro:** entre 5 y 7 % del contorno exterior es casi blanco; en la tostadora era 4 %.
+
+### La causa es una sola
+
+Mejilla de la tostadora, mentón de la siesta, hueco bajo la visera: en los tres casos se movió
+una capa y lo que quedó detrás se rellenó con una forma lisa o no se rellenó. Vale la pena una
+revisión automática antes de enviar, por cuadro:
+
+1. Ningún pixel transparente que sea figura en el cuadro anterior y en el siguiente.
+2. Ninguna línea de menos de 6 px de grosor (fuera de las que ya tiene el original).
+3. Borde exterior casi blanco por debajo del 1 %.
+4. Transparencia parcial solo en la espiral de la siesta.
+
+### Orden que seguiría
+
+Tostadora y sobresalto primero (son el final del reel), luego siesta (le falta poco), luego
+gorra. Cuando la siesta tenga el 09 corregido la monto en video para Juan: es la que está más
+cerca.
+
+---
+
 ## 2026-11-28 · Cuatro claves de la tostadora sobre el original: la base ya es la correcta
 
 RESPUESTA: a tu mensaje con `Noah_tostadora_original_4_claves.zip`.
