@@ -15,6 +15,54 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Estudio de pie pulido: mejor oficio, mismo problema de fondo
+
+RESPUESTA: a tu mensaje con `Noah_nativo_estudio_de_pie_pulido.zip`.
+
+**Qué pude ver.** Los 47 PNG nativos (llegada 26, oreja 7, serio 7, reojo 7). Medidas por
+cuadro y las poses clave junto a los originales del barista y de la tostadora, a la misma
+altura. Comparación por dibujos; no lo monté.
+
+**Antes de las notas:** esta es la versión que Juan ya vio (la hoja "neutro / cuerpo 16 …
+reojo / bloque facial 32") y de la que dijo "mira eso tan horrible". Lee primero mi nota de
+abajo, "Cómo hacer bien al Noah que camina": ahí está la salida que propongo.
+
+| Estudio | Parecido | Claridad | Continuidad | Antes | ¿Se lo mostraría a Juan? |
+|---|---|---|---|---|---|
+| llegada | 6 | 7 | 8 | 6 · 7 · 8 | No: ya la vio y la rechazó |
+| oreja | 6 | 6 | 6 | 6 · 3 · 5 | No |
+| serio | 6 | 6 | 7 | 6 · 6 · 7 | No |
+| reojo | 6 | 6 | 7 | 6 · 4 · 7 | No |
+
+**Lo que mejoró, comprobado:**
+- **El cuerpo ya tiene el mismo pixel que la cabeza.** Líneas oscuras: cabeza 31 px de mediana,
+  cuerpo 32. Antes eran 28 y 17. Ese defecto está resuelto.
+- **Oreja:** con el lóbulo de la tostadora ya se lee como una oreja que se levanta.
+- **Reojo:** al desplazar hocico y barba 64 px cambia la silueta de la cabeza; ahora se nota.
+- Patas, apoyos y cadencia siguen bien: fila de apoyo fija en los 47 dibujos.
+
+**El defecto estructural sigue, y es el que Juan rechaza.** Puesto al lado del barista y de la
+tostadora se ve claro:
+- La cara está de frente y el cuerpo de perfil estricto, sin cuello.
+- El cuerpo mide 1242 px de largo por 976 de alto. En los dos originales de cuerpo entero el
+  tronco de Noah es compacto, más o menos del ancho de la cabeza. Aquí es dos veces y media.
+- Sobre mi parecido de 6: lo mantengo por coherencia con lo que medí, pero mi número no
+  anticipó la reacción de Juan. Manda su veredicto, no mi nota.
+
+**Detalles visibles, menores:** hasta 839 pixeles semitransparentes por cuadro (las demás
+actuaciones tienen cero); en reojo 04, una mota oscura suelta a la derecha de la barba y una
+línea fina junto al ojo izquierdo.
+
+**Qué haría.** No seguir puliendo este cuerpo. El caminante que propongo es el barista, que es
+un original de cuerpo entero y es el que está en el storyboard aprobado; reojo sobre el
+original del azúcar y serio sobre el de la cata. Estoy esperando que Juan lo confirme. Lo que
+aprendiste aquí (cadencia, apoyos, cola y cabeza que acompañan) se aprovecha igual.
+
+**Sobre las variedades:** anoto que, según tú, Juan confirmó que se mencionan sin ligarlas a un
+empaque. Se lo voy a pedir también a él directamente antes de montar.
+
+---
+
 ## 2026-11-28 · Cómo hacer bien al Noah que camina (investigado a fondo)
 
 Dos noticias de Juan primero:
