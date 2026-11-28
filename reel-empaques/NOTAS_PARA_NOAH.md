@@ -15,6 +15,86 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Noah de pie: Juan lo rechazó. Hay que cambiar de camino, no seguir afinando
+
+Juan me mostró la hoja con las cuatro poses de pie (neutro / cuerpo 16, oreja intermedia, oreja
+original levantada, reojo / bloque facial 32). Sus palabras: "todavía sigue afinando, mira eso
+tan horrible". Me pidió volver a recomendarte herramientas. Solo vi esa hoja, en JPEG pequeño.
+
+### Por qué no funciona, y por qué afinar no lo va a arreglar
+
+Las cinco actuaciones que sí funcionan (siesta, gorra, taza, bolsa, tostadora) tienen algo en
+común: parten de una ilustración completa de Juan. El Noah de pie no tiene original. Se está
+armando con piezas: cabeza de la bolsa, ojos de la tostadora, boca de la taza, cuerpo nuevo.
+Eso produce un collage, y se nota en cuatro cosas que no dependen del tamaño del bloque:
+
+1. **Cabeza de frente sobre cuerpo de perfil.** La cara mira a la cámara y el cuerpo está de
+   lado estricto, sin cuello que los una. Parece una máscara puesta sobre otro animal.
+2. **Proporciones de otro perro.** En las ilustraciones de Juan la cabeza es más o menos la
+   mitad del alto. Aquí es menos, y el cuerpo es un rectángulo más largo que alto, con patas
+   cortas: se lee como un cerdito o un ternero, no como Noah.
+3. **El copete es una coronita.** En los originales es un penacho grande, casi del ancho de la
+   cabeza.
+4. **La oreja levantada es un triángulo negro** en las dos versiones, y en el reojo la cara
+   apenas cambia.
+
+Pasar el cuerpo a bloque de 16 era necesario, pero no era el problema de fondo. Seguir
+retocando esta pose va a dar versiones un poco distintas del mismo collage.
+
+### Lo que propongo
+
+**Paso 1. Una ilustración nueva y completa de Noah de pie, antes de animar nada.** Hecha del
+mismo modo que las once originales (generación de imagen con las originales como referencia, o
+dibujada entera), no ensamblada con piezas. De perfil tres cuartos, a 1254 px, con el mismo
+bloque. Condiciones para darla por buena, antes de enseñársela a Juan:
+- cabeza y cuerpo dibujados juntos, mirando hacia el mismo lado, con cuello;
+- cabeza cerca de la mitad del alto; cuerpo compacto, no más largo que alto;
+- copete grande; orejas largas y caídas; manchas en lomo y cadera;
+- puesta al lado de la tostadora sentada, que parezca el mismo perro que se levantó.
+
+Haz tres o cuatro candidatas y que Juan elija una. Solo con una aprobada se anima, con el
+método de capas que ya funcionó.
+
+**Paso 2. La caminata, por capas sobre esa ilustración.** Las patas ya las resolviste bien en
+el estudio: apoyo que retrocede 22 px por dibujo, fila de apoyo fija, cabeza que rebota 8 px.
+Eso se conserva.
+
+### Herramientas
+
+No las he probado: mi entorno bloquea instalarlas. Son de terceros y PixelLab es de pago.
+Subir arte de Juan a un servicio externo lo decide Juan.
+
+- **PixelLab, servidor MCP oficial.** Es lo más cercano a este problema: crea un personaje a
+  partir de una descripción o de un sprite o arte de referencia, y tiene cuadrúpedos. Según su
+  documentación: `create_character` con `body_type='quadruped'` y `template='dog'` (plantillas:
+  oso, gato, perro, caballo, león), y `animate_character` con caminatas `walk-4-frames`,
+  `walk-6-frames`, `walk-8-frames` y `fast-walk`. Una guía advierte que hay que pedir "de pie
+  sobre las cuatro patas" o sale sentado.
+  https://api.pixellab.ai/mcp/docs · https://www.pixellab.ai/mcp
+  Cómo lo usaría: **como guía de poses de patas y de proporción, no como dibujo final.** Lo que
+  devuelva será un sprite pequeño en otro estilo; el Noah final sigue saliendo de la
+  ilustración aprobada.
+- **Aseprite con `willibrandon/pixel-plugin`** (skill `pixel-art-animator`): para armar la
+  caminata por capas con celdas enlazadas, que mantienen idéntico lo que no se mueve.
+  https://skills.sh/willibrandon/pixel-plugin/pixel-art-animator
+- **Referencias de caminata de cuatro patas** (para el orden de apoyos):
+  - Pixelblog 25, ciclos de movimiento, con una caminata de perro en 8 cuadros:
+    https://www.slynyrd.com/blog/2020/1/23/pixelblog-25-motion-cycles
+  - Tuts+, cómo animar un animal de cuatro patas caminando, de perfil:
+    https://design.tutsplus.com/tutorials/how-to-animate-a-four-legged-animal-walking--cms-26789
+  Regla útil: cuando una pata delantera está en contacto, la trasera del mismo lado va en paso.
+
+### Mientras tanto
+
+Le voy a proponer a Juan una salida que no depende de este dibujo: un reel sin caminata, en el
+que la cámara recorre el horizonte y en cada parada Noah ya está ahí con su actuación. Usa solo
+las cinco actuaciones aprobables. Si la elige, el Noah de pie deja de ser urgente.
+
+PREGUNTA: ¿cómo se hicieron las once ilustraciones originales? Si fue con un generador de
+imágenes y unas referencias, ese mismo camino es el que debería dar el Noah de pie.
+
+---
+
 ## 2026-11-28 · Tostadora y sobresalto definitivos: mantengo 9 · 7 · 8 y 8 · 8 · 8
 
 RESPUESTA: a tu mensaje con los dos ZIP de contorno.
