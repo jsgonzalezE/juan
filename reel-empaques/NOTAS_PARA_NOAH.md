@@ -15,6 +15,69 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Mi calificación de las actuaciones
+
+RESPUESTA: 2026-11-27, calificar las rondas.
+
+**Qué material pude usar.** No puedo ver video en movimiento. Lo que hice: miré las nueve hojas
+de poses, comparé los PNG dibujo contra dibujo, medí cuánto de Noah cambia en cada acción y monté
+en la escena caminar, frenar, contento, tostando y crack. Arrancar, oreja, serio y reojo solo los
+vi en hoja; la lamida, solo en el GIF del estudio. Tómalo como lectura de cuadros, no de ritmo.
+
+**Un dato que explica lo que sintió Juan.** Medí qué parte de Noah cambia a lo largo de cada
+acción (porcentaje de sus pixeles visibles):
+
+| Acción | Cambia | | Acción | Cambia |
+|---|---|---|---|---|
+| tostando | 9 % | | caminar | 54 % |
+| oreja | 14 % | | frenar | 66 % |
+| contento | 18 % | | crack | 72 % |
+| serio | 18 % | | arrancar | 76 % |
+| reojo | 23 % | | | |
+
+Las cinco de la izquierda son justo las que se sienten como "una ilustración con una pieza
+moviéndose": el resto del cuerpo queda congelado. Como criterio práctico, por debajo de un 25 %
+se lee recorte; no hace falta mover todo, basta con movimiento secundario (parpadeo, respiración
+en el pecho, cola, uno o dos pixeles de cabeza).
+
+**Notas por clip** (1 a 5: parecido con su referencia · claridad de la acción · continuidad)
+
+| Clip | Parecido | Claridad | Continuidad | Instante que lo sustenta |
+|---|---|---|---|---|
+| tostando | 5 | 4 | 2 | La oreja sube entre 05 y 06 y se entiende; pero durante 4 s solo se mueve esa oreja: ojos, pata levantada y cuerpo no cambian |
+| crack | 4 | 2 | 3 | 04 es el punto alto del brinco y su silueta es casi la de 01: sube 16 px en un lienzo de 1254. Se lee como temblor, no como susto |
+| oreja | 4 | 4 | 3 | En 03 la oreja se despega y en 04 queda abierta: se entiende a primera vista. El cuerpo no acompaña |
+| serio | 4 | 3 | 3 | 01 ya tiene el ceño bajo, así que de 01 a 04 casi no hay recorrido; baja el párpado y poco más |
+| reojo | 4 | 3 | 3 | Las pupilas se van a la derecha en 03 y 04, pero es un cambio de pocos pixeles; la cabeza no gira |
+| contento | 3 | 3 | 4 | La lengua aparece en 03 y los ojos se cierran en 04; en un perro de cuerpo entero al 62 % eso mide unos 10 px en pantalla. El empalme con frenar es exacto |
+| caminar | 3 | 5 | 4 | Las patas alternan bien y el bucle cierra sin salto. La cabeza es idéntica en los ocho dibujos: no rebota ni mueve orejas |
+| frenar | 3 | 3 | 4 | Ya lo comenté: llega a una pose estable; el peso no viajaba en la versión que tengo |
+| lamida | 4 | 3 | 2 | En el GIF la lengua barre sola; mejillas y cabeza no reaccionan |
+
+Arrancar no lo califico: no lo he montado. Solo aviso que entre sus dibujos cambia entre 44 y
+65 % de Noah, que es mucho de un dibujo al siguiente; puede dar un tirón.
+
+**Qué se entiende a primera vista:** caminar y oreja.
+
+**Qué distrae:** el cuerpo congelado en tostando; y que serio y reojo empiezan casi en la misma
+cara y terminan parecidos. En un teléfono se van a confundir.
+
+**Cuáles necesitan reemplazar una pose, no solo retocarla**
+
+1. **crack.** Le falta una anticipación (encogerse) y un dibujo en el aire de verdad: patas
+   despegadas, orejas volando, ojos abiertos. Es el clímax del video y hoy es el más débil.
+2. **serio.** Que arranque de una cara neutra para que el ceño tenga recorrido, o que el gesto sea
+   otro (por ejemplo ladear la cabeza) para separarlo de reojo.
+3. **contento de pie.** El gesto es demasiado pequeño para ese tamaño: necesita cola, un rebote
+   corto o levantar la cabeza.
+
+**Las que salvaría con movimiento secundario:** tostando, oreja y reojo.
+
+Sobre el parecido: las acciones sentadas sacan 4 y 5 porque parten de sus ilustraciones; el Noah
+de pie saca 3 por el pelaje interior, que ya te comenté en la nota anterior.
+
+---
+
 ## 2026-11-28 · Mi lectura del pelaje, comparando con la tostadora y la bolsa
 
 RESPUESTA: 2026-11-27, pelaje. Puse `caminar_01` y `contento_05` al lado de la tostadora y de la
