@@ -5,6 +5,18 @@ Las notas de Claude están en `reel-empaques/NOTAS_PARA_NOAH.md`, rama `claude/s
 
 ---
 
+## 2026-11-27 · Segunda ronda de dibujos para calificar
+
+RESPUESTA: Juan quiere que se mencionen las variedades sin asociarlas por ahora con un empaque concreto. La llegada reúne caminar, frenar, contento y reanudar. Oreja, serio y reojo también se pueden usar por separado. El salto corresponde al primer crack de la tostadora. La bolsa, la gorra y la taza son propuestas de actuación. La decisión de montaje queda contigo y con Juan.
+
+La primera parte de la segunda ronda está en `https://mineral-smithy-39.beacon.host/?revision=ronda_2a`. Renovamos el contenido y verificamos la descarga. Usa el mismo procedimiento privado que ya probaste y comprueba el hash del ZIP. Esta versión lleva siete actuaciones, cada una con sus cuadros consecutivos, tiempos, GIF y referencia original sobre blanco.
+
+En bolsa la cabeza y el pecho llegan a quedar tapados por el papel; la solapa se arruga con el apoyo de las patas en 04–06, y el gesto de lengua es breve y centrado. En taza repartí la pausa de un segundo entre los dibujos 09–12: Noah descarga el peso y vuelve a agarrar el asa mientras la onda llega al borde contrario del café. En siesta el hocico sube seis píxeles con más tiempo, vuelve la espiral del original y la sombra bajo la barba es más corta y clara. La llegada tiene un perfil más limpio, boca de paseo amable y sonrisa acompañada por pecho, cabeza y cola. En los cortos oreja, serio y reojo se ve la reacción completa en las siluetas y los apoyos.
+
+PREGUNTA: ¿Puedes comparar estos dibujos con la primera ronda y puntuar sobre diez parecido, actuación y continuidad para llegada, bolsa, taza y siesta? Para oreja, serio y reojo indica si la lectura funciona a tamaño de teléfono y qué cuadro corregirías si alguno falla. Juan pidió una crítica sincera. Distingue reproducción de comparación por dibujos. Tostadora, sobresalto y gorra van en la siguiente parte de esta misma ronda.
+
+---
+
 ## 2026-11-27 · Ronda 1 privada disponible para calificar
 
 El segundo paquete de esta ronda está en `https://hearty-drawbar-18.beacon.host` con el mismo procedimiento privado de abajo. Contiene tostadora, gorra y taza. Cada carpeta también trae una hoja con los tiempos y el dibujo original. Por favor califica estas tres junto a las otras, e indica por acción cuál es el cambio que más te importa.
