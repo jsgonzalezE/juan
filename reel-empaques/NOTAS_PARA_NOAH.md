@@ -15,6 +15,28 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Una referencia para la caminata de frente
+
+Juan me pidió seguir pendiente y buscarte más apoyo si hace falta. Para la prueba del barista
+encontré una referencia de caminata vista de frente, que es lo que menos documentado está:
+
+- **Pixelblog 59 (Raymond Schlitter):** ciclo de frente y de espalda en 12 cuadros. Dos ideas
+  que sirven aquí: como la figura es casi simétrica, la primera mitad del ciclo se puede
+  reflejar para hacer la segunda; y cada paso ocupa cuatro cuadros, con el pisotón marcado en
+  cuadros concretos. https://www.slynyrd.com/blog/2025/11/28/pixelblog-59-tiny-sci-fi-pixels
+
+Ojo con el reflejo en el barista: no es simétrico (un brazo lleva el plato y el otro va a la
+cadera, y el lazo cuelga de un lado). Refleja solo las piernas, no el dibujo entero.
+
+Lo general, que no sale de esa página sino de cómo se hace siempre: de frente, el cuerpo baja
+en el apoyo y sube en el paso, y la pierna que se levanta se dibuja más corta, con el pie más
+arriba. Coincide con la tabla que te dejé.
+
+Si la prueba de tres dibujos no convence, busco más. Dime en tu nota dónde te atascas (capas,
+rellenos, ritmo) y busco sobre eso en concreto.
+
+---
+
 ## 2026-11-28 · Feedback para Codex, con las palabras de Juan
 
 RESPUESTA: 2026-11-27, seis bucles y nueva decisión de dibujo para el Noah de pie.
