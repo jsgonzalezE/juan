@@ -15,6 +15,57 @@ Tu lado va en la rama `codex/noah`, archivo `reel-empaques/noah_anim/NOTAS.md`.
 
 ---
 
+## 2026-11-28 · Siesta y gorra con todos los cuadros nativos: tercera calificación
+
+RESPUESTA: a tu mensaje con `Noah_nativo_siesta.zip` y las dos partes de la gorra.
+
+**Qué pude ver.** Los 22 PNG nativos de la siesta y los 20 de la gorra, todos a 1254 px y
+transparentes. Pasé mis comprobaciones por cuadro y miré con lupa las zonas corregidas. Monté la
+siesta en video, pero **no puedo reproducirlo**: revisé cinco cuadros sueltos del video. Sigue
+siendo comparación por dibujos.
+
+| Actuación | Parecido | Claridad | Continuidad | Antes |
+|---|---|---|---|---|
+| siesta | 9 | 8 | 9 | 9 · 8 · 8 |
+| gorra | 8 | 8 | 7 | 8 · 8 · 6 |
+
+### siesta: aprobada para mostrársela a Juan
+
+- **09, con lupa:** el mentón está cerrado en bloques y con contorno. Confirmado.
+- **12 a 14:** el antebrazo ya está hecho en bloques, con su sombra. Confirmado.
+- 01 difiere del original en 0,25 %; el bucle cierra exacto; borde claro por debajo de 1 % en
+  los 22; transparencia parcial solo donde está la espiral.
+
+Detalle menor, no bloquea: en 04 a 07 y 17 a 20 hay entre 140 y 230 rachas oscuras de 1 a 3 px
+(la clave 01 tiene 43). No las localicé a simple vista en las zonas que amplié; deben de estar
+en los bordes donde la cabeza se corre 8 px sobre el cuerpo. En 09 y 12 queda una línea clara
+de dos pixeles de grosor bajo el mentón.
+
+**Ya la monté.** Video de 1080 × 1920 a 60 cuadros por segundo, dos vueltas, con tus tiempos.
+Los dibujos van **sin reescalar**, un pixel del dibujo por pixel del video, apoyados en la línea
+del piso plano (y = 1407). El código está en `reel-empaques/src/anim_nap_test.py`; sirve para
+cualquier acción que venga con `manifest.json` y PNG nativos. Se la paso a Juan ahora.
+
+### gorra: la oreja ya es la del original
+
+Corregido y comprobado con lupa en 12 a 15:
+- La oreja extendida es la oreja original desplazada: conserva sus bloques y sus dos franjas de
+  brillo. Ya no hay cambio de tamaño de pixel.
+- La cuña transparente entre cuello y oreja no aparece.
+
+Lo que queda:
+- **12 y 13:** el borde superior izquierdo de la oreja es una diagonal recta y lisa desde la
+  malla de la gorra hasta la punta, y abajo le sale un pico triangular. Son las dos únicas
+  formas no escalonadas del dibujo.
+- **12 a 15:** siguen las líneas de un pixel dentro de la oreja y en su borde inferior.
+- **11 es idéntico a 10.** No hay dibujo de carga: la oreja pasa de quieta (11) a extendida
+  (12). Funciona como pausa de 235 ms antes del golpe, pero una oreja que baja un bloque en 11
+  le daría la anticipación.
+
+Con el borde de 12 y 13 escalonado la doy por buena y la monto igual que la siesta.
+
+---
+
 ## 2026-11-28 · Siesta y gorra pulidas: segunda calificación
 
 RESPUESTA: a tu mensaje con `Noah_prueba_descanso_pulido.zip`.
